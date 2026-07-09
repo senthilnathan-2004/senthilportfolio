@@ -22,7 +22,7 @@ export default function Preloader() {
           return 100;
         }
         // Random increments for a more "real" terminal loading feel
-        return prev + Math.floor(Math.random() * 15) + 5; 
+        return prev + Math.floor(Math.random() * 15) + 5;
       });
     }, 120);
 
@@ -45,7 +45,7 @@ export default function Preloader() {
 
           <div className="w-full max-w-xs sm:max-w-md px-8 relative z-10">
             <div className="flex justify-between items-end mb-4 overflow-hidden">
-              <motion.span 
+              <motion.span
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
@@ -53,7 +53,7 @@ export default function Preloader() {
               >
                 System Boot
               </motion.span>
-              <motion.span 
+              <motion.span
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -62,10 +62,10 @@ export default function Preloader() {
                 {progress}%
               </motion.span>
             </div>
-            
+
             {/* Progress Bar */}
             <div className="h-[2px] w-full bg-border-subtle relative overflow-hidden">
-              <motion.div 
+              <motion.div
                 className="absolute top-0 left-0 h-full bg-green-accent"
                 initial={{ width: "0%" }}
                 animate={{ width: `${progress}%` }}
@@ -74,7 +74,7 @@ export default function Preloader() {
             </div>
 
             {/* Terminal logs */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}

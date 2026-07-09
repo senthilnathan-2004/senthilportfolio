@@ -28,7 +28,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
       </div>
 
       <div className="w-full max-w-6xl mx-auto px-5 md:px-8 relative z-10">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-stretch">
 
           {/* Left: Premium Image Frame */}
           <motion.div
@@ -36,9 +36,9 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative order-2 lg:order-1 hidden md:block"
+            className="relative order-2 lg:order-1 hidden md:block h-full"
           >
-            <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-border-subtle/50 shadow-[0_0_40px_rgba(0,255,128,0.05)] bg-bg-container/80 p-3">
+            <div className="relative h-full min-h-[400px] w-full rounded-[2.5rem] overflow-hidden border border-border-subtle/50 shadow-[0_0_40px_rgba(0,255,128,0.05)] bg-bg-container/80 p-3">
               <div className="w-full h-full relative rounded-[2rem] overflow-hidden bg-bg-card">
                 {imageUrl ? (
                   <Image
@@ -86,7 +86,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               Behind the <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-green-accent">Code</span>
             </h2>
 
-            <div className="prose prose-invert prose-p:text-text-primary prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-a:text-green-accent hover:prose-a:underline max-w-none mb-10 transition-colors">
+            <div className="prose prose-invert prose-p:text-text-primary prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:text-justify prose-p:indent-8 prose-a:text-green-accent hover:prose-a:underline max-w-none mb-10 transition-colors">
               <div dangerouslySetInnerHTML={{ __html: bioRichText }} />
             </div>
 
