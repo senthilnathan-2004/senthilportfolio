@@ -105,25 +105,25 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
               </p>
 
               <div className="space-y-6 sm:space-y-8">
-                <a href={`mailto:${contactEmail || "hello@example.com"}`} className="flex items-center gap-3 sm:gap-4 group/link transition-opacity">
+                <a href={`mailto:${contactEmail || "hello@example.com"}`} className="flex items-center gap-3 sm:gap-4 group/link transition-opacity min-w-0 w-full">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-xl bg-border-subtle/30 flex items-center justify-center text-green-accent group-hover/link:scale-110 group-hover/link:bg-green-accent/10 transition-all">
                     <Mail size={18} className="sm:w-5 sm:h-5" />
                   </div>
-                  <div className="min-w-0 flex-1">
+                  <div className="min-w-0 flex-1 overflow-hidden">
                     <p className="text-[10px] sm:text-xs font-mono text-text-tertiary uppercase tracking-widest mb-1">Direct Line</p>
-                    <p className="text-sm sm:text-base text-text-primary font-mono group-hover/link:text-green-accent transition-colors truncate">
+                    <p className="text-sm sm:text-base text-text-primary font-mono group-hover/link:text-green-accent transition-colors break-all">
                       {contactEmail || "hello@example.com"}
                     </p>
                   </div>
                 </a>
 
-                <div className="flex items-center gap-3 sm:gap-4">
+                <div className="flex items-center gap-3 sm:gap-4 min-w-0 w-full">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-xl bg-border-subtle/30 flex items-center justify-center text-text-secondary">
                     <MapPin size={18} className="sm:w-5 sm:h-5" />
                   </div>
-                  <div className="min-w-0 flex-1">
+                  <div className="min-w-0 flex-1 overflow-hidden">
                     <p className="text-[10px] sm:text-xs font-mono text-text-tertiary uppercase tracking-widest mb-1">Base Coordinates</p>
-                    <p className="text-sm sm:text-base text-text-primary font-mono">{contactLocation || "Earth, Local Cluster"}</p>
+                    <p className="text-sm sm:text-base text-text-primary font-mono break-words">{contactLocation || "Earth, Local Cluster"}</p>
                   </div>
                 </div>
               </div>
