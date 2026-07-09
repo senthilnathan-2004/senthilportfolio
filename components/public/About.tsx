@@ -1,0 +1,117 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { User, Download, ArrowRight } from "lucide-react";
+import InfiniteCarousel from "./InfiniteCarousel";
+
+interface AboutProps {
+  tagLabel: string;
+  bioRichText: string;
+  cvUrl?: string;
+  imageUrl?: string;
+  imageAlt?: string;
+}
+
+export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt }: AboutProps) {
+  const carouselItems = [
+    <span key={1} className="text-sm font-bold tracking-widest uppercase font-mono text-text-tertiary">FULL_STACK_DEV</span>,
+    <span key={2} className="text-sm font-bold tracking-widest uppercase font-mono text-text-tertiary">SYSTEM_ARCHITECT</span>,
+    <span key={3} className="text-sm font-bold tracking-widest uppercase font-mono text-text-tertiary">UI_ENGINEER</span>,
+  ];
+
+  return (
+    <section id="about" className="py-12 lg:py-16 relative overflow-hidden">
+      <div className="absolute top-[10%] left-0 w-full opacity-20 pointer-events-none">
+        <InfiniteCarousel items={carouselItems} speed="normal" direction="right" />
+      </div>
+
+      <div className="w-full max-w-6xl mx-auto px-8 relative z-10">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-center">
+
+          {/* Left: Premium Image Frame */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, rotate: -2 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative order-2 lg:order-1 hidden md:block"
+          >
+            <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-border-subtle/50 shadow-[0_0_40px_rgba(0,255,128,0.05)] bg-bg-container/80 p-3">
+              <div className="w-full h-full relative rounded-[2rem] overflow-hidden bg-bg-card">
+                {imageUrl ? (
+                  <Image
+                    src={imageUrl}
+                    alt={imageAlt || "About photo"}
+                    fill
+                    className="object-cover opacity-90 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700 hover:scale-105"
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center font-mono text-text-tertiary gap-4">
+                    <User size={48} className="opacity-20" />
+                    <span>AWAITING_VISUAL_DATA</span>
+                  </div>
+                )}
+                {/* Inner Glow */}
+                <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.8)] pointer-events-none" />
+              </div>
+            </div>
+
+            {/* Decorative Floating Elements */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              className="absolute -bottom-6 -right-6 w-32 h-32 bg-green-accent/10 rounded-full blur-3xl -z-10"
+            />
+            <div className="absolute top-12 -left-8 w-16 h-16 border border-border-subtle/30 rounded-full bg-bg-container/40 backdrop-blur-sm hidden md:flex items-center justify-center text-green-accent">
+              <span className="font-mono text-xs">{"//"}</span>
+            </div>
+          </motion.div>
+
+          {/* Right: Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="order-1 lg:order-2"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-8 font-mono backdrop-blur-sm">
+              <User size={16} />
+              <span className="tracking-widest uppercase">{tagLabel}</span>
+            </div>
+
+            <h2 className="text-2xl lg:text-4xl font-display text-text-primary uppercase tracking-tight mb-3">
+              Behind the <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-green-accent">Code</span>
+            </h2>
+
+            <div className="prose prose-invert prose-p:text-text-primary prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-a:text-green-accent hover:prose-a:underline max-w-none mb-10 transition-colors">
+              <div dangerouslySetInnerHTML={{ __html: bioRichText }} />
+            </div>
+
+            <div className="flex flex-wrap items-center gap-6">
+              <a
+                href={cvUrl || "#"}
+                target={cvUrl ? "_blank" : "_self"}
+                rel="noreferrer"
+                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-green-accent text-bg-primary font-sans font-semibold rounded-full overflow-hidden transition-all hover:bg-green-accent/80 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,255,128,0.3)]"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <Download size={18} />
+                  {cvUrl ? "Download Resume" : "Download Resume"}
+                </span>
+              </a>
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-text-secondary hover:text-green-accent transition-colors"
+              >
+                View Work <ArrowRight size={16} />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
