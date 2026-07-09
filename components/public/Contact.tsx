@@ -99,8 +99,8 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
               </div>
               
               <p className="text-text-secondary font-mono text-xs sm:text-sm leading-relaxed mb-8 sm:mb-10">
-                &gt; Listening for incoming connections... <br/>
-                &gt; Ready to process project requirements. <br/>
+                &gt; Listening for incoming connections. <br/>
+                &gt; Ready to process project require ments. <br/>
                 &gt; Awaiting transmission.
               </p>
 
