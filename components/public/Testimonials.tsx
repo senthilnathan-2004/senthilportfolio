@@ -58,7 +58,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
       </div>
 
       <div className="mb-8 relative z-10 flex-1">
-        <p className="text-lg font-semibold text-text-primary group-hover:text-green-accent transition-colors leading-relaxed">
+        <p className="text-lg font-semibold text-text-primary text-justify group-hover:text-green-accent transition-colors leading-relaxed">
           "{testimonial.quote}"
         </p>
       </div>

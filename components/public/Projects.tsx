@@ -134,11 +134,11 @@ export default function Projects({ projects }: ProjectsProps) {
                   <div className="mb-2">
                     <span className="font-mono text-xs text-green-accent">{project.category}</span>
                   </div>
-                  <h3 className="text-lg font-semibold text-text-primary mb-2 group-hover:text-green-accent transition-colors">
+                  <h3 className="text-lg font-semibold text-text-primary text-justify mb-2 group-hover:text-green-accent transition-colors">
                     {project.title}
                   </h3>
                   {project.shortDescription && (
-                    <p className="text-sm text-text-secondary leading-relaxed mb-4 line-clamp-2">
+                    <p className="text-sm text-text-secondary text-justify leading-relaxed mb-4 line-clamp-2">
                       {project.shortDescription}
                     </p>
                   )}

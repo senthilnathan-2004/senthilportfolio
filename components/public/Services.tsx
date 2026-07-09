@@ -50,7 +50,7 @@ export default function Services({ services }: ServicesProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-8 bg-bg-container/40 backdrop-blur-md border border-border-subtle rounded-3xl hover:border-green-accent/30 hover:bg-bg-container/80 transition-all duration-300 group shadow-card flex flex-col h-full"
+              className="p-6 bg-bg-container/40 backdrop-blur-md border border-border-subtle rounded-3xl hover:border-green-accent/30 hover:bg-bg-container/80 transition-all duration-300 group shadow-card flex flex-col h-full"
             >
               <div className="w-12 h-12 bg-border-subtle/50 rounded-2xl flex items-center justify-center mb-6 text-green-accent group-hover:scale-110 transition-transform duration-300">
                 <Server size={24} />
@@ -58,7 +58,7 @@ export default function Services({ services }: ServicesProps) {
               <h3 className="text-xl font-display text-text-primary mb-4 tracking-tight">
                 {service.title}
               </h3>
-              <p className="text-lg font-semibold text-text-primary group-hover:text-green-accent transition-colors leading-relaxed mt-auto">
+              <p className="text-lg font-semibold text-text-primary text-justify group-hover:text-green-accent transition-colors leading-relaxed mt-auto">
                 {service.description}
               </p>
             </motion.div>

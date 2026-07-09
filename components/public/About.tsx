@@ -86,7 +86,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               Behind the <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-green-accent">Code</span>
             </h2>
 
-            <div className="prose prose-invert prose-p:text-text-primary prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:text-justify prose-p:indent-8 prose-a:text-green-accent hover:prose-a:underline max-w-none mb-10 transition-colors">
+            <div className="prose prose-invert text-justify prose-p:text-text-primary prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:text-justify prose-a:text-green-accent hover:prose-a:underline max-w-none mb-10 transition-colors">
               <div dangerouslySetInnerHTML={{ __html: bioRichText }} />
             </div>
 

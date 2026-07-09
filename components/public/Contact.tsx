@@ -90,7 +90,7 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
             viewport={{ once: true }}
             className="flex flex-col space-y-8 h-full"
           >
-            <div className="p-5 sm:p-8 bg-bg-container/60 backdrop-blur-xl border border-border-subtle rounded-3xl shadow-[0_0_40px_rgba(0,255,128,0.03)] relative overflow-hidden group h-full flex flex-col justify-center">
+            <div className="p-4 sm:p-6 bg-bg-container/60 backdrop-blur-xl border border-border-subtle rounded-3xl shadow-[0_0_40px_rgba(0,255,128,0.03)] relative overflow-hidden group h-full flex flex-col justify-center">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-accent/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               
               <div className="flex items-center gap-3 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-border-subtle/50">
@@ -135,7 +135,7 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-bg-container/40 backdrop-blur-xl border border-border-subtle rounded-3xl p-5 sm:p-8 lg:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.4)] relative h-full flex flex-col justify-center"
+            className="bg-bg-container/40 backdrop-blur-xl border border-border-subtle rounded-3xl p-4 sm:p-6 lg:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.4)] relative h-full flex flex-col justify-center"
           >
             {/* Glowing orb behind form */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-green-accent/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
@@ -164,7 +164,7 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
               <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-xs font-mono text-text-tertiary uppercase tracking-widest pl-2">
+                    <label htmlFor="name" className="text-xs font-mono text-text-secondary uppercase tracking-widest pl-2">
                       Identifier (Name)
                     </label>
                     <input
@@ -172,12 +172,12 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
                       name="name"
                       type="text"
                       required
-                      className="w-full bg-bg-primary/20 border border-border-subtle focus:border-green-accent/50 focus:ring-1 focus:ring-green-accent/50 rounded-xl p-3 sm:px-4 sm:py-4 text-text-primary outline-none transition-all font-sans placeholder:text-text-tertiary/50"
+                      className="w-full bg-bg-primary/20 border border-border-subtle focus:border-green-accent/50 focus:ring-1 focus:ring-green-accent/50 rounded-xl p-3 sm:px-4 sm:py-4 text-text-primary outline-none transition-all font-sans placeholder:text-text-secondary/70"
                       placeholder="e.g. John Doe"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-xs font-mono text-text-tertiary uppercase tracking-widest pl-2">
+                    <label htmlFor="email" className="text-xs font-mono text-text-secondary uppercase tracking-widest pl-2">
                       Return Address (Email)
                     </label>
                     <input
@@ -185,14 +185,14 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
                       name="email"
                       type="email"
                       required
-                      className="w-full bg-bg-primary/20 border border-border-subtle focus:border-green-accent/50 focus:ring-1 focus:ring-green-accent/50 rounded-xl p-3 sm:px-4 sm:py-4 text-text-primary outline-none transition-all font-sans placeholder:text-text-tertiary/50"
+                      className="w-full bg-bg-primary/20 border border-border-subtle focus:border-green-accent/50 focus:ring-1 focus:ring-green-accent/50 rounded-xl p-3 sm:px-4 sm:py-4 text-text-primary outline-none transition-all font-sans placeholder:text-text-secondary/70"
                       placeholder="e.g. john@example.com"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2 pt-2">
-                  <label htmlFor="message" className="text-xs font-mono text-text-tertiary uppercase tracking-widest pl-2">
+                  <label htmlFor="message" className="text-xs font-mono text-text-secondary uppercase tracking-widest pl-2">
                     Payload Content (Message)
                   </label>
                   <textarea
@@ -200,7 +200,7 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
                     name="message"
                     required
                     rows={5}
-                    className="w-full bg-bg-primary/20 border border-border-subtle focus:border-green-accent/50 focus:ring-1 focus:ring-green-accent/50 rounded-xl p-3 sm:p-4 text-text-primary outline-none transition-all resize-none font-sans placeholder:text-text-tertiary/50"
+                    className="w-full bg-bg-primary/20 border border-border-subtle focus:border-green-accent/50 focus:ring-1 focus:ring-green-accent/50 rounded-xl p-3 sm:p-4 text-text-primary outline-none transition-all resize-none font-sans placeholder:text-text-secondary/70"
                     placeholder="Describe your project requirements here..."
                   />
                 </div>
