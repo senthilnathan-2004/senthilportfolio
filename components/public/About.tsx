@@ -27,7 +27,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
         <InfiniteCarousel items={carouselItems} speed="normal" direction="right" />
       </div>
 
-      <div className="w-full max-w-6xl mx-auto px-8 relative z-10">
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 relative z-10">
         <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-center">
 
           {/* Left: Premium Image Frame */}
