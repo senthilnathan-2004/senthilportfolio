@@ -138,8 +138,10 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                className="relative w-full max-w-lg bg-bg-card border border-border-subtle rounded-3xl shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto m-auto"
+                className="relative w-full max-w-lg bg-bg-container/80 backdrop-blur-3xl border border-border-subtle rounded-3xl shadow-[0_20px_80px_rgba(0,0,0,0.6)] p-6 sm:p-10 max-h-[90vh] overflow-y-auto m-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
               >
+                {/* Glowing background inside card */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-green-accent/5 rounded-full blur-[100px] pointer-events-none -z-10" />
                 <button 
                   onClick={() => setIsModalOpen(false)}
                   className="absolute top-6 right-6 text-text-tertiary hover:text-red-400 transition-colors"
@@ -157,9 +159,14 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                   </div>
                 ) : (
                   <>
-                    <div className="mb-8">
-                      <h3 className="text-2xl font-display text-text-primary mb-2">Submit Feedback</h3>
-                      <p className="text-text-secondary text-sm font-sans">Your honest review helps me improve.</p>
+                    <div className="mb-8 border-b border-border-subtle/50 pb-6 flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-border-subtle/30 flex items-center justify-center text-green-accent">
+                        <MessageSquare size={24} />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-mono text-text-primary uppercase tracking-wider mb-1">Submit Feedback</h3>
+                        <p className="text-text-tertiary text-xs font-mono uppercase tracking-widest">Awaiting transmission...</p>
+                      </div>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -169,8 +176,8 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                           required
                           value={formData.name}
                           onChange={e => setFormData({...formData, name: e.target.value})}
-                          className="w-full bg-bg-primary/50 border border-border-subtle focus:border-green-accent/50 rounded-xl px-4 py-3 text-text-primary outline-none transition-all font-sans"
-                          placeholder="John Doe"
+                          className="w-full bg-bg-primary/50 backdrop-blur-sm border border-border-subtle focus:border-green-accent/50 rounded-xl px-4 py-3 text-text-primary outline-none transition-all font-mono text-sm placeholder:text-text-tertiary shadow-inner"
+                          placeholder="e.g. John Doe"
                         />
                       </div>
                       
@@ -180,20 +187,20 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                           required
                           value={formData.role}
                           onChange={e => setFormData({...formData, role: e.target.value})}
-                          className="w-full bg-bg-primary/50 border border-border-subtle focus:border-green-accent/50 rounded-xl px-4 py-3 text-text-primary outline-none transition-all font-sans"
-                          placeholder="CEO at TechCorp"
+                          className="w-full bg-bg-primary/50 backdrop-blur-sm border border-border-subtle focus:border-green-accent/50 rounded-xl px-4 py-3 text-text-primary outline-none transition-all font-mono text-sm placeholder:text-text-tertiary shadow-inner"
+                          placeholder="e.g. CEO at TechCorp"
                         />
                       </div>
 
                       <div className="space-y-2">
                         <label className="text-xs font-mono text-text-tertiary uppercase tracking-widest pl-2">Rating</label>
-                        <div className="flex gap-2 pl-2">
+                        <div className="flex gap-3 pl-2">
                           {[1, 2, 3, 4, 5].map((star) => (
                             <button 
                               type="button" 
                               key={star}
                               onClick={() => setFormData({...formData, rating: star})}
-                              className="focus:outline-none transition-transform hover:scale-110"
+                              className={`focus:outline-none transition-all duration-300 hover:scale-125 ${star <= formData.rating ? 'drop-shadow-[0_0_10px_rgba(0,255,128,0.5)]' : 'hover:text-green-accent/50'}`}
                             >
                               <Star 
                                 size={28} 
@@ -211,20 +218,20 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                           rows={4}
                           value={formData.quote}
                           onChange={e => setFormData({...formData, quote: e.target.value})}
-                          className="w-full bg-bg-primary/50 border border-border-subtle focus:border-green-accent/50 rounded-xl p-4 text-text-primary outline-none transition-all resize-none font-sans"
-                          placeholder="Your feedback..."
+                          className="w-full bg-bg-primary/50 backdrop-blur-sm border border-border-subtle focus:border-green-accent/50 rounded-xl p-4 text-text-primary outline-none transition-all resize-none font-mono text-sm placeholder:text-text-tertiary shadow-inner leading-relaxed"
+                          placeholder="Enter your feedback transmission..."
                         />
                       </div>
 
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-green-accent text-bg-primary font-sans font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-[#50ff7a] transition-colors disabled:opacity-50"
+                        className="w-full bg-green-accent/10 border border-green-accent/30 text-green-accent font-mono tracking-widest text-sm py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-green-accent hover:text-bg-primary transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed group/btn"
                       >
                         {isSubmitting ? (
-                          <><Loader2 className="animate-spin" size={20} /> UPLOADING...</>
+                          <><Loader2 className="animate-spin" size={18} /> UPLOADING...</>
                         ) : (
-                          <><Send size={20} /> SUBMIT REVIEW</>
+                          <><Send size={18} className="group-hover/btn:-translate-y-1 group-hover/btn:translate-x-1 transition-transform" /> INITIATE TRANSFER</>
                         )}
                       </button>
                     </form>

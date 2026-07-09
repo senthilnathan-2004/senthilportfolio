@@ -26,6 +26,8 @@ export async function updateSiteSettings(data: Partial<{
   contactLocation: string;
   faviconUrl: string;
   faviconFileId: string;
+  startupName: string;
+  startupUrl: string;
 }>) {
   await connectDB();
   const settings = await SiteSettings.findOneAndUpdate({}, data, { new: true, upsert: true });

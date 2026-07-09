@@ -24,6 +24,8 @@ export default function AdminSettingsPage() {
   const [contactLocation, setContactLocation] = useState("");
   const [faviconUrl, setFaviconUrl] = useState("");
   const [faviconFileId, setFaviconFileId] = useState("");
+  const [startupName, setStartupName] = useState("");
+  const [startupUrl, setStartupUrl] = useState("");
 
   // Password change
   const [currentPassword, setCurrentPassword] = useState("");
@@ -52,6 +54,8 @@ export default function AdminSettingsPage() {
         setContactLocation(data.contactLocation || "Earth, Local Cluster");
         setFaviconUrl(data.faviconUrl || "");
         setFaviconFileId(data.faviconFileId || "");
+        setStartupName(data.startupName || "");
+        setStartupUrl(data.startupUrl || "");
       }
       setLoading(false);
     });
@@ -63,7 +67,8 @@ export default function AdminSettingsPage() {
       logoText, ctaText, ctaHref, footerText,
       navLinks: navLinks.map((n, i) => ({ ...n, order: i })),
       socialLinks: socialLinks.map((s, i) => ({ ...s, order: i })),
-      contactEmail, contactLocation, faviconUrl, faviconFileId
+      contactEmail, contactLocation, faviconUrl, faviconFileId,
+      startupName, startupUrl
     });
     setSaving(false);
     setSaved(true);
@@ -148,6 +153,16 @@ export default function AdminSettingsPage() {
           <div>
             <label className="block text-sm font-mono text-text-secondary mb-2">Footer Text <span className="text-text-tertiary">(use {"{year}"} for auto-year)</span></label>
             <input value={footerText} onChange={(e) => setFooterText(e.target.value)} className={inputClass} />
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-mono text-text-secondary mb-2">Startup Name (Footer Link)</label>
+              <input value={startupName} onChange={(e) => setStartupName(e.target.value)} placeholder="e.g. My Awesome Startup" className={inputClass} />
+            </div>
+            <div>
+              <label className="block text-sm font-mono text-text-secondary mb-2">Startup URL</label>
+              <input value={startupUrl} onChange={(e) => setStartupUrl(e.target.value)} placeholder="https://example.com" className={inputClass} />
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">

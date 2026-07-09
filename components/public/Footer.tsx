@@ -8,9 +8,11 @@ interface FooterProps {
   footerText: string;
   quickLinks: Array<{ label: string; href: string; order: number }>;
   socialLinks: Array<{ platform: string; url: string; order: number }>;
+  startupName?: string;
+  startupUrl?: string;
 }
 
-export default function Footer({ logoText, footerText, quickLinks, socialLinks }: FooterProps) {
+export default function Footer({ logoText, footerText, quickLinks, socialLinks, startupName, startupUrl }: FooterProps) {
   const year = new Date().getFullYear();
   const displayText = footerText.replace("{year}", year.toString());
   const logoSlash = logoText.startsWith("//") ? "//" : "";
@@ -28,9 +30,24 @@ export default function Footer({ logoText, footerText, quickLinks, socialLinks }
               <span className="font-mono text-green-accent font-bold text-lg">{logoSlash}</span>
               <span className="font-mono text-text-primary font-semibold text-lg">{logoRest}</span>
             </Link>
-            <p className="text-text-tertiary text-sm font-mono">
+            <p className="text-text-tertiary text-sm font-mono mb-6">
               Building fast, scalable, and secure digital experiences.
             </p>
+            
+            {startupName && startupUrl && (
+              <div className="flex w-full min-w-0 flex-col border border-border-subtle bg-bg-container/40 rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:border-green-accent/50 transition-colors group">
+                <span className="text-[10px] text-text-tertiary font-mono uppercase tracking-widest mb-1.5 shrink-0">Founder & CEO</span>
+                <a 
+                  href={startupUrl.startsWith('http') ? startupUrl : `https://${startupUrl}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-between gap-2 text-sm text-text-primary hover:text-green-accent transition-colors font-mono font-semibold w-full min-w-0"
+                >
+                  <span className="truncate min-w-0 flex-1">{startupName}</span>
+                  <ArrowUp size={14} className="shrink-0 rotate-45 text-green-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Quick links */}

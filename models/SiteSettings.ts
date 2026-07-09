@@ -22,6 +22,8 @@ export interface ISiteSettings extends Document {
   contactLocation: string;
   faviconUrl: string;
   faviconFileId: string;
+  startupName: string;
+  startupUrl: string;
 }
 
 const SiteSettingsSchema = new Schema<ISiteSettings>(
@@ -52,6 +54,8 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     contactLocation: { type: String, default: "Earth, Local Cluster" },
     faviconUrl: { type: String, default: "" },
     faviconFileId: { type: String, default: "" },
+    startupName: { type: String, default: "" },
+    startupUrl: { type: String, default: "" },
   },
   { timestamps: true }
 );

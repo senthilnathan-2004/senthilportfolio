@@ -6,6 +6,7 @@ import PublicMobileNav from "@/components/public/PublicMobileNav";
 import TopBreadcrumbNavbar from "@/components/public/TopBreadcrumbNavbar";
 import Footer from "@/components/public/Footer";
 import ScrollToTop from "@/components/public/ScrollToTop";
+import Preloader from "@/components/public/Preloader";
 
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -33,6 +34,8 @@ export default async function PublicLayout({ children }: { children: React.React
   const logoText = settings?.logoText || "// Senthilragu";
   const footerText = settings?.footerText || "© {year} Senthilragu. All rights reserved.";
   const socialLinks = settings?.socialLinks || [];
+  const startupName = settings?.startupName || "";
+  const startupUrl = settings?.startupUrl || "";
   
   // Force all navigation links to ensure 7 pages are displayed
   const forcedNavLinks = [
@@ -56,7 +59,7 @@ export default async function PublicLayout({ children }: { children: React.React
         />
       </head>
       <body className="bg-bg-primary text-text-primary antialiased flex flex-col lg:flex-row min-h-screen relative font-mono">
-
+        <Preloader />
         <PublicSidebar logoText={logoText} navLinks={forcedNavLinks} socialLinks={socialLinks} />
         
         <div className="flex-1 flex flex-col min-w-0 bg-transparent p-4 pb-24 lg:p-8 lg:pb-8 xl:p-10 xl:pb-10 h-screen overflow-hidden z-10 relative">
@@ -70,6 +73,8 @@ export default async function PublicLayout({ children }: { children: React.React
                   footerText={footerText}
                   quickLinks={forcedNavLinks}
                   socialLinks={socialLinks}
+                  startupName={startupName}
+                  startupUrl={startupUrl}
                 />
               </div>
             </div>
