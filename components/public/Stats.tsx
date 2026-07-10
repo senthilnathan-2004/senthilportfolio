@@ -18,7 +18,7 @@ export default function Stats({ stats }: StatsProps) {
 
   return (
     <section id="stats" className="py-8 relative z-20">
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-8">
+      <div className="w-full max-w-6xl mx-auto px-2 sm:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

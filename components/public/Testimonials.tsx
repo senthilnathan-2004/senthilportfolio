@@ -88,7 +88,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
       </div>
 
       <div className="w-full mx-auto relative z-10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 mb-16 text-center flex flex-col items-center">
+        <div className="max-w-6xl mx-auto px-2 sm:px-8 mb-16 text-center flex flex-col items-center">
           <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-6 font-mono backdrop-blur-sm shadow-[0_0_20px_rgba(0,255,128,0.1)]">
             <MessageSquare size={16} />
             <span className="tracking-widest uppercase">Client Feedback</span>
@@ -125,7 +125,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
       {typeof window !== "undefined" && createPortal(
         <AnimatePresence>
           {isModalOpen && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6" style={{ position: 'fixed' }}>
+            <div className="fixed inset-0 z-[100] flex items-center justify-center px-2 py-4 sm:p-6" style={{ position: 'fixed' }}>
               <motion.div 
                 initial={{ opacity: 0 }} 
                 animate={{ opacity: 1 }} 
@@ -138,13 +138,13 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                className="relative w-full max-w-lg bg-bg-container/80 backdrop-blur-3xl border border-border-subtle rounded-3xl shadow-[0_20px_80px_rgba(0,0,0,0.6)] p-6 sm:p-10 max-h-[90vh] overflow-y-auto m-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                className="relative w-full max-w-lg bg-bg-container/80 backdrop-blur-3xl border border-border-subtle rounded-3xl shadow-[0_20px_80px_rgba(0,0,0,0.6)] py-6 px-4 sm:p-10 max-h-[90vh] overflow-y-auto m-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
               >
                 {/* Glowing background inside card */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-green-accent/5 rounded-full blur-[100px] pointer-events-none -z-10" />
                 <button 
                   onClick={() => setIsModalOpen(false)}
-                  className="absolute top-6 right-6 text-text-tertiary hover:text-red-400 transition-colors"
+                  className="absolute top-6 right-4 sm:right-6 text-text-tertiary hover:text-red-400 transition-colors z-10"
                 >
                   <X size={24} />
                 </button>
@@ -159,11 +159,11 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                   </div>
                 ) : (
                   <>
-                    <div className="mb-8 border-b border-border-subtle/50 pb-6 flex items-center gap-4">
+                    <div className="mb-8 border-b border-border-subtle/50 pb-6 flex items-center gap-4 pr-8 sm:pr-0">
                       <div className="w-12 h-12 rounded-xl bg-border-subtle/30 flex items-center justify-center text-green-accent">
                         <MessageSquare size={24} />
                       </div>
-                      <div>
+                      <div className="pr-2">
                         <h3 className="text-xl font-mono text-text-primary uppercase tracking-wider mb-1">Submit Feedback</h3>
                         <p className="text-text-tertiary text-xs font-mono uppercase tracking-widest">Awaiting transmission...</p>
                       </div>

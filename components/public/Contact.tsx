@@ -65,7 +65,7 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
         <InfiniteCarousel items={carouselItems} speed="normal" direction="left" />
       </div>
 
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-8 relative z-10">
+      <div className="w-full max-w-6xl mx-auto px-2 sm:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

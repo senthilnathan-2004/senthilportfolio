@@ -26,7 +26,7 @@ export default function Services({ services }: ServicesProps) {
         <InfiniteCarousel items={serviceNames} speed="slow" direction="right" />
       </div>
 
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-8 relative z-10">
+      <div className="w-full max-w-6xl mx-auto px-2 sm:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ export default function Services({ services }: ServicesProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-6 bg-bg-container/40 backdrop-blur-md border border-border-subtle rounded-3xl hover:border-green-accent/30 hover:bg-bg-container/80 transition-all duration-300 group shadow-card flex flex-col h-full"
+              className="p-4 sm:p-6 bg-bg-container/40 backdrop-blur-md border border-border-subtle rounded-3xl hover:border-green-accent/30 hover:bg-bg-container/80 transition-all duration-300 group shadow-card flex flex-col h-full"
             >
               <div className="w-12 h-12 bg-border-subtle/50 rounded-2xl flex items-center justify-center mb-6 text-green-accent group-hover:scale-110 transition-transform duration-300">
                 <Server size={24} />

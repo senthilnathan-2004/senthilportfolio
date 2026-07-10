@@ -38,7 +38,7 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <div className="min-h-screen pt-8 md:pt-8 pb-24">
-      <div className="max-w-4xl lg:max-w-7xl mx-auto px-4 lg:px-8">
+      <div className="max-w-6xl mx-auto px-2 md:px-6 lg:px-8">
         {/* Back */}
         <Link href="/projects" className="inline-flex items-center gap-2 text-text-secondary hover:text-green-accent font-mono text-sm mb-8 transition-colors group">
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
@@ -110,7 +110,7 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Case study */}
         {project.caseStudyRichText && (
-          <div className="bg-bg-card border border-border-subtle rounded-4xl py-8 px-5 sm:px-8 lg:py-10 lg:px-8">
+          <div className="bg-bg-card border border-border-subtle rounded-4xl p-4 sm:p-8 lg:p-16">
             <h2 className="font-display text-xl uppercase text-text-primary mb-6">Case Study</h2>
             <div
               className="tiptap-content text-justify"

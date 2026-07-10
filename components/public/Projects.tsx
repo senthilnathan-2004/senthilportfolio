@@ -34,7 +34,7 @@ export default function Projects({ projects }: ProjectsProps) {
 
   return (
     <section id="projects" className="py-12 lg:py-16 relative">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="w-full max-w-7xl mx-auto px-2 sm:px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
