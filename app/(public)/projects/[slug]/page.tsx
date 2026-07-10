@@ -46,7 +46,7 @@ export default async function ProjectPage({ params }: Props) {
         </Link>
 
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-8 px-2 md:px-0">
           <span className="font-mono text-green-accent text-sm">{project.category}</span>
           <h1 className="text-3xl lg:text-5xl font-display text-text-primary text-justify uppercase mt-2 mb-4">
             {project.title}
