@@ -80,7 +80,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
             className="order-1 lg:order-2"
           >
             <div className="text-center md:text-left flex flex-col items-center md:items-start">
-              <div className="flex items-center justify-center md:justify-start gap-4 mb-8 px-2 md:px-0">
+              <div className="flex items-center justify-center md:justify-start gap-4 mb-3 px-2 md:px-0">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent font-mono backdrop-blur-sm">
                   <User size={16} />
                   <span className="tracking-widest uppercase">{tagLabel}</span>
@@ -95,14 +95,14 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                 </Link>
               </div>
 
-              <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-4 px-2 md:px-0 text-center md:text-left">
+              <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-2 px-2 md:px-0 text-center md:text-left">
                 Behind the <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-green-accent">Code</span>
               </h2>
             </div>
 
             {/* Mobile Profile Photo (Hero Section Style below title, mobile view only) */}
             {(heroImageUrl || imageUrl) && (
-              <div className="flex md:hidden justify-center mt-1 mb-5 w-full px-2">
+              <div className="flex md:hidden justify-center mt-2 mb-8 w-full px-2">
                 <div className="flex items-center justify-center gap-4 px-6 py-2 rounded-full bg-bg-card/90 border border-green-accent/30 shadow-[0_0_20px_rgba(0,255,128,0.15)] backdrop-blur-md w-full max-w-sm sm:max-w-md">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-green-accent shadow-[0_0_15px_rgba(0,255,128,0.3)] shrink-0">
                     <img
