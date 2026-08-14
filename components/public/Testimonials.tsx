@@ -47,35 +47,35 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
   const reviewCards = sorted.map((testimonial, i) => (
     <div
       key={testimonial._id}
-      className="w-[350px] md:w-[400px] lg:w-[450px] h-full p-8 bg-bg-container/80 backdrop-blur-md border border-border-subtle rounded-3xl shadow-card relative flex flex-col group hover:border-green-accent/30 transition-colors whitespace-normal text-left"
+      className="w-[280px] sm:w-[350px] md:w-[400px] lg:w-[450px] h-full p-5 sm:p-6 md:p-8 bg-bg-container/80 backdrop-blur-md border border-border-subtle rounded-3xl shadow-card relative flex flex-col group hover:border-green-accent/30 transition-colors whitespace-normal text-left"
     >
-      <Quote className="absolute top-8 right-8 text-border-subtle group-hover:text-green-accent/20 transition-colors" size={40} />
+      <Quote className="absolute top-5 right-5 md:top-8 md:right-8 text-border-subtle group-hover:text-green-accent/20 transition-colors w-7 h-7 md:w-10 md:h-10 opacity-40 md:opacity-100" />
       
-      <div className="flex gap-1 mb-6">
+      <div className="flex gap-1 mb-4 md:mb-6">
         {Array.from({ length: 5 }).map((_, i) => (
-          <Star key={i} size={16} className={i < testimonial.rating ? "text-green-accent fill-green-accent" : "text-text-tertiary"} />
+          <Star key={i} size={14} className={i < testimonial.rating ? "text-green-accent fill-green-accent" : "text-text-tertiary"} />
         ))}
       </div>
 
-      <div className="mb-8 relative z-10 flex-1">
-        <p className="text-lg font-semibold text-text-primary text-justify group-hover:text-green-accent transition-colors leading-relaxed">
+      <div className="mb-6 md:mb-8 relative z-10 flex-1">
+        <p className="text-sm sm:text-base md:text-lg font-medium md:font-semibold text-text-primary text-left group-hover:text-green-accent transition-colors leading-relaxed">
           "{testimonial.quote}"
         </p>
       </div>
       
-      <div className="mt-auto pt-6 border-t border-border-subtle/50 flex items-center gap-4">
+      <div className="mt-auto pt-4 md:pt-6 border-t border-border-subtle/50 flex items-center gap-3 sm:gap-4">
         {testimonial.avatarUrl ? (
-          <div className="relative w-12 h-12 rounded-full overflow-hidden border border-border-subtle shrink-0">
+          <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border border-border-subtle shrink-0">
             <Image src={testimonial.avatarUrl} alt={testimonial.name} fill className="object-cover" />
           </div>
         ) : (
-          <div className="w-12 h-12 rounded-full bg-border-subtle flex items-center justify-center font-mono text-xs text-text-tertiary shrink-0">
+          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-border-subtle flex items-center justify-center font-mono text-xs text-text-tertiary shrink-0">
             {testimonial.name.slice(0, 2).toUpperCase()}
           </div>
         )}
         <div className="min-w-0">
-          <h4 className="text-text-primary font-display tracking-tight text-lg truncate">{testimonial.name}</h4>
-          <p className="text-green-accent font-mono text-xs uppercase tracking-widest truncate">{testimonial.role}</p>
+          <h4 className="text-text-primary font-display tracking-tight text-base md:text-lg truncate">{testimonial.name}</h4>
+          <p className="text-green-accent font-mono text-[10px] sm:text-xs uppercase tracking-widest truncate">{testimonial.role}</p>
         </div>
       </div>
     </div>
