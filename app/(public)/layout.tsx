@@ -13,8 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings().catch(() => null);
   
   return {
-    title: "Senthilragu — Developer Portfolio",
-    description: "Full-stack developer & UI designer building fast, scalable, and secure digital experiences.",
+    title: "Senthilragu Developer Portfolio",
+    description: "Full stack developer & UI designer building fast, scalable, and secure digital experiences.",
     keywords: ["developer", "portfolio", "full-stack", "web development", "UI design"],
     icons: settings?.faviconUrl ? {
       icon: settings.faviconUrl,
