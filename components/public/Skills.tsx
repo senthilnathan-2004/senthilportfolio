@@ -51,13 +51,20 @@ export default function Skills({ skills }: SkillsProps) {
         </motion.div>
 
         {/* Tabs */}
-        <div className="w-full flex justify-center mb-8 sm:mb-12">
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-full py-1.5 px-2 sm:px-0 sm:flex-wrap sm:justify-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="w-full relative flex justify-center mb-8 sm:mb-12">
+          {/* Mobile Scroll Fade Indicators */}
+          <div className="sm:hidden absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-bg-primary via-bg-primary/80 to-transparent pointer-events-none z-20" />
+          <div className="sm:hidden absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-bg-primary to-transparent pointer-events-none z-20" />
+
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-full py-1.5 px-4 sm:px-0 sm:flex-wrap sm:justify-center scroll-smooth snap-x snap-mandatory touch-pan-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {categories.map((category) => (
               <button
                 key={category}
-                onClick={() => setActiveTab(category)}
-                className={`relative px-4 py-2.5 sm:px-6 sm:py-3 rounded-full font-mono text-xs sm:text-sm uppercase tracking-widest transition-colors duration-300 shrink-0 whitespace-nowrap ${
+                onClick={(e) => {
+                  setActiveTab(category);
+                  e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                }}
+                className={`relative px-4 py-2.5 sm:px-6 sm:py-3 rounded-full font-mono text-xs sm:text-sm uppercase tracking-widest transition-colors duration-300 shrink-0 whitespace-nowrap snap-center ${
                   activeTab === category ? "text-bg-primary font-bold" : "text-text-secondary hover:text-text-primary bg-bg-card/40 sm:bg-transparent border border-border-subtle/40 sm:border-none"
                 }`}
               >
