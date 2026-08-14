@@ -8,7 +8,29 @@ import Footer from "@/components/public/Footer";
 import ScrollToTop from "@/components/public/ScrollToTop";
 import Preloader from "@/components/public/Preloader";
 import WelcomeCard from "@/components/public/WelcomeCard";
+import { Archivo_Black, JetBrains_Mono, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+
+const archivoBlack = Archivo_Black({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-archivo-black",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
+
+const inter = Inter({
+  weight: ["300", "400", "500", "600"],
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings().catch(() => null);
@@ -50,15 +72,11 @@ export default async function PublicLayout({ children }: { children: React.React
   ];
 
   return (
-    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html 
+      lang="en" 
+      className={`dark scroll-smooth ${archivoBlack.variable} ${jetbrainsMono.variable} ${inter.variable}`} 
+      suppressHydrationWarning
+    >
       <body className="bg-bg-primary text-text-primary antialiased flex flex-col lg:flex-row min-h-screen relative font-mono" suppressHydrationWarning>
         <Preloader />
         <WelcomeCard name={logoText.replace("//", "").trim()} />

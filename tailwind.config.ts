@@ -20,9 +20,9 @@ const config: Config = {
         "text-tertiary": "#6B6B6B",
       },
       fontFamily: {
-        display: ["Archivo Black", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
-        sans: ["Inter", "sans-serif"],
+        display: ["var(--font-archivo-black)", "Archivo Black", "sans-serif"],
+        mono: ["var(--font-jetbrains-mono)", "JetBrains Mono", "monospace"],
+        sans: ["var(--font-inter)", "Inter", "sans-serif"],
       },
       fontSize: {
         "hero-sm": ["36px", { lineHeight: "1.0", letterSpacing: "-0.02em" }],

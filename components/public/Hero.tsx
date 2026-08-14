@@ -65,7 +65,13 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
           className="absolute top-10 left-4 sm:top-8 sm:left-8 md:top-12 md:left-12 z-20 flex items-center gap-3 sm:gap-4 max-w-[85vw]"
         >
           <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-green-accent shadow-[0_0_20px_rgba(0,255,128,0.3)] shrink-0">
-            <img src={portraitImageUrl} alt={portraitAlt || "Profile"} className="object-cover w-full h-full" />
+            <img 
+              src={portraitImageUrl} 
+              alt={portraitAlt || "Profile"} 
+              loading="eager"
+              decoding="async"
+              className="object-cover w-full h-full" 
+            />
           </div>
           {captionName && (
             <div className="flex flex-col min-w-0">
