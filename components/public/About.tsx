@@ -94,21 +94,21 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-6 pl-4 md:pl-0">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 px-4 md:px-0">
               <a
                 href={cvUrl || "#"}
                 target={cvUrl ? "_blank" : "_self"}
                 rel="noreferrer"
-                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-green-accent text-bg-primary font-sans font-semibold rounded-full overflow-hidden transition-all hover:bg-green-accent/80 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,255,128,0.3)]"
+                className="group relative inline-flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 sm:py-4 bg-green-accent text-bg-primary font-sans font-semibold rounded-full overflow-hidden transition-all hover:bg-green-accent/80 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,255,128,0.3)] text-sm sm:text-base text-center"
               >
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex items-center justify-center gap-2">
                   <Download size={18} />
                   {cvUrl ? "Download Resume" : "Download Resume"}
                 </span>
               </a>
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 font-mono text-sm uppercase tracking-widest text-text-secondary hover:text-green-accent transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 border border-border-subtle/80 hover:border-green-accent/40 bg-bg-card/40 backdrop-blur-sm rounded-full font-mono text-xs sm:text-sm uppercase tracking-widest text-text-primary hover:text-green-accent transition-all hover:scale-105 active:scale-95 text-center"
               >
                 View Work <ArrowRight size={16} />
               </Link>
