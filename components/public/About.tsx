@@ -12,10 +12,11 @@ interface AboutProps {
   cvUrl?: string;
   imageUrl?: string;
   imageAlt?: string;
+  heroImageUrl?: string;
   captionName?: string;
 }
 
-export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt, captionName }: AboutProps) {
+export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt, heroImageUrl, captionName }: AboutProps) {
   const carouselItems = [
     <span key={1} className="text-sm font-bold tracking-widest uppercase font-mono text-text-tertiary">FULL_STACK_DEV</span>,
     <span key={2} className="text-sm font-bold tracking-widest uppercase font-mono text-text-tertiary">SYSTEM_ARCHITECT</span>,
@@ -99,20 +100,20 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               </h2>
             </div>
 
-            {/* Mobile Profile Card (Hero Section Style, mobile view only) */}
-            {imageUrl && (
-              <div className="flex md:hidden justify-center my-6">
-                <div className="flex items-center gap-3 sm:gap-4 px-5 py-3 rounded-full bg-bg-card/80 border border-green-accent/30 shadow-[0_0_20px_rgba(0,255,128,0.15)] backdrop-blur-md">
-                  <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-green-accent shadow-[0_0_20px_rgba(0,255,128,0.3)] shrink-0">
+            {/* Mobile Profile Photo (Hero Section Style below title, mobile view only) */}
+            {(heroImageUrl || imageUrl) && (
+              <div className="flex md:hidden justify-center my-4">
+                <div className="flex items-center gap-3 px-4 py-2.5 rounded-full bg-bg-card/90 border border-green-accent/30 shadow-[0_0_20px_rgba(0,255,128,0.15)] backdrop-blur-md">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-green-accent shadow-[0_0_15px_rgba(0,255,128,0.3)] shrink-0">
                     <img
-                      src={imageUrl}
+                      src={heroImageUrl || imageUrl}
                       alt={imageAlt || "Profile"}
                       className="object-cover w-full h-full"
                     />
                   </div>
-                  <div className="flex flex-col text-left min-w-0">
-                    <span className="text-[10px] sm:text-xs font-mono text-green-accent uppercase tracking-widest truncate">System Admin</span>
-                    <span className="text-base sm:text-lg font-semibold text-text-primary transition-colors truncate">{captionName || "Senthil Ragu"}</span>
+                  <div className="flex flex-col text-left min-w-0 pr-1">
+                    <span className="text-[10px] font-mono text-green-accent uppercase tracking-widest truncate">System Admin</span>
+                    <span className="text-sm font-semibold text-text-primary transition-colors truncate">{captionName || "Senthil Ragu"}</span>
                   </div>
                 </div>
               </div>

@@ -1,14 +1,16 @@
 import { getAbout } from "@/app/admin/actions/aboutActions";
 import { getStats } from "@/app/admin/actions/skillStatActions";
+import { getHero } from "@/app/admin/actions/heroActions";
 import About from "@/components/public/About";
 import Stats from "@/components/public/Stats";
 
 export const revalidate = 60;
 
 export default async function AboutPage() {
-  const [about, stats] = await Promise.all([
+  const [about, stats, hero] = await Promise.all([
     getAbout().catch(() => null),
     getStats().catch(() => []),
+    getHero().catch(() => null),
   ]);
 
   return (
@@ -20,6 +22,8 @@ export default async function AboutPage() {
           cvUrl={about.cvUrl || ""}
           imageUrl={about.imageUrl || ""}
           imageAlt={about.imageAlt || "About photo"}
+          heroImageUrl={hero?.portraitImageUrl || ""}
+          captionName={hero?.captionName || "Senthil Ragu"}
         />
       )}
       {stats.length > 0 && <Stats stats={stats} />}
