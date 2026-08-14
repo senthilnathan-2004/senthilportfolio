@@ -77,20 +77,6 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
             transition={{ duration: 0.8 }}
             className="order-1 lg:order-2"
           >
-            {/* Mobile Profile Photo (Rounded Circular shape) */}
-            {imageUrl && (
-              <div className="flex md:hidden justify-center mb-6">
-                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-green-accent shadow-[0_0_25px_rgba(0,255,128,0.25)] shrink-0">
-                  <Image
-                    src={imageUrl}
-                    alt={imageAlt || "About photo"}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            )}
-
             <div className="text-center md:text-left flex flex-col items-center md:items-start">
               <div className="flex items-center justify-center md:justify-start gap-4 mb-8 px-2 md:px-0">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent font-mono backdrop-blur-sm">
@@ -111,6 +97,19 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                 Behind the <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-green-accent">Code</span>
               </h2>
             </div>
+
+            {/* Mobile Profile Photo (Hero-style rounded avatar below title, mobile view only) */}
+            {imageUrl && (
+              <div className="flex md:hidden justify-center my-6">
+                <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-green-accent shadow-[0_0_25px_rgba(0,255,128,0.3)] shrink-0">
+                  <img
+                    src={imageUrl}
+                    alt={imageAlt || "Profile"}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              </div>
+            )}
 
             <div className="bg-bg-card/40 border border-border-subtle/30 rounded-xl p-4 md:bg-transparent md:border-none md:p-0 md:rounded-none mb-10">
               <div className="prose prose-invert text-justify prose-p:text-text-primary prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:text-justify prose-a:text-green-accent hover:prose-a:underline max-w-none transition-colors">
