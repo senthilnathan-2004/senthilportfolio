@@ -104,9 +104,9 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
             </div>
 
             {/* Identity & Title Banner */}
-            <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+            <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
               {/* Profile/Tech Monogram Badge */}
-              <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl bg-green-accent/10 border border-green-accent/30 flex items-center justify-center text-green-accent shrink-0 shadow-[0_0_15px_rgba(140,255,158,0.2)]">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-green-accent/10 border border-green-accent/30 flex items-center justify-center text-green-accent shrink-0 shadow-[0_0_15px_rgba(140,255,158,0.2)] mt-0.5">
                 <Code2 size={20} className="sm:hidden" />
                 <Sparkles size={24} className="hidden sm:block" />
               </div>
@@ -115,10 +115,10 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
                 <p className="text-[10px] sm:text-xs font-mono text-green-accent uppercase tracking-wider font-semibold">
                   // PORTFOLIO V2.0
                 </p>
-                <h2 className="text-lg sm:text-2xl font-bold font-display uppercase tracking-tight text-text-primary leading-tight mt-0.5 truncate">
+                <h2 className="text-base sm:text-2xl font-bold font-display uppercase tracking-tight text-text-primary leading-tight mt-0.5">
                   Welcome to <span className="text-green-accent drop-shadow-[0_0_12px_rgba(140,255,158,0.4)]">{name}</span>
                 </h2>
-                <p className="font-mono text-[10px] sm:text-xs text-text-tertiary mt-0.5 sm:mt-1 truncate">
+                <p className="font-mono text-[10px] sm:text-xs text-text-tertiary mt-1">
                   Full-Stack Dev &amp; UI Architect
                 </p>
               </div>
