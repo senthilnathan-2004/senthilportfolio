@@ -29,7 +29,7 @@ export default function PublicMobileNav({ navLinks }: PublicMobileNavProps) {
   const displayLinks = [...navLinks].sort((a, b) => a.order - b.order).slice(0, 7);
 
   return (
-    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-bg-card/95 backdrop-blur-md border-t border-border-subtle pb-safe">
+    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-bg-card/95 backdrop-blur-md border-t border-x border-border-subtle rounded-t-2xl rounded-b-none pb-safe overflow-hidden">
       <div className="flex items-center justify-around p-1.5 sm:p-2">
         {displayLinks.map((link, index) => {
           const pathHref = formatHref(link.href);
