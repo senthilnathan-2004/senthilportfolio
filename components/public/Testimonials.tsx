@@ -107,7 +107,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
 
         {/* The Carousel of Review Cards */}
         <div className="w-full relative pb-12">
-           <InfiniteCarousel items={reviewCards} speed="slow" itemClassName="items-stretch" />
+           <InfiniteCarousel items={reviewCards} speed="slow" itemClassName="items-stretch" pauseOnHover={true} />
         </div>
       </div>
 

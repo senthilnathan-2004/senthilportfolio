@@ -9,6 +9,7 @@ interface InfiniteCarouselProps {
   speed?: "fast" | "normal" | "slow";
   className?: string;
   itemClassName?: string;
+  pauseOnHover?: boolean;
 }
 
 export default function InfiniteCarousel({ 
@@ -16,7 +17,8 @@ export default function InfiniteCarousel({
   direction = "left",
   speed = "normal",
   className,
-  itemClassName
+  itemClassName,
+  pauseOnHover = true
 }: InfiniteCarouselProps) {
   
   const speedClass = {
@@ -31,9 +33,13 @@ export default function InfiniteCarousel({
   const displayItems = [...items, ...items, ...items];
 
   return (
-    <div className={cn("relative w-full overflow-hidden flex whitespace-nowrap [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]", className)}>
+    <div className={cn("group relative w-full overflow-hidden flex whitespace-nowrap [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]", className)}>
       <div 
-        className={cn("flex w-max items-center justify-center gap-8", speedClass)}
+        className={cn(
+          "flex w-max items-center justify-center gap-8", 
+          speedClass,
+          pauseOnHover && "group-hover:[animation-play-state:paused]"
+        )}
         style={{ animationDirection: dirClass }}
       >
         {displayItems.map((item, i) => (

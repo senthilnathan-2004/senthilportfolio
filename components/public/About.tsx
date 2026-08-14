@@ -94,7 +94,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-6">
+            <div className="flex flex-wrap items-center gap-6 pl-4 md:pl-0">
               <a
                 href={cvUrl || "#"}
                 target={cvUrl ? "_blank" : "_self"}
