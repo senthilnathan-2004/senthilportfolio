@@ -97,12 +97,21 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
             </div>
 
             {/* Title Header */}
-            <div className="flex items-start gap-3.5 sm:gap-4 mb-3 sm:mb-4">
-              {/* Icon hidden in mobile view, visible in tab and desktop view */}
+            <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+              {/* Mobile Only: Meaningful Developer Code Badge with live status */}
+              <div className="flex sm:hidden w-9 h-9 rounded-xl bg-green-accent/10 border border-green-accent/30 items-center justify-center text-green-accent shrink-0 relative mt-0.5 shadow-[0_0_12px_rgba(140,255,158,0.2)]">
+                <Code2 size={17} />
+                <span className="absolute -bottom-0.5 -right-0.5 flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-accent opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-accent"></span>
+                </span>
+              </div>
+
+              {/* Tablet & Desktop: Sparkle Icon */}
               <div className="hidden sm:flex w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-green-accent/10 border border-green-accent/30 items-center justify-center text-green-accent shrink-0 shadow-[0_0_20px_rgba(140,255,158,0.25)]">
                 <Sparkles size={22} className="sm:w-6 sm:h-6" />
               </div>
-              <div className="pr-6">
+              <div className="pr-6 min-w-0">
                 <h2 className="text-lg sm:text-2xl font-bold font-display uppercase tracking-tight text-text-primary leading-tight">
                   Welcome to <span className="text-green-accent drop-shadow-[0_0_12px_rgba(140,255,158,0.4)]">{name}</span>&apos;s Portfolio
                 </h2>
