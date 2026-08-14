@@ -48,7 +48,7 @@ export default function PublicSidebar({ logoText, navLinks, socialLinks }: Publi
 
       {/* Navigation */}
       <nav className="flex-1 p-6 flex flex-col gap-2.5 overflow-y-auto">
-        {navLinks.sort((a, b) => a.order - b.order).map((link) => {
+        {[...navLinks].sort((a, b) => a.order - b.order).map((link) => {
           const pathHref = formatHref(link.href);
           const isActive = pathname === pathHref || (pathname.startsWith(pathHref) && pathHref !== "/");
           

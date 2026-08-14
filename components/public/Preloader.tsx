@@ -80,7 +80,7 @@ export default function Preloader() {
               transition={{ delay: 0.4 }}
               className="mt-6 flex flex-col space-y-2 text-xs text-text-tertiary h-12"
             >
-              <p>{progress < 30 ? "> Initializing core modules..." : progress < 70 ? "> Establishing secure connection..." : progress < 100 ? "> Loading user interface..." : "> Access granted."}</p>
+              <p>{progress < 30 ? "&gt; Initializing core modules..." : progress < 70 ? "&gt; Establishing secure connection..." : progress < 100 ? "&gt; Loading user interface..." : "&gt; Access granted."}</p>
               {progress > 40 && <p className="animate-pulse">&gt; Decrypting assets...</p>}
             </motion.div>
           </div>

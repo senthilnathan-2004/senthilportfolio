@@ -17,16 +17,22 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
   useEffect(() => {
     setMounted(true);
 
-    // Check if popup has already been shown in this browser session
-    const hasBeenShown = sessionStorage.getItem("welcome_card_shown");
-    if (hasBeenShown === "true") {
-      return;
+    try {
+      const hasBeenShown = sessionStorage.getItem("welcome_card_shown");
+      if (hasBeenShown === "true") {
+        return;
+      }
+    } catch {
+      // Storage access safety fallback
     }
 
-    // 5-second delay after initial page load on any public page
     const timer = setTimeout(() => {
       setIsOpen(true);
-      sessionStorage.setItem("welcome_card_shown", "true");
+      try {
+        sessionStorage.setItem("welcome_card_shown", "true");
+      } catch {
+        // Storage access safety fallback
+      }
     }, 5000);
 
     return () => clearTimeout(timer);
@@ -34,9 +40,14 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
 
   const handleClose = () => {
     setIsOpen(false);
-    sessionStorage.setItem("welcome_card_shown", "true");
+    try {
+      sessionStorage.setItem("welcome_card_shown", "true");
+    } catch {
+      // Storage access safety fallback
+    }
   };
 
+  // Prevent SSR hydration mismatches by delaying portal rendering until client mount
   if (!mounted) return null;
 
   const modalContent = (
@@ -53,7 +64,7 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
             className="fixed inset-0 bg-black/80 backdrop-blur-md z-0"
           />
 
-          {/* Centered Popup Card - Floating Above All Viewports */}
+          {/* Centered Popup Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -87,7 +98,7 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
               </div>
               <div className="pr-6">
                 <h2 className="text-lg sm:text-2xl font-bold font-display uppercase tracking-tight text-text-primary leading-tight">
-                  Welcome to <span className="text-green-accent drop-shadow-[0_0_12px_rgba(140,255,158,0.4)]">{name}</span>'s Portfolio
+                  Welcome to <span className="text-green-accent drop-shadow-[0_0_12px_rgba(140,255,158,0.4)]">{name}</span>&apos;s Portfolio
                 </h2>
                 <p className="font-mono text-[10px] sm:text-xs text-text-tertiary mt-0.5 sm:mt-1">Full-Stack Developer & UI Architect</p>
               </div>
