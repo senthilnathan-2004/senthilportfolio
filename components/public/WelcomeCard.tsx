@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, X, ArrowRight, Code2, Terminal } from "lucide-react";
 import Link from "next/link";
@@ -12,31 +11,30 @@ interface WelcomeCardProps {
 }
 
 export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) {
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
 
-  useEffect(() => {
-    // Only show when client enters the home page ("/")
-    if (pathname !== "/") {
-      setIsOpen(false);
+    // Check if popup has already been shown in this browser session
+    const hasBeenShown = sessionStorage.getItem("welcome_card_shown");
+    if (hasBeenShown === "true") {
       return;
     }
 
-    // 1 second delay after entering home page
+    // 5-second delay after initial page load on any public page
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 1000);
+      sessionStorage.setItem("welcome_card_shown", "true");
+    }, 5000);
 
     return () => clearTimeout(timer);
-  }, [pathname]);
+  }, []);
 
   const handleClose = () => {
     setIsOpen(false);
+    sessionStorage.setItem("welcome_card_shown", "true");
   };
 
   if (!mounted) return null;

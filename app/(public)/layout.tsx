@@ -7,7 +7,7 @@ import TopBreadcrumbNavbar from "@/components/public/TopBreadcrumbNavbar";
 import Footer from "@/components/public/Footer";
 import ScrollToTop from "@/components/public/ScrollToTop";
 import Preloader from "@/components/public/Preloader";
-
+import WelcomeCard from "@/components/public/WelcomeCard";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings().catch(() => null);
@@ -60,6 +60,7 @@ export default async function PublicLayout({ children }: { children: React.React
       </head>
       <body className="bg-bg-primary text-text-primary antialiased flex flex-col lg:flex-row min-h-screen relative font-mono">
         <Preloader />
+        <WelcomeCard name={logoText.replace("//", "").trim()} />
         
         {/* Desktop Sidebar Card Wrapper */}
         <div className="hidden lg:flex p-4 lg:p-8 xl:p-10 lg:pr-3 xl:pr-4 h-screen z-10 relative shrink-0">
