@@ -131,7 +131,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                className="relative w-full max-w-lg bg-bg-container/90 backdrop-blur-3xl border border-border-subtle rounded-3xl shadow-[0_20px_80px_rgba(0,0,0,0.6)] p-4 sm:p-10 max-h-[90vh] overflow-y-auto m-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                className="relative w-full max-w-lg bg-bg-container/90 backdrop-blur-3xl border border-border-subtle rounded-3xl shadow-[0_20px_80px_rgba(0,0,0,0.6)] px-4 pt-4 pb-4 sm:px-8 sm:pt-6 sm:pb-6 max-h-[90vh] overflow-y-auto m-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
               >
                 {/* Glowing background inside card */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-green-accent/5 rounded-full blur-[100px] pointer-events-none -z-10" />
@@ -152,7 +152,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                   </div>
                 ) : (
                   <>
-                    <div className="sticky -top-4 sm:-top-10 z-20 bg-bg-container/95 backdrop-blur-2xl border-b border-border-subtle/50 pb-4 mb-6 flex items-center justify-between -mt-4 sm:-mt-10 -mx-4 sm:-mx-10 pt-4 sm:pt-6 px-4 sm:px-10 rounded-t-3xl">
+                    <div className="sticky -top-4 sm:-top-6 z-20 bg-bg-container/95 backdrop-blur-2xl border-b border-border-subtle/50 pb-4 mb-6 flex items-center justify-between -mt-4 sm:-mt-6 -mx-4 sm:-mx-8 pt-4 sm:pt-6 px-4 sm:px-8 rounded-t-3xl">
                       <div>
                         <h3 className="text-xl font-mono text-text-primary uppercase tracking-wider mb-1">Submit Feedback</h3>
                         <p className="text-text-tertiary text-xs font-mono uppercase tracking-widest">Awaiting transmission...</p>
