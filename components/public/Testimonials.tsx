@@ -152,14 +152,9 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                   </div>
                 ) : (
                   <>
-                    <div className="mb-8 border-b border-border-subtle/50 pb-6 flex items-center gap-4 pr-8 sm:pr-0">
-                      <div className="w-12 h-12 rounded-xl bg-border-subtle/30 flex items-center justify-center text-green-accent">
-                        <MessageSquare size={24} />
-                      </div>
-                      <div className="pr-2">
-                        <h3 className="text-xl font-mono text-text-primary uppercase tracking-wider mb-1">Submit Feedback</h3>
-                        <p className="text-text-tertiary text-xs font-mono uppercase tracking-widest">Awaiting transmission...</p>
-                      </div>
+                    <div className="mb-8 border-b border-border-subtle/50 pb-6 pr-8">
+                      <h3 className="text-xl font-mono text-text-primary uppercase tracking-wider mb-1">Submit Feedback</h3>
+                      <p className="text-text-tertiary text-xs font-mono uppercase tracking-widest">Awaiting transmission...</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
