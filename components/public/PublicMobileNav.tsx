@@ -26,26 +26,30 @@ export default function PublicMobileNav({ navLinks }: PublicMobileNavProps) {
   };
 
   const formatHref = (href: string) => href.replace("#hero", "/").replace("#", "/");
-  const displayLinks = navLinks.sort((a, b) => a.order - b.order).slice(0, 5);
+  const displayLinks = [...navLinks].sort((a, b) => a.order - b.order).slice(0, 6);
 
   return (
     <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-bg-card/90 backdrop-blur-md border-t border-border-subtle pb-safe">
       <div className="flex items-center justify-around p-2">
-        {displayLinks.map((link) => {
+        {displayLinks.map((link, index) => {
           const pathHref = formatHref(link.href);
           const isActive = pathname === pathHref || (pathname.startsWith(pathHref) && pathHref !== "/");
+          const isTabletOnly = index === 5 || link.label.toLowerCase().includes("testimonial") || link.label.toLowerCase().includes("review");
 
           return (
             <Link
               key={link.href}
               href={pathHref}
               className={cn(
-                "flex flex-col items-center justify-center p-2 gap-1 transition-colors",
+                "flex-col items-center justify-center p-2 gap-1 transition-colors",
+                isTabletOnly ? "hidden sm:flex" : "flex",
                 isActive ? "text-green-accent" : "text-text-tertiary hover:text-green-accent"
               )}
             >
               {getIcon(link.label)}
-              <span className="font-mono text-[10px] uppercase tracking-wider">{link.label}</span>
+              <span className="font-mono text-[10px] uppercase tracking-wider">
+                {link.label.toLowerCase().includes("testimonial") ? "Reviews" : link.label}
+              </span>
             </Link>
           );
         })}
