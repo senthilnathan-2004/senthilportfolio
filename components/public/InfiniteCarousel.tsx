@@ -36,7 +36,7 @@ export default function InfiniteCarousel({
     <div className={cn("group relative w-full overflow-hidden flex whitespace-nowrap [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]", className)}>
       <div 
         className={cn(
-          "flex w-max items-center justify-center gap-8", 
+          "flex w-max items-stretch justify-center gap-8", 
           speedClass,
           pauseOnHover && "group-hover:[animation-play-state:paused]"
         )}
