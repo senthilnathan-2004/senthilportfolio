@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Rabbit, Layers, Lock } from "lucide-react";
 import InfiniteCarousel from "./InfiniteCarousel";
 
 interface SocialLink {
@@ -24,10 +25,41 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
   const sorted = [...socialLinks].sort((a, b) => a.order - b.order);
 
   const renderHighlightedLine = (line: string) => {
-    const parts = line.split(/(fast|secure)/i);
+    const parts = line.split(/(\b(?:fast|scalable|secure)\b)/i);
     return parts.map((part, index) => {
-      if (/^(fast|secure)$/i.test(part)) {
-        return <span key={index} className="text-green-accent drop-shadow-[0_0_15px_rgba(0,255,128,0.3)]">{part}</span>;
+      const lower = part.toLowerCase();
+      if (lower === "fast") {
+        return (
+          <span
+            key={index}
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-0.5 sm:py-1 rounded-xl sm:rounded-2xl bg-green-accent/15 border border-green-accent/40 text-green-accent drop-shadow-[0_0_20px_rgba(140,255,158,0.5)] shadow-[inset_0_0_15px_rgba(140,255,158,0.15)] mx-1 align-middle hover:scale-105 transition-transform"
+          >
+            <Rabbit className="w-[0.68em] h-[0.68em] shrink-0 text-green-accent" />
+            <span>{part}</span>
+          </span>
+        );
+      }
+      if (lower === "scalable") {
+        return (
+          <span
+            key={index}
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-0.5 sm:py-1 rounded-xl sm:rounded-2xl bg-green-accent/15 border border-green-accent/40 text-green-accent drop-shadow-[0_0_20px_rgba(140,255,158,0.5)] shadow-[inset_0_0_15px_rgba(140,255,158,0.15)] mx-1 align-middle hover:scale-105 transition-transform"
+          >
+            <Layers className="w-[0.68em] h-[0.68em] shrink-0 text-green-accent" />
+            <span>{part}</span>
+          </span>
+        );
+      }
+      if (lower === "secure") {
+        return (
+          <span
+            key={index}
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-0.5 sm:py-1 rounded-xl sm:rounded-2xl bg-green-accent/15 border border-green-accent/40 text-green-accent drop-shadow-[0_0_20px_rgba(140,255,158,0.5)] shadow-[inset_0_0_15px_rgba(140,255,158,0.15)] mx-1 align-middle hover:scale-105 transition-transform"
+          >
+            <Lock className="w-[0.68em] h-[0.68em] shrink-0 text-green-accent" />
+            <span>{part}</span>
+          </span>
+        );
       }
       return part;
     });
