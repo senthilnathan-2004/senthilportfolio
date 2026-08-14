@@ -47,7 +47,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
   const reviewCards = sorted.map((testimonial, i) => (
     <div
       key={testimonial._id}
-      className="w-[280px] sm:w-[350px] md:w-[400px] lg:w-[450px] h-full p-5 sm:p-6 md:p-8 bg-bg-container/80 backdrop-blur-md border border-border-subtle rounded-3xl shadow-card relative flex flex-col group hover:border-green-accent/30 transition-colors whitespace-normal text-left"
+      className="w-[320px] sm:w-[360px] md:w-[400px] lg:w-[450px] h-full p-5 sm:p-6 md:p-8 bg-bg-container/80 backdrop-blur-md border border-border-subtle rounded-3xl shadow-card relative flex flex-col group hover:border-green-accent/30 transition-colors whitespace-normal text-left"
     >
       <Quote className="absolute top-5 right-5 md:top-8 md:right-8 text-border-subtle group-hover:text-green-accent/20 transition-colors w-7 h-7 md:w-10 md:h-10 opacity-40 md:opacity-100" />
       
