@@ -86,7 +86,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
 
                 <Link
                   href="/projects"
-                  className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-accent/30 bg-green-accent/10 hover:bg-green-accent/20 text-xs sm:text-sm font-mono uppercase tracking-widest text-green-accent transition-all shadow-[0_0_15px_rgba(0,255,128,0.15)]"
+                  className="group hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-accent/30 bg-green-accent/10 hover:bg-green-accent/20 text-xs sm:text-sm font-mono uppercase tracking-widest text-green-accent transition-all shadow-[0_0_15px_rgba(0,255,128,0.15)]"
                 >
                   <span>View Work</span>
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
