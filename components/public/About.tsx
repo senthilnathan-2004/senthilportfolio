@@ -77,8 +77,22 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
             transition={{ duration: 0.8 }}
             className="order-1 lg:order-2"
           >
-            <div className="text-center md:text-left">
-              <div className="flex items-center justify-between md:justify-start gap-4 mb-8 px-2 md:px-0">
+            {/* Mobile Profile Photo (Rounded Circular shape) */}
+            {imageUrl && (
+              <div className="flex md:hidden justify-center mb-6">
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-green-accent shadow-[0_0_25px_rgba(0,255,128,0.25)] shrink-0">
+                  <Image
+                    src={imageUrl}
+                    alt={imageAlt || "About photo"}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            )}
+
+            <div className="text-center md:text-left flex flex-col items-center md:items-start">
+              <div className="flex items-center justify-center md:justify-start gap-4 mb-8 px-2 md:px-0">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent font-mono backdrop-blur-sm">
                   <User size={16} />
                   <span className="tracking-widest uppercase">{tagLabel}</span>
@@ -93,7 +107,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                 </Link>
               </div>
 
-              <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-4 px-2 md:px-0">
+              <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-4 px-2 md:px-0 text-center md:text-left">
                 Behind the <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-green-accent">Code</span>
               </h2>
             </div>
@@ -104,7 +118,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               </div>
             </div>
 
-            <div className="flex items-center justify-start px-2 md:px-0">
+            <div className="flex items-center justify-center md:justify-start px-2 md:px-0">
               <a
                 href={cvUrl || "#"}
                 target={cvUrl ? "_blank" : "_self"}
