@@ -4,11 +4,14 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Preloader() {
+  // Start as null (not mounted) so SSR returns nothing, avoiding hydration mismatch
+  const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Disable scrolling while loading
+    // Only run on client after hydration is complete
+    setMounted(true);
     document.body.style.overflow = "hidden";
 
     const interval = setInterval(() => {
@@ -18,11 +21,10 @@ export default function Preloader() {
           setTimeout(() => {
             setLoading(false);
             document.body.style.overflow = "";
-          }, 500); // Wait a moment at 100% before sliding up
+          }, 500);
           return 100;
         }
-        // Random increments for a more "real" terminal loading feel
-        return prev + Math.floor(Math.random() * 15) + 5;
+        return Math.min(prev + Math.floor(Math.random() * 15) + 5, 100);
       });
     }, 120);
 
@@ -31,6 +33,9 @@ export default function Preloader() {
       document.body.style.overflow = "";
     };
   }, []);
+
+  // Return nothing on SSR — no HTML mismatch possible
+  if (!mounted) return null;
 
   return (
     <AnimatePresence>
@@ -58,6 +63,7 @@ export default function Preloader() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
                 className="text-text-primary text-2xl sm:text-3xl font-display"
+                suppressHydrationWarning
               >
                 {progress}%
               </motion.span>
@@ -79,9 +85,20 @@ export default function Preloader() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
               className="mt-6 flex flex-col space-y-2 text-xs text-text-tertiary h-12"
+              suppressHydrationWarning
             >
-              <p>{progress < 30 ? "&gt; Initializing core modules..." : progress < 70 ? "&gt; Establishing secure connection..." : progress < 100 ? "&gt; Loading user interface..." : "&gt; Access granted."}</p>
-              {progress > 40 && <p className="animate-pulse">&gt; Decrypting assets...</p>}
+              <p suppressHydrationWarning>
+                {progress < 30
+                  ? "> Initializing core modules..."
+                  : progress < 70
+                  ? "> Establishing secure connection..."
+                  : progress < 100
+                  ? "> Loading user interface..."
+                  : "> Access granted."}
+              </p>
+              {progress > 40 && (
+                <p className="animate-pulse">&gt; Decrypting assets...</p>
+              )}
             </motion.div>
           </div>
         </motion.div>

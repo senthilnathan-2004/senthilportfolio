@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowUp } from "lucide-react";
 
@@ -13,8 +14,13 @@ interface FooterProps {
 }
 
 export default function Footer({ logoText, footerText, quickLinks, socialLinks, startupName, startupUrl }: FooterProps) {
-  const year = new Date().getFullYear();
-  const displayText = footerText.replace("{year}", year.toString());
+  const [displayText, setDisplayText] = useState(() =>
+    footerText.replace("{year}", new Date().getFullYear().toString())
+  );
+
+  useEffect(() => {
+    setDisplayText(footerText.replace("{year}", new Date().getFullYear().toString()));
+  }, [footerText]);
   const logoSlash = logoText.startsWith("//") ? "//" : "";
   const logoRest = logoText.startsWith("//") ? logoText.slice(2) : logoText;
   const sortedLinks = [...quickLinks].sort((a, b) => a.order - b.order);
