@@ -57,20 +57,30 @@ export default function Projects({ projects }: ProjectsProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-wrap gap-2 mb-10"
+          className="w-full relative flex justify-center mb-10"
         >
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`px-4 py-2 rounded-full font-mono text-sm transition-all ${active === cat
-                  ? "bg-green-accent text-bg-primary font-bold"
-                  : "bg-bg-card border border-border-subtle text-text-secondary hover:border-green-accent/40 hover:text-text-primary"
+          {/* Mobile Scroll Fade Indicators */}
+          <div className="sm:hidden absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-bg-primary via-bg-primary/80 to-transparent pointer-events-none z-20" />
+          <div className="sm:hidden absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-bg-primary to-transparent pointer-events-none z-20" />
+
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-full py-1.5 px-4 sm:px-0 sm:flex-wrap sm:justify-center scroll-smooth snap-x snap-mandatory touch-pan-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={(e) => {
+                  setActive(cat);
+                  e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                }}
+                className={`relative px-4 py-2.5 sm:px-6 sm:py-3 rounded-full font-mono text-xs sm:text-sm transition-all shrink-0 whitespace-nowrap snap-center ${
+                  active === cat
+                    ? "bg-green-accent text-bg-primary font-bold shadow-[0_0_20px_rgba(0,255,128,0.3)]"
+                    : "bg-bg-card border border-border-subtle text-text-secondary hover:border-green-accent/40 hover:text-text-primary"
                 }`}
-            >
-              {cat}
-            </button>
-          ))}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         {/* Projects grid */}
