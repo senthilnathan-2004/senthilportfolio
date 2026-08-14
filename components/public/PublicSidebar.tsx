@@ -47,7 +47,7 @@ export default function PublicSidebar({ logoText, navLinks, socialLinks }: Publi
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-6 flex flex-col gap-2">
+      <nav className="flex-1 p-6 flex flex-col gap-2.5">
         {navLinks.sort((a, b) => a.order - b.order).map((link) => {
           const pathHref = formatHref(link.href);
           const isActive = pathname === pathHref || (pathname.startsWith(pathHref) && pathHref !== "/");
@@ -57,10 +57,10 @@ export default function PublicSidebar({ logoText, navLinks, socialLinks }: Publi
               key={link.href}
               href={pathHref}
               className={cn(
-                "flex items-center gap-4 px-4 py-3 rounded-none border-l-2 transition-all font-mono uppercase text-sm tracking-wider",
+                "flex items-center gap-4 px-4 py-3.5 rounded-2xl border transition-all duration-300 font-mono uppercase text-sm tracking-wider",
                 isActive
-                  ? "border-green-accent bg-green-accent/10 text-green-accent shadow-[inset_0_0_20px_rgba(140,255,158,0.05)]"
-                  : "border-transparent text-text-secondary hover:text-green-accent hover:bg-bg-primary"
+                  ? "border-green-accent/40 bg-green-accent/10 text-green-accent shadow-[0_0_20px_rgba(140,255,158,0.12)] font-semibold"
+                  : "border-transparent text-text-secondary hover:text-green-accent hover:bg-bg-card/60 hover:border-border-subtle/50"
               )}
             >
               <span className={cn("transition-colors", isActive ? "text-green-accent" : "text-text-tertiary")}>
