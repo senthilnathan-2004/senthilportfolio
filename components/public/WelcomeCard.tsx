@@ -61,7 +61,7 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 24, stiffness: 300, delay: 0.05 }}
-            className="relative w-full max-w-md sm:max-w-lg bg-bg-card/95 border border-green-accent/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-[0_0_60px_rgba(140,255,158,0.2)] backdrop-blur-2xl text-text-primary z-10 my-auto mb-20 lg:mb-auto overflow-hidden"
+            className="relative w-full max-w-md sm:max-w-lg bg-bg-card/95 border border-green-accent/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-[0_0_60px_rgba(140,255,158,0.2)] backdrop-blur-2xl text-text-primary z-10 m-auto overflow-hidden"
           >
             {/* Glowing Accent Blobs */}
             <div className="absolute top-0 right-0 w-36 h-36 bg-green-accent/15 rounded-full blur-3xl pointer-events-none" />
