@@ -15,8 +15,13 @@ export default function TopBreadcrumbNavbar() {
   };
 
   return (
-    <div className="sticky top-0 z-40 bg-bg-primary/80 backdrop-blur-xl border-b border-border-subtle/60 p-3 sm:p-4 lg:px-8 flex items-center justify-between">
+    <div className="sticky top-0 z-40 bg-bg-primary/80 backdrop-blur-xl border-b border-border-subtle p-3 sm:p-4 lg:px-8 flex items-center justify-between">
       <div className="flex items-center gap-3">
+        <div className="flex gap-1.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+          <span className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
+          <span className="w-2.5 h-2.5 rounded-full bg-green-accent" />
+        </div>
         <motion.div 
           key={pathname}
           initial={{ opacity: 0, x: -10 }}
