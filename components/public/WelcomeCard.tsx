@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, X, ArrowRight, Code2, Terminal } from "lucide-react";
+import { Sparkles, X, ArrowRight, Code2, Zap, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 interface WelcomeCardProps {
@@ -24,7 +24,7 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
       if (lastShown) {
         const timeElapsed = Date.now() - parseInt(lastShown, 10);
         if (!isNaN(timeElapsed) && timeElapsed < ONE_DAY_MS) {
-          return; // Expired/shown within 1 day, do not show again
+          return; // Shown within 1 day, do not show again
         }
       }
     } catch {
@@ -71,73 +71,78 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
 
           {/* Centered Popup Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.85, y: 30 }}
+            initial={{ opacity: 0, scale: 0.88, y: 25 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: "spring", damping: 24, stiffness: 300, delay: 0.05 }}
-            className="relative w-full max-w-md sm:max-w-lg bg-bg-card/95 border border-green-accent/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-[0_0_60px_rgba(140,255,158,0.2)] backdrop-blur-2xl text-text-primary z-10 m-auto overflow-hidden"
+            exit={{ opacity: 0, scale: 0.92, y: 15 }}
+            transition={{ type: "spring", damping: 25, stiffness: 320, delay: 0.05 }}
+            className="relative w-full max-w-sm sm:max-w-lg bg-gradient-to-b from-bg-card via-bg-card/98 to-bg-container/95 border border-green-accent/30 sm:border-green-accent/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-[0_0_50px_rgba(140,255,158,0.18)] backdrop-blur-2xl text-text-primary z-10 m-auto overflow-hidden"
           >
-            {/* Glowing Accent Blobs */}
+            {/* Top Glowing Ambient Accents */}
             <div className="absolute top-0 right-0 w-36 h-36 bg-green-accent/15 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -bottom-10 -left-10 w-36 h-36 bg-green-accent/10 rounded-full blur-3xl pointer-events-none" />
+            
+            {/* Cyberpunk Top Line Accent */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[2px] bg-gradient-to-r from-transparent via-green-accent/80 to-transparent pointer-events-none" />
 
-            {/* Close Button */}
-            <button
-              onClick={handleClose}
-              className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-full text-text-tertiary hover:text-green-accent hover:bg-green-accent/10 transition-colors border border-transparent hover:border-green-accent/20 cursor-pointer"
-              aria-label="Close welcome card"
-            >
-              <X size={18} />
-            </button>
-
-            {/* System Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-accent/10 border border-green-accent/30 text-green-accent font-mono text-[10px] sm:text-[11px] uppercase tracking-widest mb-4 sm:mb-5">
-              <span className="w-2 h-2 rounded-full bg-green-accent animate-pulse" />
-              <span>✦ SYSTEM INITIALIZED</span>
-            </div>
-
-            {/* Title Header */}
-            <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
-              {/* Mobile Only: Meaningful Developer Code Badge with live status */}
-              <div className="flex sm:hidden w-9 h-9 rounded-xl bg-green-accent/10 border border-green-accent/30 items-center justify-center text-green-accent shrink-0 relative mt-0.5 shadow-[0_0_12px_rgba(140,255,158,0.2)]">
-                <Code2 size={17} />
-                <span className="absolute -bottom-0.5 -right-0.5 flex h-2 w-2">
+            {/* Header: Status Bar + Close Button */}
+            <div className="flex items-center justify-between mb-4 sm:mb-5">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-green-accent/10 border border-green-accent/30 text-green-accent font-mono text-[10px] sm:text-[11px] uppercase tracking-widest">
+                <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-accent opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-accent"></span>
                 </span>
+                <span>SYSTEM INITIALIZED</span>
               </div>
 
-              {/* Tablet & Desktop: Sparkle Icon */}
-              <div className="hidden sm:flex w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-green-accent/10 border border-green-accent/30 items-center justify-center text-green-accent shrink-0 shadow-[0_0_20px_rgba(140,255,158,0.25)]">
-                <Sparkles size={22} className="sm:w-6 sm:h-6" />
+              <button
+                onClick={handleClose}
+                className="p-1.5 sm:p-2 rounded-full text-text-tertiary hover:text-green-accent hover:bg-green-accent/10 transition-colors border border-border-subtle/50 hover:border-green-accent/30 cursor-pointer"
+                aria-label="Close welcome card"
+              >
+                <X size={16} className="sm:w-[18px] sm:h-[18px]" />
+              </button>
+            </div>
+
+            {/* Identity & Title Banner */}
+            <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+              {/* Profile/Tech Monogram Badge */}
+              <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl bg-green-accent/10 border border-green-accent/30 flex items-center justify-center text-green-accent shrink-0 shadow-[0_0_15px_rgba(140,255,158,0.2)]">
+                <Code2 size={20} className="sm:hidden" />
+                <Sparkles size={24} className="hidden sm:block" />
               </div>
-              <div className="pr-6 min-w-0">
-                <h2 className="text-lg sm:text-2xl font-bold font-display uppercase tracking-tight text-text-primary leading-tight">
-                  Welcome to <span className="text-green-accent drop-shadow-[0_0_12px_rgba(140,255,158,0.4)]">{name}</span>&apos;s Portfolio
+
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] sm:text-xs font-mono text-green-accent uppercase tracking-wider font-semibold">
+                  // PORTFOLIO V2.0
+                </p>
+                <h2 className="text-lg sm:text-2xl font-bold font-display uppercase tracking-tight text-text-primary leading-tight mt-0.5 truncate">
+                  Welcome to <span className="text-green-accent drop-shadow-[0_0_12px_rgba(140,255,158,0.4)]">{name}</span>
                 </h2>
-                <p className="font-mono text-[10px] sm:text-xs text-text-tertiary mt-0.5 sm:mt-1">Full-Stack Developer & UI Architect</p>
+                <p className="font-mono text-[10px] sm:text-xs text-text-tertiary mt-0.5 sm:mt-1 truncate">
+                  Full-Stack Dev &amp; UI Architect
+                </p>
               </div>
             </div>
 
             {/* Description */}
-            <p className="text-xs sm:text-sm text-text-secondary leading-relaxed font-sans mb-5 sm:mb-6">
+            <p className="text-xs sm:text-sm text-text-secondary leading-relaxed font-sans mb-4 sm:mb-6">
               Glad to have you here! Feel free to explore interactive projects, skills, custom services, and modern digital experiences.
             </p>
 
-            {/* Tech Badges */}
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-3 mb-5 sm:mb-6 font-mono text-[11px] sm:text-xs">
-              <div className="flex items-center gap-2 sm:gap-2.5 p-2 sm:p-2.5 rounded-xl bg-bg-container/70 border border-border-subtle/80 text-text-secondary">
-                <Code2 size={15} className="text-green-accent shrink-0" />
-                <span>Modern Stack</span>
+            {/* Tech Feature Cards */}
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-5 sm:mb-6 font-mono text-[11px] sm:text-xs">
+              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-bg-container/80 border border-border-subtle/80 text-text-secondary">
+                <Zap size={14} className="text-green-accent shrink-0" />
+                <span className="truncate">Fast &amp; Scalable</span>
               </div>
-              <div className="flex items-center gap-2 sm:gap-2.5 p-2 sm:p-2.5 rounded-xl bg-bg-container/70 border border-border-subtle/80 text-text-secondary">
-                <Terminal size={15} className="text-green-accent shrink-0" />
-                <span>Clean Code</span>
+              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-bg-container/80 border border-border-subtle/80 text-text-secondary">
+                <ShieldCheck size={14} className="text-green-accent shrink-0" />
+                <span className="truncate">Clean Code</span>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
               <Link
                 href="/projects"
                 onClick={handleClose}
