@@ -103,7 +103,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
             {/* Mobile Profile Photo (Hero Section Style below title, mobile view only) */}
             {(heroImageUrl || imageUrl) && (
               <div className="flex md:hidden justify-center mt-2 mb-8 w-full px-2">
-                <div className="flex items-center justify-center gap-4 px-6 py-2 rounded-full bg-bg-card/90 border border-green-accent/30 shadow-[0_0_20px_rgba(0,255,128,0.15)] backdrop-blur-md w-full max-w-sm sm:max-w-md">
+                <div className="flex items-center justify-center gap-6 sm:gap-8 px-6 sm:px-8 py-3 rounded-full bg-bg-card/90 border border-green-accent/30 shadow-[0_0_20px_rgba(0,255,128,0.15)] backdrop-blur-md w-full max-w-sm sm:max-w-md">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-green-accent shadow-[0_0_15px_rgba(0,255,128,0.3)] shrink-0">
                     <img
                       src={heroImageUrl || imageUrl}
@@ -112,7 +112,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                     />
                   </div>
                   <div className="flex flex-col text-left min-w-0">
-                    <span className="text-[10px] font-mono text-green-accent uppercase tracking-widest truncate">System Admin</span>
+                    <span className="text-[10px] sm:text-xs font-mono text-green-accent uppercase tracking-widest truncate">System Admin</span>
                     <span className="text-sm sm:text-base font-semibold text-text-primary transition-colors truncate">{captionName || "Senthil Ragu"}</span>
                   </div>
                 </div>
