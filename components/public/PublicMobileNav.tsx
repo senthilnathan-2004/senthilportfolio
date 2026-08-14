@@ -29,30 +29,36 @@ export default function PublicMobileNav({ navLinks }: PublicMobileNavProps) {
   const displayLinks = [...navLinks].sort((a, b) => a.order - b.order).slice(0, 7);
 
   return (
-    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-bg-card/95 backdrop-blur-md border-t border-x border-border-subtle rounded-t-2xl rounded-b-none pb-safe overflow-hidden">
-      <div className="flex items-center justify-around p-1.5 sm:p-2">
-        {displayLinks.map((link, index) => {
-          const pathHref = formatHref(link.href);
-          const isActive = pathname === pathHref || (pathname.startsWith(pathHref) && pathHref !== "/");
-          const isTabletOnly = index === 6;
+    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 rounded-t-2xl rounded-b-none p-[1px] pb-0 bg-border-subtle overflow-hidden">
+      {/* 360 Infinite Rotating Subtle Border Beam */}
+      <div className="absolute -inset-[200%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_320deg,#8CFF9E_360deg)] pointer-events-none opacity-90" />
 
-          return (
-            <Link
-              key={link.href}
-              href={pathHref}
-              className={cn(
-                "flex-col items-center justify-center p-1.5 gap-0.5 sm:gap-1 transition-colors shrink-0",
-                isTabletOnly ? "hidden sm:flex" : "flex",
-                isActive ? "text-green-accent" : "text-text-tertiary hover:text-green-accent"
-              )}
-            >
-              {getIcon(link.label)}
-              <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider">
-                {link.label.toLowerCase().includes("testimonial") ? "Reviews" : link.label}
-              </span>
-            </Link>
-          );
-        })}
+      {/* Inner Navigation Content */}
+      <div className="relative z-10 bg-bg-card/95 backdrop-blur-md rounded-t-[15px] pb-safe">
+        <div className="flex items-center justify-around p-1.5 sm:p-2">
+          {displayLinks.map((link, index) => {
+            const pathHref = formatHref(link.href);
+            const isActive = pathname === pathHref || (pathname.startsWith(pathHref) && pathHref !== "/");
+            const isTabletOnly = index === 6;
+
+            return (
+              <Link
+                key={link.href}
+                href={pathHref}
+                className={cn(
+                  "flex-col items-center justify-center p-1.5 gap-0.5 sm:gap-1 transition-colors shrink-0",
+                  isTabletOnly ? "hidden sm:flex" : "flex",
+                  isActive ? "text-green-accent" : "text-text-tertiary hover:text-green-accent"
+                )}
+              >
+                {getIcon(link.label)}
+                <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider">
+                  {link.label.toLowerCase().includes("testimonial") ? "Reviews" : link.label}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </nav>
   );
