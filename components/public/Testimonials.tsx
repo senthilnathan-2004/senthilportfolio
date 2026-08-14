@@ -113,15 +113,6 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
         </div>
       </div>
 
-      {/* Floating Action Button for Mobile */}
-      <div className="md:hidden fixed bottom-28 right-6 z-50">
-        <button 
-          onClick={() => setIsModalOpen(true)}
-          className="w-14 h-14 rounded-full bg-green-accent text-bg-primary flex items-center justify-center shadow-[0_0_30px_rgba(0,255,128,0.3)]"
-        >
-          <MessageSquare size={24} />
-        </button>
-      </div>
 
       {/* Modal Form */}
       {typeof window !== "undefined" && createPortal(
