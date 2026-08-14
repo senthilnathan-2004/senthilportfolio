@@ -85,7 +85,7 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
       </div>
 
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-8 relative z-10 flex flex-col items-center text-center lg:mt-24 mt-20 sm:mt-16">
-        <h1 className="text-[clamp(2.25rem,12.5vw,4.5rem)] md:text-[clamp(4rem,9vw,6rem)] lg:text-8xl xl:text-9xl font-display uppercase tracking-tighter text-text-primary leading-[0.85] mb-8 sm:mb-12">
+        <h1 className="text-[clamp(2.25rem,12.5vw,4.5rem)] md:text-[clamp(4rem,9vw,6rem)] lg:text-5xl xl:text-6xl font-display uppercase tracking-tighter text-text-primary leading-[0.85] lg:leading-[0.95] mb-8 sm:mb-12">
           {headlineLines.map((line, i) => (
             <motion.span
               key={i}
