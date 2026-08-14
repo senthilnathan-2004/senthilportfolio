@@ -78,12 +78,22 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
             className="order-1 lg:order-2"
           >
             <div className="text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-8 font-mono backdrop-blur-sm">
-                <User size={16} />
-                <span className="tracking-widest uppercase">{tagLabel}</span>
+              <div className="flex items-center justify-between md:justify-start gap-4 mb-8 px-2 md:px-0">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent font-mono backdrop-blur-sm">
+                  <User size={16} />
+                  <span className="tracking-widest uppercase">{tagLabel}</span>
+                </div>
+
+                <Link
+                  href="/projects"
+                  className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-accent/30 bg-green-accent/10 hover:bg-green-accent/20 text-xs sm:text-sm font-mono uppercase tracking-widest text-green-accent transition-all shadow-[0_0_15px_rgba(0,255,128,0.15)]"
+                >
+                  <span>View Work</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
 
-              <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-4">
+              <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-4 px-2 md:px-0">
                 Behind the <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-green-accent">Code</span>
               </h2>
             </div>
@@ -94,24 +104,18 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 px-4 md:px-0">
+            <div className="flex items-center justify-start px-2 md:px-0">
               <a
                 href={cvUrl || "#"}
                 target={cvUrl ? "_blank" : "_self"}
                 rel="noreferrer"
-                className="group relative inline-flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 sm:py-4 bg-green-accent text-bg-primary font-sans font-semibold rounded-full overflow-hidden transition-all hover:bg-green-accent/80 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,255,128,0.3)] text-sm sm:text-base text-center"
+                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-green-accent text-bg-primary font-sans font-semibold rounded-full overflow-hidden transition-all hover:bg-green-accent/80 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,255,128,0.3)] text-center w-full sm:w-auto"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <Download size={18} />
                   {cvUrl ? "Download Resume" : "Download Resume"}
                 </span>
               </a>
-              <Link
-                href="/projects"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 border border-border-subtle/80 hover:border-green-accent/40 bg-bg-card/40 backdrop-blur-sm rounded-full font-mono text-xs sm:text-sm uppercase tracking-widest text-text-primary hover:text-green-accent transition-all hover:scale-105 active:scale-95 text-center"
-              >
-                View Work <ArrowRight size={16} />
-              </Link>
             </div>
           </motion.div>
         </div>
