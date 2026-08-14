@@ -49,7 +49,7 @@ export default async function PublicLayout({ children }: { children: React.React
   ];
 
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -58,7 +58,7 @@ export default async function PublicLayout({ children }: { children: React.React
           rel="stylesheet"
         />
       </head>
-      <body className="bg-bg-primary text-text-primary antialiased flex flex-col lg:flex-row min-h-screen relative font-mono">
+      <body className="bg-bg-primary text-text-primary antialiased flex flex-col lg:flex-row min-h-screen relative font-mono" suppressHydrationWarning>
         <Preloader />
         <WelcomeCard name={logoText.replace("//", "").trim()} />
         

@@ -8,9 +8,13 @@ import { Mail } from "lucide-react";
 
 export default function TopBreadcrumbNavbar() {
   const pathname = usePathname();
-  const [showContactHint, setShowContactHint] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const [showContactHint, setShowContactHint] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+    setShowContactHint(true);
+
     // Show the "CONTACT" text label on mobile for 15 seconds after page load
     const timer = setTimeout(() => {
       setShowContactHint(false);
@@ -35,11 +39,12 @@ export default function TopBreadcrumbNavbar() {
         </div>
         <motion.div 
           key={pathname}
-          initial={{ opacity: 0, x: -10 }}
+          initial={false}
           animate={{ opacity: 1, x: 0 }}
           className="font-mono text-[11px] sm:text-xs font-bold text-text-tertiary tracking-widest uppercase truncate"
+          suppressHydrationWarning
         >
-          SYSTEM // <span className="text-green-accent">{getPageName()}</span>
+          SYSTEM // <span className="text-green-accent" suppressHydrationWarning>{getPageName()}</span>
         </motion.div>
       </div>
       
@@ -49,23 +54,26 @@ export default function TopBreadcrumbNavbar() {
       >
         <Mail className="w-3.5 h-3.5 text-green-accent shrink-0" />
         
-        {/* Mobile Contact Label shown for 15s */}
-        <AnimatePresence>
-          {showContactHint && (
-            <motion.span
-              initial={{ width: 0, opacity: 0 }}
-              animate={{ width: "auto", opacity: 1 }}
-              exit={{ width: 0, opacity: 0 }}
-              transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="sm:hidden overflow-hidden whitespace-nowrap font-bold text-green-accent tracking-wider pl-0.5"
-            >
-              CONTACT
-            </motion.span>
-          )}
-        </AnimatePresence>
+        {/* Mobile Contact Label shown for 15s (mounted only to eliminate hydration diff) */}
+        {mounted && (
+          <AnimatePresence>
+            {showContactHint && (
+              <motion.span
+                initial={{ width: 0, opacity: 0 }}
+                animate={{ width: "auto", opacity: 1 }}
+                exit={{ width: 0, opacity: 0 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+                className="sm:hidden overflow-hidden whitespace-nowrap font-bold text-green-accent tracking-wider pl-0.5"
+                suppressHydrationWarning
+              >
+                CONTACT
+              </motion.span>
+            )}
+          </AnimatePresence>
+        )}
 
         {/* Desktop Label */}
-        <span className="hidden sm:inline text-text-tertiary hover:text-green-accent transition-colors">
+        <span className="hidden sm:inline text-text-tertiary hover:text-green-accent transition-colors" suppressHydrationWarning>
           CONNECTION_SECURE
         </span>
       </Link>

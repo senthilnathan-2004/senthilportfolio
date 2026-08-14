@@ -29,7 +29,7 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
       if (/^(fast|secure)$/i.test(part)) {
         return <span key={index} className="text-green-accent drop-shadow-[0_0_15px_rgba(0,255,128,0.3)]">{part}</span>;
       }
-      return part;
+      return <span key={index}>{part}</span>;
     });
   };
 
