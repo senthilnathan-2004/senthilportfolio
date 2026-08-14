@@ -10,6 +10,8 @@ interface WelcomeCardProps {
   name?: string;
 }
 
+const ONE_DAY_MS = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+
 export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -18,9 +20,12 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
     setMounted(true);
 
     try {
-      const hasBeenShown = sessionStorage.getItem("welcome_card_shown");
-      if (hasBeenShown === "true") {
-        return;
+      const lastShown = localStorage.getItem("welcome_card_last_shown");
+      if (lastShown) {
+        const timeElapsed = Date.now() - parseInt(lastShown, 10);
+        if (!isNaN(timeElapsed) && timeElapsed < ONE_DAY_MS) {
+          return; // Expired/shown within 1 day, do not show again
+        }
       }
     } catch {
       // Storage access safety fallback
@@ -29,7 +34,7 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
     const timer = setTimeout(() => {
       setIsOpen(true);
       try {
-        sessionStorage.setItem("welcome_card_shown", "true");
+        localStorage.setItem("welcome_card_last_shown", Date.now().toString());
       } catch {
         // Storage access safety fallback
       }
@@ -41,7 +46,7 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
   const handleClose = () => {
     setIsOpen(false);
     try {
-      sessionStorage.setItem("welcome_card_shown", "true");
+      localStorage.setItem("welcome_card_last_shown", Date.now().toString());
     } catch {
       // Storage access safety fallback
     }
@@ -93,7 +98,8 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
 
             {/* Title Header */}
             <div className="flex items-start gap-3.5 sm:gap-4 mb-3 sm:mb-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-green-accent/10 border border-green-accent/30 flex items-center justify-center text-green-accent shrink-0 shadow-[0_0_20px_rgba(140,255,158,0.25)]">
+              {/* Icon hidden in mobile view, visible in tab and desktop view */}
+              <div className="hidden sm:flex w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-green-accent/10 border border-green-accent/30 items-center justify-center text-green-accent shrink-0 shadow-[0_0_20px_rgba(140,255,158,0.25)]">
                 <Sparkles size={22} className="sm:w-6 sm:h-6" />
               </div>
               <div className="pr-6">
