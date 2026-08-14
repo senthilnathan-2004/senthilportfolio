@@ -81,7 +81,7 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-20 items-stretch">
+        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-8 items-stretch">
           
           {/* Left: Info Terminal */}
           <motion.div

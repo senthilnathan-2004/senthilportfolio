@@ -28,7 +28,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
       </div>
 
       <div className="w-full max-w-6xl mx-auto px-2 md:px-8 relative z-10">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-stretch">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-10 items-stretch">
 
           {/* Left: Premium Image Frame */}
           <motion.div
