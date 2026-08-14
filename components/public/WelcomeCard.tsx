@@ -12,9 +12,10 @@ interface WelcomeCardProps {
 
 const ONE_DAY_MS = 24 * 60 * 60 * 1000; // 1 day in milliseconds
 
-export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) {
+export default function WelcomeCard({ name = "Senthil Ragu" }: WelcomeCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const formattedName = name.replace(/senthilragu/i, "Senthil Ragu");
 
   useEffect(() => {
     setMounted(true);
@@ -116,7 +117,7 @@ export default function WelcomeCard({ name = "Senthilragu" }: WelcomeCardProps) 
                   // PORTFOLIO V2.0
                 </p>
                 <h2 className="text-base sm:text-2xl font-bold font-display uppercase tracking-tight text-text-primary leading-tight mt-0.5">
-                  Welcome to <span className="text-green-accent drop-shadow-[0_0_12px_rgba(140,255,158,0.4)]">{name}</span>
+                  Welcome to <span className="text-green-accent drop-shadow-[0_0_12px_rgba(140,255,158,0.4)]">{formattedName}</span>
                 </h2>
                 <p className="font-mono text-[10px] sm:text-xs text-text-tertiary mt-1">
                   Full-Stack Dev &amp; UI Architect
