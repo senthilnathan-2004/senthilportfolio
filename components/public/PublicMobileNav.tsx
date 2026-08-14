@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { User, Code2, FolderKanban, Star, Mail, LayoutGrid, Home } from "lucide-react";
 
@@ -29,9 +30,23 @@ export default function PublicMobileNav({ navLinks }: PublicMobileNavProps) {
   const displayLinks = [...navLinks].sort((a, b) => a.order - b.order).slice(0, 7);
 
   return (
-    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 rounded-t-2xl rounded-b-none p-[1px] pb-0 bg-border-subtle overflow-hidden">
-      {/* 360 Infinite Rotating Subtle Border Beam */}
-      <div className="absolute -inset-[200%] animate-[spin_5s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_320deg,#8CFF9E_360deg)] pointer-events-none opacity-90" />
+    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 rounded-t-2xl rounded-b-none p-[1.5px] pb-0 bg-border-subtle overflow-hidden">
+      {/* 360 Infinite Rotating Border Beam starting from the left border start point */}
+      <motion.div
+        initial={{ rotate: 0 }}
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 4.5, ease: "linear" }}
+        className="absolute -inset-[200%] bg-[conic-gradient(from_270deg,transparent_0_310deg,#8CFF9E_360deg)] pointer-events-none opacity-90"
+      />
+
+      {/* Traveling Border Beam starting at left border edge */}
+      <div className="absolute inset-x-0 top-0 h-[1.5px] overflow-hidden pointer-events-none z-20">
+        <motion.div
+          animate={{ x: ["-100%", "200%"] }}
+          transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
+          className="w-1/2 h-full bg-gradient-to-r from-transparent via-green-accent to-transparent shadow-[0_0_10px_#8CFF9E]"
+        />
+      </div>
 
       {/* Inner Navigation Content */}
       <div className="relative z-10 bg-bg-card/95 backdrop-blur-md rounded-t-[15px] pb-safe">
