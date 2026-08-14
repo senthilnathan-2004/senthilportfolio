@@ -8,6 +8,7 @@ import Footer from "@/components/public/Footer";
 import ScrollToTop from "@/components/public/ScrollToTop";
 import Preloader from "@/components/public/Preloader";
 import WelcomeCard from "@/components/public/WelcomeCard";
+import { Analytics } from "@vercel/analytics/next";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings().catch(() => null);
@@ -89,6 +90,7 @@ export default async function PublicLayout({ children }: { children: React.React
         
         <PublicMobileNav navLinks={forcedNavLinks} />
         <ScrollToTop />
+        <Analytics />
       </body>
     </html>
   );
