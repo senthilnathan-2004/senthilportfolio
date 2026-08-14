@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = await getProjectBySlug(slug).catch(() => null);
   if (!project) return { title: "Project Not Found" };
   return {
-    title: `${project.title} — Senthilragu Portfolio`,
+    title: `${project.title} Senthilragu Portfolio`,
     description: project.shortDescription || `Case study for ${project.title}`,
     openGraph: {
       title: project.title,
