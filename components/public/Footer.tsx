@@ -87,7 +87,7 @@ export default function Footer({ logoText, footerText, quickLinks, socialLinks, 
 
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-border-subtle">
-          <p className="font-mono text-xs text-text-tertiary">{displayText}</p>
+          <p className="font-mono text-xs text-text-tertiary" suppressHydrationWarning>{displayText}</p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             id="back-to-top"

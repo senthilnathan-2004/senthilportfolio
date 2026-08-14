@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, Quote, Star, Plus, X, Send, Loader2 } from "lucide-react";
@@ -26,10 +26,15 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
   const sorted = [...testimonials].sort((a, b) => a.order - b.order);
   const testimonialNames = sorted.map(t => <span key={t._id} className="text-sm font-bold tracking-widest uppercase font-mono text-text-tertiary">CLIENT_FEEDBACK</span>);
 
+  const [mounted, setMounted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ name: "", role: "", quote: "", rating: 5 });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -115,7 +120,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
 
 
       {/* Modal Form */}
-      {typeof window !== "undefined" && createPortal(
+      {mounted && createPortal(
         <AnimatePresence>
           {isModalOpen && (
             <div className="fixed inset-0 z-[100] flex items-center justify-center px-2 py-4 sm:p-6" style={{ position: 'fixed' }}>
