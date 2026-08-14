@@ -51,26 +51,28 @@ export default function Skills({ skills }: SkillsProps) {
         </motion.div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveTab(category)}
-              className={`relative px-6 py-3 rounded-full font-mono text-sm uppercase tracking-widest transition-colors duration-300 ${
-                activeTab === category ? "text-bg-primary" : "text-text-secondary hover:text-text-primary"
-              }`}
-            >
-              {activeTab === category && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute inset-0 bg-green-accent rounded-full -z-10 shadow-[0_0_20px_rgba(0,255,128,0.3)]"
-                  initial={false}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">{category}</span>
-            </button>
-          ))}
+        <div className="w-full flex justify-center mb-8 sm:mb-12">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-full py-1.5 px-2 sm:px-0 sm:flex-wrap sm:justify-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveTab(category)}
+                className={`relative px-4 py-2.5 sm:px-6 sm:py-3 rounded-full font-mono text-xs sm:text-sm uppercase tracking-widest transition-colors duration-300 shrink-0 whitespace-nowrap ${
+                  activeTab === category ? "text-bg-primary font-bold" : "text-text-secondary hover:text-text-primary bg-bg-card/40 sm:bg-transparent border border-border-subtle/40 sm:border-none"
+                }`}
+              >
+                {activeTab === category && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute inset-0 bg-green-accent rounded-full -z-10 shadow-[0_0_20px_rgba(0,255,128,0.3)]"
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{category}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Skills Grid */}
