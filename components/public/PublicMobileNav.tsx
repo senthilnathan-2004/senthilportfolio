@@ -26,7 +26,7 @@ export default function PublicMobileNav({ navLinks }: PublicMobileNavProps) {
   };
 
   const formatHref = (href: string) => href.replace("#hero", "/").replace("#", "/");
-  const displayLinks = [...navLinks].sort((a, b) => a.order - b.order).slice(0, 6);
+  const displayLinks = [...navLinks].sort((a, b) => a.order - b.order).slice(0, 7);
 
   return (
     <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-bg-card/90 backdrop-blur-md border-t border-border-subtle pb-safe">
@@ -34,7 +34,7 @@ export default function PublicMobileNav({ navLinks }: PublicMobileNavProps) {
         {displayLinks.map((link, index) => {
           const pathHref = formatHref(link.href);
           const isActive = pathname === pathHref || (pathname.startsWith(pathHref) && pathHref !== "/");
-          const isTabletOnly = index === 5 || link.label.toLowerCase().includes("testimonial") || link.label.toLowerCase().includes("review");
+          const isTabletOnly = index >= 5;
 
           return (
             <Link
