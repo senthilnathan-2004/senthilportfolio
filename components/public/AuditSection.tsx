@@ -14,6 +14,8 @@ import {
   CheckCircle2,
   Sparkles,
   ArrowUpRight,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 
 export interface AuditItem {
@@ -37,10 +39,16 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [activeModalImage, setActiveModalImage] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [visibleCount, setVisibleCount] = useState<number>(4);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Reset pagination when category changes
+  useEffect(() => {
+    setVisibleCount(4);
+  }, [selectedCategory]);
 
   // Close modal on Escape key
   useEffect(() => {
@@ -65,6 +73,9 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
     selectedCategory === "All"
       ? audits
       : audits.filter((a) => a.category === selectedCategory);
+
+  const displayed = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -141,7 +152,7 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
 
       {/* Audit Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-        {filtered.map((item) => (
+        {displayed.map((item) => (
           <div
             key={item._id}
             className="group relative rounded-2xl sm:rounded-3xl bg-bg-card/70 border border-border-subtle hover:border-green-accent/40 p-3.5 sm:p-5 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl hover:shadow-green-accent/5 backdrop-blur-sm"
@@ -239,6 +250,32 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
           </div>
         ))}
       </div>
+
+      {/* See More / Show Less Pagination Button */}
+      {filtered.length > 4 && (
+        <div className="flex items-center justify-center gap-3 mt-8 sm:mt-10">
+          {hasMore ? (
+            <button
+              onClick={() => setVisibleCount((prev) => prev + 4)}
+              className="group flex items-center gap-2 px-6 py-3 rounded-full bg-bg-card border border-border-subtle hover:border-green-accent/50 text-text-primary font-mono text-xs sm:text-sm transition-all shadow-lg hover:shadow-green-accent/10 cursor-pointer active:scale-95"
+            >
+              <span>See More Audits ({filtered.length - visibleCount} more)</span>
+              <ChevronDown className="w-4 h-4 text-green-accent transition-transform group-hover:translate-y-0.5" />
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setVisibleCount(4);
+                document.getElementById("audits")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="group flex items-center gap-2 px-6 py-3 rounded-full bg-bg-card border border-border-subtle hover:border-green-accent/50 text-text-secondary hover:text-text-primary font-mono text-xs sm:text-sm transition-all shadow-lg cursor-pointer active:scale-95"
+            >
+              <span>Show Less</span>
+              <ChevronUp className="w-4 h-4 text-green-accent transition-transform group-hover:-translate-y-0.5" />
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Fullscreen Lightbox Modal via Portal to avoid clipping and mobile nav overlap */}
       {mounted &&
