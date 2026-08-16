@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
 import { MessageSquare, Quote, Star, Plus, X, Send, Loader2, ChevronRight } from "lucide-react";
 import InfiniteCarousel from "./InfiniteCarousel";
 import Image from "next/image";
@@ -24,16 +24,18 @@ interface TestimonialsProps {
 
 function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [dragX, setDragX] = useState(0);
   const [maxDrag, setMaxDrag] = useState(200);
-  const [isDragging, setIsDragging] = useState(false);
+  const x = useMotionValue(0);
+  const fillWidth = useTransform(x, (val) => `${Math.max(0, val) + 44}px`);
+  const textOpacity = useTransform(x, [0, 100], [1, 0.2]);
 
   useEffect(() => {
     const updateWidth = () => {
       if (containerRef.current) {
         // total width - knob width (44px) - padding (12px)
         const width = containerRef.current.offsetWidth - 44 - 12;
-        setMaxDrag(Math.max(width, 60));
+        const bounded = Math.max(width, 60);
+        setMaxDrag(bounded);
       }
     };
     updateWidth();
@@ -41,12 +43,40 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
-  const handleDragEnd = (_: unknown, info: { offset: { x: number } }) => {
-    setIsDragging(false);
-    if (info.offset.x >= maxDrag * 0.5) {
+  // Smooth idle nudge animation
+  useEffect(() => {
+    const controls = animate(x, [0, 20, 0], {
+      duration: 1.6,
+      repeat: Infinity,
+      repeatDelay: 1,
+      ease: "easeInOut",
+    });
+
+    return () => controls.stop();
+  }, [x]);
+
+  const handleDragStart = () => {
+    x.stop();
+  };
+
+  const handleDragEnd = () => {
+    if (x.get() >= maxDrag * 0.45) {
       onUnlock();
     }
-    setDragX(0);
+    // Smoothly spring back to origin
+    const springAnim = animate(x, 0, {
+      type: "spring",
+      stiffness: 450,
+      damping: 32,
+    });
+    springAnim.then(() => {
+      animate(x, [0, 20, 0], {
+        duration: 1.6,
+        repeat: Infinity,
+        repeatDelay: 1,
+        ease: "easeInOut",
+      });
+    });
   };
 
   return (
@@ -63,40 +93,41 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
         }
       }}
     >
-      {/* Dynamic green progress fill as you drag */}
-      <div
-        className="absolute left-0 top-0 bottom-0 bg-green-accent/20 rounded-full pointer-events-none transition-all"
-        style={{ width: `${Math.min(dragX + 50, maxDrag + 50)}px` }}
+      {/* Dynamic hardware-accelerated green fill */}
+      <motion.div
+        className="absolute left-0 top-0 bottom-0 bg-green-accent/20 rounded-full pointer-events-none"
+        style={{ width: fillWidth }}
       />
 
-      {/* Centered label */}
-      <span className="absolute inset-0 flex items-center justify-center font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-green-accent pl-8 pointer-events-none transition-opacity">
+      {/* Centered label with smooth opacity fade */}
+      <motion.span
+        style={{ opacity: textOpacity }}
+        className="absolute inset-0 flex items-center justify-center font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-green-accent pl-8 pointer-events-none"
+      >
         SLIDE TO REVIEW
-      </span>
+      </motion.span>
 
-      {/* Draggable Circle Knob with left-right nudge indicator */}
+      {/* 60fps buttery smooth GPU-accelerated Draggable Knob */}
       <motion.div
+        style={{ x }}
         drag="x"
         dragConstraints={{ left: 0, right: maxDrag }}
-        dragElastic={0.08}
-        dragSnapToOrigin
-        onDragStart={() => setIsDragging(true)}
-        onDrag={(_, info) => setDragX(Math.max(0, info.offset.x))}
+        dragElastic={0}
+        dragMomentum={false}
+        onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
-        animate={isDragging ? undefined : { x: [0, 16, 0] }}
-        transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut", repeatDelay: 0.8 }}
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="relative z-10 w-11 h-11 rounded-full bg-green-accent text-bg-primary flex items-center justify-center cursor-grab active:cursor-grabbing shrink-0 transition-transform hover:scale-105 active:scale-95"
+        className="relative z-10 w-11 h-11 rounded-full bg-green-accent text-bg-primary flex items-center justify-center cursor-grab active:cursor-grabbing shrink-0 touch-none shadow-none"
       >
-        {/* Subtle pulsing hint ring */}
+        {/* Subtle pulsing indicator ring */}
         <motion.div
           animate={{ scale: [1, 1.25, 1], opacity: [0.6, 0, 0.6] }}
-          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut", repeatDelay: 0.8 }}
+          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut", repeatDelay: 1 }}
           className="absolute inset-0 rounded-full bg-green-accent/40 pointer-events-none -z-10"
         />
-        <ChevronRight size={20} className="stroke-[3] text-bg-primary" />
+        <ChevronRight size={20} className="stroke-[3] text-bg-primary pointer-events-none" />
       </motion.div>
     </div>
   );
