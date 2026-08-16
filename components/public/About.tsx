@@ -104,7 +104,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               </div>
             </div>
 
-            <div className="flex items-center justify-center lg:justify-start px-2 md:px-0 w-full">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 px-2 md:px-0 w-full">
               <a
                 href={cvUrl || "#"}
                 target={cvUrl ? "_blank" : "_self"}
@@ -116,6 +116,15 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                   {cvUrl ? "Download Resume" : "Download Resume"}
                 </span>
               </a>
+
+              {/* View Work: Shown in this row only on Tablet view */}
+              <Link
+                href="/projects"
+                className="group hidden md:inline-flex lg:hidden items-center justify-center gap-2 px-6 py-4 rounded-full border border-green-accent/30 bg-green-accent/10 hover:bg-green-accent/20 font-mono text-sm font-semibold uppercase tracking-widest text-green-accent transition-all hover:scale-105 active:scale-95"
+              >
+                <span>View Work</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </motion.div>
         </div>
