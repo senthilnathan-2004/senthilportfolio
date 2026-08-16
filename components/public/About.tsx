@@ -93,13 +93,13 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                 </Link>
               </div>
 
-              <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-0 sm:mb-2 px-2 md:px-0 text-center md:text-left leading-tight sm:leading-tight">
-                Behind the Code<br className="hidden sm:inline" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-green-accent">Code</span>
+              <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-0.5 sm:mb-2 px-2 md:px-0 text-center md:text-left leading-tight sm:leading-tight">
+                Behind the <br className="hidden sm:inline" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-green-accent">Code</span>
               </h2>
             </div>
 
-            <div className="bg-bg-card/40 border border-border-subtle/30 rounded-xl p-2.5 sm:p-4 md:bg-transparent md:border-none md:p-0 md:rounded-none mt-0 mb-3 sm:mb-6 md:mb-10">
-              <div className="prose prose-invert text-justify prose-p:text-text-primary prose-p:text-base sm:prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:mt-0 prose-p:mb-2 md:prose-p:mb-4 prose-p:text-justify prose-a:text-green-accent hover:prose-a:underline max-w-none transition-colors">
+            <div className="bg-bg-card/40 border border-border-subtle/30 rounded-xl p-3 sm:p-4 md:bg-transparent md:border-none md:p-0 md:rounded-none mt-0.5 md:mt-0 mb-3 sm:mb-6 md:mb-10">
+              <div className="prose prose-invert text-justify prose-p:text-text-primary prose-p:text-base sm:prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:mb-2 md:prose-p:mb-4 prose-p:text-justify prose-a:text-green-accent hover:prose-a:underline max-w-none transition-colors">
                 <div dangerouslySetInnerHTML={{ __html: bioRichText }} />
               </div>
             </div>
