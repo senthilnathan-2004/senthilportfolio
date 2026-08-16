@@ -93,7 +93,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                 </Link>
               </div>
 
-              <h2 className="w-full text-center lg:text-left text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight leading-tight sm:leading-tight mb-2 sm:mb-3 px-2 md:px-0">
+              <h2 className="w-full text-center lg:text-left text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight leading-tight sm:leading-tight mb-2 md:mb-6 lg:mb-8 px-2 md:px-0">
                 Behind the Code
               </h2>
             </div>
