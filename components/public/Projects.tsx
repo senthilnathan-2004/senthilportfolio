@@ -42,7 +42,7 @@ export default function Projects({ projects }: ProjectsProps) {
           viewport={{ once: true }}
           className="mb-6 sm:mb-12 lg:mb-16 text-center"
         >
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-6 font-mono backdrop-blur-sm">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-1.5 md:mb-3 font-mono backdrop-blur-sm">
             <FolderGit2 size={16} />
             <span className="tracking-widest uppercase">Deployments</span>
           </div>

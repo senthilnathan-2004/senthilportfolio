@@ -83,7 +83,9 @@ export default async function ProjectPage({ params }: Props) {
             {project.title}
           </h1>
           {project.shortDescription && (
-            <p className="text-text-secondary text-sm sm:text-base lg:text-lg text-left leading-relaxed">{project.shortDescription}</p>
+            <p className="font-sans text-justify text-text-primary/90 text-sm sm:text-base lg:text-lg leading-relaxed max-w-none">
+              {project.shortDescription}
+            </p>
           )}
         </div>
 
@@ -128,16 +130,17 @@ export default async function ProjectPage({ params }: Props) {
         {/* Case study */}
         {project.caseStudyRichText && (
           <div className="bg-bg-card border border-border-subtle rounded-2xl sm:rounded-3xl lg:rounded-4xl p-4 sm:p-8 lg:p-14 shadow-xl">
-            <div className="flex items-center gap-2.5 mb-5 pb-3 sm:pb-4 border-b border-border-subtle">
-              <span className="w-2 h-2 rounded-full bg-green-accent shrink-0" />
+            <div className="mb-5 pb-3 sm:pb-4 border-b border-border-subtle">
               <h2 className="font-display text-base sm:text-xl lg:text-2xl uppercase text-text-primary tracking-tight">
                 Case Study & Technical Highlights
               </h2>
             </div>
-            <div
-              className="tiptap-content text-left text-sm sm:text-base text-text-secondary leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: project.caseStudyRichText }}
-            />
+            <div className="prose prose-invert max-w-none font-sans text-justify prose-p:text-text-primary prose-p:text-sm sm:prose-p:text-base prose-p:leading-relaxed prose-p:mb-3 md:prose-p:mb-4 prose-p:text-justify prose-a:text-green-accent hover:prose-a:underline transition-colors">
+              <div
+                className="tiptap-content text-justify font-sans"
+                dangerouslySetInnerHTML={{ __html: project.caseStudyRichText }}
+              />
+            </div>
           </div>
         )}
       </div>

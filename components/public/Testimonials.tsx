@@ -201,12 +201,12 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
       </div>
 
       <div className="w-full mx-auto relative z-10">
-        <div className="max-w-6xl mx-auto px-2 sm:px-8 mb-16 text-center flex flex-col items-center">
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-6 font-mono backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto px-2 sm:px-8 mb-12 sm:mb-16 text-center flex flex-col items-center">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-1.5 md:mb-3 font-mono backdrop-blur-sm">
             <MessageSquare size={16} />
             <span className="tracking-widest uppercase">Client Feedback</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-8">
+          <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-6 sm:mb-8">
             What They Say
           </h2>
           {/* Mobile View: Full-width Green Slide Button */}

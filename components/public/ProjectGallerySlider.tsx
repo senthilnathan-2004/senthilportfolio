@@ -131,26 +131,28 @@ export default function ProjectGallerySlider({
   return (
     <div className="w-full mb-8 sm:mb-12 select-none">
       {/* Top Bar / Mode switcher */}
-      <div className="flex items-center justify-between gap-2 mb-3 px-1">
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-bg-card border border-border-subtle text-[11px] sm:text-xs font-mono text-text-secondary">
-            <Layers size={13} className="text-green-accent" />
-            <span>Interactive Showcase</span>
+      <div className="flex items-center justify-between gap-1.5 sm:gap-2 mb-3 px-0.5 sm:px-1">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-bg-card border border-border-subtle text-[11px] sm:text-xs font-mono text-text-secondary whitespace-nowrap">
+            <Layers size={13} className="text-green-accent shrink-0" />
+            <span className="hidden xs:inline">Interactive Showcase</span>
+            <span className="xs:hidden">Showcase</span>
           </div>
-          <span className="font-mono text-xs text-text-tertiary hidden sm:inline">
-            Slide {currentIndex + 1} of {total}
+          <span className="font-mono text-xs text-text-tertiary hidden sm:inline whitespace-nowrap">
+            {currentIndex + 1} / {total}
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
           {/* Object fit mode toggle */}
           <button
             type="button"
             onClick={() => setObjectFit((prev) => (prev === "contain" ? "cover" : "contain"))}
             title={objectFit === "contain" ? "Switch to Cover Fill" : "Switch to Fit Screen"}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-bg-card border border-border-subtle hover:border-green-accent/40 text-text-secondary hover:text-green-accent text-xs font-mono transition-all"
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-bg-card border border-border-subtle hover:border-green-accent/40 text-text-secondary hover:text-green-accent text-[11px] sm:text-xs font-mono transition-all whitespace-nowrap"
           >
-            <span>{objectFit === "contain" ? "Fit View" : "Fill View"}</span>
+            <span className="hidden xs:inline">{objectFit === "contain" ? "Fit View" : "Fill View"}</span>
+            <span className="xs:hidden">{objectFit === "contain" ? "Fit" : "Fill"}</span>
           </button>
 
           {/* Autoplay toggle */}
@@ -159,7 +161,7 @@ export default function ProjectGallerySlider({
               type="button"
               onClick={() => setIsPlaying((prev) => !prev)}
               title={isPlaying ? "Pause Auto-play" : "Start Auto-play"}
-              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-mono transition-all ${
+              className={`flex items-center gap-1 px-2 sm:px-2.5 py-1.5 rounded-lg border text-[11px] sm:text-xs font-mono transition-all whitespace-nowrap ${
                 isPlaying
                   ? "bg-green-accent/10 border-green-accent/40 text-green-accent"
                   : "bg-bg-card border border-border-subtle hover:border-green-accent/40 text-text-secondary hover:text-text-primary"
@@ -175,7 +177,7 @@ export default function ProjectGallerySlider({
             type="button"
             onClick={() => setIsLightboxOpen(true)}
             title="Expand Fullscreen"
-            className="p-1.5 rounded-lg bg-bg-card border border-border-subtle hover:border-green-accent/40 text-text-secondary hover:text-green-accent text-xs transition-all"
+            className="p-1.5 sm:p-2 rounded-lg bg-bg-card border border-border-subtle hover:border-green-accent/40 text-text-secondary hover:text-green-accent text-xs transition-all shrink-0"
           >
             <Maximize2 size={13} />
           </button>

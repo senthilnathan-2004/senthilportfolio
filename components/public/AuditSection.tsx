@@ -101,8 +101,8 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-green-accent/5 rounded-full blur-3xl pointer-events-none -z-10" />
 
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-green-accent/10 border border-green-accent/20 text-green-accent text-xs font-mono font-semibold uppercase tracking-wider mb-4">
+      <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-green-accent/10 border border-green-accent/20 text-green-accent text-xs font-mono font-semibold uppercase tracking-wider mb-1.5 md:mb-3">
           <ShieldCheck className="w-4 h-4" />
           // Quality & Performance Benchmarks
         </div>

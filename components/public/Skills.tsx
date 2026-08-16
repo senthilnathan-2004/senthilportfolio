@@ -41,7 +41,7 @@ export default function Skills({ skills }: SkillsProps) {
           viewport={{ once: true }}
           className="mb-6 sm:mb-12 lg:mb-16 text-center"
         >
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-3 sm:mb-6 font-mono backdrop-blur-sm">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-1.5 md:mb-3 font-mono backdrop-blur-sm">
             <Layers size={16} />
             <span className="tracking-widest uppercase">Tech Arsenal</span>
           </div>
