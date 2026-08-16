@@ -75,10 +75,10 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="order-1 lg:order-2"
+            className="order-1 lg:order-2 w-full flex flex-col items-center lg:items-start"
           >
-            <div className="w-full text-center md:text-left flex flex-col items-center md:items-start">
-              <div className="flex items-center justify-center md:justify-start gap-4 mb-1.5 md:mb-3 px-2 md:px-0">
+            <div className="w-full text-center lg:text-left flex flex-col items-center lg:items-start">
+              <div className="flex items-center justify-center lg:justify-start gap-4 mb-1.5 md:mb-3 px-2 md:px-0">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent font-mono backdrop-blur-sm">
                   <User size={16} />
                   <span className="tracking-widest uppercase">{tagLabel}</span>
@@ -93,7 +93,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                 </Link>
               </div>
 
-              <h2 className="w-full text-3xl min-[400px]:text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight text-center md:text-left leading-tight sm:leading-tight mb-1 min-[400px]:mb-2 sm:mb-2 px-2 md:px-0">
+              <h2 className="w-full text-center lg:text-left text-3xl min-[400px]:text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight leading-tight sm:leading-tight mb-1 min-[400px]:mb-2 sm:mb-2 px-2 md:px-0">
                 Behind the <br className="hidden sm:inline" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-green-accent">Code</span>
               </h2>
             </div>
@@ -104,7 +104,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               </div>
             </div>
 
-            <div className="flex items-center justify-center md:justify-start px-2 md:px-0">
+            <div className="flex items-center justify-center lg:justify-start px-2 md:px-0 w-full">
               <a
                 href={cvUrl || "#"}
                 target={cvUrl ? "_blank" : "_self"}
