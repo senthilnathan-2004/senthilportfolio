@@ -59,7 +59,7 @@ export default async function ProjectPage({ params }: Props) {
   });
 
   return (
-    <div className="min-h-screen pt-8 md:pt-8 pb-24">
+    <div className="pt-6 md:pt-8 pb-4 sm:pb-8">
       <div className="max-w-6xl mx-auto px-2 md:px-6 lg:px-8">
         {/* Back */}
         <Link href="/projects" className="inline-flex items-center gap-2 text-text-secondary hover:text-green-accent font-mono text-sm mb-8 transition-colors group">
