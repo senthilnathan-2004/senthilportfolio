@@ -6,7 +6,7 @@ import { adminLogout } from "@/app/admin/actions/authActions";
 import {
   LayoutDashboard, Image, User, Code2, BarChart3, FolderKanban,
   MessageSquare, Settings, Star, Briefcase, LogOut, ExternalLink,
-  ChevronRight,
+  ChevronRight, ShieldCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +17,7 @@ const navItems = [
   { href: "/admin/skills", label: "Skills", icon: Code2 },
   { href: "/admin/stats", label: "Stats", icon: BarChart3 },
   { href: "/admin/projects", label: "Projects", icon: FolderKanban },
+  { href: "/admin/audits", label: "Audits & Proofs", icon: ShieldCheck },
   { href: "/admin/testimonials", label: "Testimonials", icon: Star },
   { href: "/admin/services", label: "Services", icon: Briefcase },
   { href: "/admin/messages", label: "Messages", icon: MessageSquare },
