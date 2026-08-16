@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, Quote, Star, X, Send, Loader2, ChevronRight } from "lucide-react";
+import { MessageSquare, Quote, Star, Plus, X, Send, Loader2, ChevronRight } from "lucide-react";
 import InfiniteCarousel from "./InfiniteCarousel";
 import Image from "next/image";
 import { submitPublicTestimonial } from "@/app/actions/publicActions";
@@ -32,7 +32,7 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
       if (containerRef.current) {
         // total width - knob width (44px) - padding (12px)
         const width = containerRef.current.offsetWidth - 44 - 12;
-        setMaxDrag(Math.max(width, 100));
+        setMaxDrag(Math.max(width, 60));
       }
     };
     updateWidth();
@@ -41,7 +41,7 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
   }, []);
 
   const handleDragEnd = (_: unknown, info: { offset: { x: number } }) => {
-    if (info.offset.x >= maxDrag * 0.55) {
+    if (info.offset.x >= maxDrag * 0.5) {
       onUnlock();
     }
     setDragX(0);
@@ -51,7 +51,7 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
     <div
       ref={containerRef}
       onClick={onUnlock}
-      className="group relative z-50 w-full max-w-[280px] sm:max-w-[320px] h-14 bg-[#141414] border border-border-subtle hover:border-green-accent/40 rounded-full p-1.5 flex items-center justify-between overflow-hidden cursor-pointer select-none transition-colors"
+      className="group relative z-50 w-full h-14 bg-bg-card border border-green-accent/30 hover:border-green-accent/60 rounded-full p-1.5 flex items-center justify-between overflow-hidden cursor-pointer select-none transition-colors"
       role="button"
       tabIndex={0}
       aria-label="Slide to review"
@@ -61,18 +61,18 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
         }
       }}
     >
-      {/* Dynamic progress fill as you drag */}
+      {/* Dynamic green progress fill as you drag */}
       <div
-        className="absolute left-0 top-0 bottom-0 bg-green-accent/15 rounded-full pointer-events-none transition-all"
+        className="absolute left-0 top-0 bottom-0 bg-green-accent/20 rounded-full pointer-events-none transition-all"
         style={{ width: `${Math.min(dragX + 50, maxDrag + 50)}px` }}
       />
 
       {/* Centered label */}
-      <span className="absolute inset-0 flex items-center justify-center font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-text-primary pl-8 pointer-events-none transition-opacity">
+      <span className="absolute inset-0 flex items-center justify-center font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-green-accent pl-8 pointer-events-none transition-opacity">
         SLIDE TO REVIEW
       </span>
 
-      {/* Draggable Circle Knob */}
+      {/* Draggable Circle Knob in site green */}
       <motion.div
         drag="x"
         dragConstraints={{ left: 0, right: maxDrag }}
@@ -83,9 +83,9 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="relative z-10 w-11 h-11 rounded-full bg-white text-bg-primary flex items-center justify-center cursor-grab active:cursor-grabbing shrink-0 transition-transform hover:scale-105 active:scale-95"
+        className="relative z-10 w-11 h-11 rounded-full bg-green-accent text-bg-primary flex items-center justify-center cursor-grab active:cursor-grabbing shrink-0 transition-transform hover:scale-105 active:scale-95"
       >
-        <ChevronRight size={20} className="stroke-[3] text-black" />
+        <ChevronRight size={20} className="stroke-[3] text-bg-primary" />
       </motion.div>
     </div>
   );
@@ -172,7 +172,19 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
           <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-8">
             What They Say
           </h2>
-          <SlideToReviewButton onUnlock={() => setIsModalOpen(true)} />
+          {/* Mobile View: Full-width Green Slide Button */}
+          <div className="w-full sm:hidden px-2 max-w-sm">
+            <SlideToReviewButton onUnlock={() => setIsModalOpen(true)} />
+          </div>
+
+          {/* Desktop & Tablet View: Standard Click Button */}
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="hidden sm:inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-accent text-bg-primary font-bold hover:bg-[#50ff7a] transition-all hover:scale-105 active:scale-95 font-mono text-sm uppercase tracking-widest cursor-pointer"
+          >
+            <Plus size={16} />
+            Add Review
+          </button>
         </div>
 
         {/* The Carousel of Review Cards */}
