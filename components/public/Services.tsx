@@ -42,7 +42,7 @@ export default function Services({ services }: ServicesProps) {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {sorted.map((service, i) => (
             <motion.div
               key={service._id}
@@ -50,14 +50,14 @@ export default function Services({ services }: ServicesProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.4 }}
-              className="relative p-6 sm:p-7 bg-bg-card/70 backdrop-blur-xl border border-border-subtle hover:border-green-accent/40 hover:bg-bg-card rounded-3xl transition-all duration-300 group shadow-lg hover:shadow-2xl hover:shadow-green-accent/5 hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden"
+              className="relative p-4 sm:p-5 bg-bg-card/70 backdrop-blur-xl border border-border-subtle hover:border-green-accent/40 hover:bg-bg-card rounded-2xl sm:rounded-3xl transition-all duration-300 group shadow-lg hover:shadow-2xl hover:shadow-green-accent/5 hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden"
             >
               {/* Subtle Ambient Hover Glow */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-green-accent/5 rounded-full blur-2xl group-hover:bg-green-accent/15 transition-all pointer-events-none" />
 
               <div>
                 {/* Top Bar: Service Number Index & Status Dot */}
-                <div className="flex items-center justify-between mb-5 pb-3 border-b border-border-subtle/50">
+                <div className="flex items-center justify-between mb-3 pb-2.5 border-b border-border-subtle/50">
                   <span className="font-mono text-xs text-green-accent font-semibold tracking-wider">
                     // 0{i + 1}
                   </span>
@@ -68,18 +68,18 @@ export default function Services({ services }: ServicesProps) {
                 </div>
 
                 {/* Service Title */}
-                <h3 className="text-xl sm:text-2xl font-display font-bold text-text-primary mb-3.5 tracking-tight group-hover:text-green-accent transition-colors leading-snug">
+                <h3 className="text-lg sm:text-xl font-display font-bold text-text-primary mb-2 tracking-tight group-hover:text-green-accent transition-colors leading-snug">
                   {service.title}
                 </h3>
 
                 {/* Service Description */}
-                <p className="text-sm sm:text-base text-text-secondary group-hover:text-text-primary transition-colors leading-relaxed font-mono font-normal text-left">
+                <p className="text-xs sm:text-sm text-text-secondary group-hover:text-text-primary transition-colors leading-relaxed font-mono font-normal text-left">
                   {service.description}
                 </p>
               </div>
 
               {/* Bottom Card Footer */}
-              <div className="mt-6 pt-4 border-t border-border-subtle/40 flex items-center justify-between text-xs font-mono text-text-tertiary group-hover:text-green-accent transition-colors">
+              <div className="mt-4 pt-3 border-t border-border-subtle/40 flex items-center justify-between text-xs font-mono text-text-tertiary group-hover:text-green-accent transition-colors">
                 <span className="text-[11px] tracking-wide">Enterprise Quality</span>
                 <span className="text-green-accent group-hover:translate-x-1 transition-transform font-bold">
                   →
