@@ -94,7 +94,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               </div>
 
               <h2 className="w-full text-center lg:text-left text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-display text-white uppercase tracking-tight leading-tight sm:leading-tight mb-2 sm:mb-3 px-2 md:px-0">
-                Behind the <br className="block sm:inline" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-green-accent via-[#50ff7a] to-emerald-400 inline-block">Code</span>
+                Behind the Code
               </h2>
             </div>
 
