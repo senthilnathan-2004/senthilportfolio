@@ -88,7 +88,7 @@ export default async function PublicLayout({ children }: { children: React.React
         
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col min-w-0 bg-transparent px-2 pt-4 pb-24 sm:p-4 sm:pb-24 lg:p-8 lg:pl-3 xl:p-10 xl:pl-4 h-screen overflow-hidden z-10 relative">
-          <main className="flex-1 bg-bg-primary/95 backdrop-blur-xl border border-border-subtle rounded-3xl shadow-card flex flex-col overflow-hidden relative">
+          <main className="flex-1 bg-bg-primary/95 backdrop-blur-xl border border-border-subtle rounded-3xl flex flex-col overflow-hidden relative">
             <TopBreadcrumbNavbar />
             <div id="main-scroll-container" className="flex-1 overflow-y-auto overflow-x-hidden relative">
               {children}

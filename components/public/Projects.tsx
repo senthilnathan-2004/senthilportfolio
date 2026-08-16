@@ -42,7 +42,7 @@ export default function Projects({ projects }: ProjectsProps) {
           viewport={{ once: true }}
           className="mb-6 sm:mb-12 lg:mb-16 text-center"
         >
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-6 font-mono backdrop-blur-sm shadow-[0_0_20px_rgba(0,255,128,0.1)]">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-6 font-mono backdrop-blur-sm">
             <FolderGit2 size={16} />
             <span className="tracking-widest uppercase">Deployments</span>
           </div>
@@ -69,11 +69,16 @@ export default function Projects({ projects }: ProjectsProps) {
                 key={cat}
                 onClick={(e) => {
                   setActive(cat);
-                  e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                  const container = e.currentTarget.parentElement;
+                  if (container) {
+                    const btn = e.currentTarget;
+                    const left = btn.offsetLeft - container.offsetWidth / 2 + btn.offsetWidth / 2;
+                    container.scrollTo({ left, behavior: "smooth" });
+                  }
                 }}
                 className={`relative px-4 py-2.5 sm:px-6 sm:py-3 rounded-full font-mono text-xs sm:text-sm transition-all shrink-0 whitespace-nowrap snap-center ${
                   active === cat
-                    ? "bg-green-accent text-bg-primary font-bold shadow-[0_0_20px_rgba(0,255,128,0.3)]"
+                    ? "bg-green-accent text-bg-primary font-bold"
                     : "bg-bg-card border border-border-subtle text-text-secondary hover:border-green-accent/40 hover:text-text-primary"
                 }`}
               >

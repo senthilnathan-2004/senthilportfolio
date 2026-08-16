@@ -44,7 +44,7 @@ export default function PublicMobileNav({ navLinks }: PublicMobileNavProps) {
         <motion.div
           animate={{ x: ["-100%", "200%"] }}
           transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
-          className="w-1/2 h-full bg-gradient-to-r from-transparent via-green-accent to-transparent shadow-[0_0_10px_#8CFF9E]"
+          className="w-1/2 h-full bg-gradient-to-r from-transparent via-green-accent to-transparent"
         />
       </div>
 

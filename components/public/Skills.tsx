@@ -41,7 +41,7 @@ export default function Skills({ skills }: SkillsProps) {
           viewport={{ once: true }}
           className="mb-6 sm:mb-12 lg:mb-16 text-center"
         >
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-3 sm:mb-6 font-mono backdrop-blur-sm shadow-[0_0_20px_rgba(0,255,128,0.1)]">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-3 sm:mb-6 font-mono backdrop-blur-sm">
             <Layers size={16} />
             <span className="tracking-widest uppercase">Tech Arsenal</span>
           </div>
@@ -62,7 +62,12 @@ export default function Skills({ skills }: SkillsProps) {
                 key={category}
                 onClick={(e) => {
                   setActiveTab(category);
-                  e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                  const container = e.currentTarget.parentElement;
+                  if (container) {
+                    const btn = e.currentTarget;
+                    const left = btn.offsetLeft - container.offsetWidth / 2 + btn.offsetWidth / 2;
+                    container.scrollTo({ left, behavior: "smooth" });
+                  }
                 }}
                 className={`relative px-4 py-2.5 sm:px-6 sm:py-3 rounded-full font-mono text-xs sm:text-sm uppercase tracking-widest transition-colors duration-300 shrink-0 whitespace-nowrap snap-center ${
                   activeTab === category ? "text-bg-primary font-bold" : "text-text-secondary hover:text-text-primary bg-bg-card/40 sm:bg-transparent border border-border-subtle/40 sm:border-none"
@@ -71,7 +76,7 @@ export default function Skills({ skills }: SkillsProps) {
                 {activeTab === category && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 bg-green-accent rounded-full -z-10 shadow-[0_0_20px_rgba(0,255,128,0.3)]"
+                    className="absolute inset-0 bg-green-accent rounded-full -z-10"
                     initial={false}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
@@ -98,7 +103,7 @@ export default function Skills({ skills }: SkillsProps) {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.05 }}
-                className="flex items-center gap-4 p-5 bg-bg-container/40 backdrop-blur-md border border-border-subtle rounded-2xl hover:border-green-accent/40 transition-colors group shadow-card"
+                className="flex items-center gap-4 p-5 bg-bg-container/40 backdrop-blur-md border border-border-subtle rounded-2xl hover:border-green-accent/40 transition-colors group"
               >
                 {skill.iconUrl ? (
                   <div className="w-12 h-12 shrink-0 relative group-hover:scale-110 transition-transform duration-300">

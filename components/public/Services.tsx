@@ -33,7 +33,7 @@ export default function Services({ services }: ServicesProps) {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-6 font-mono backdrop-blur-sm shadow-[0_0_20px_rgba(0,255,128,0.1)]">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-6 font-mono backdrop-blur-sm">
             <Server size={16} />
             <span className="tracking-widest uppercase">Services</span>
           </div>
@@ -50,7 +50,7 @@ export default function Services({ services }: ServicesProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.4 }}
-              className="relative p-4 sm:p-5 bg-bg-card/70 backdrop-blur-xl border border-border-subtle hover:border-green-accent/40 hover:bg-bg-card rounded-2xl sm:rounded-3xl transition-all duration-300 group shadow-lg hover:shadow-2xl hover:shadow-green-accent/5 hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden"
+              className="relative p-4 sm:p-5 bg-bg-card/70 backdrop-blur-xl border border-border-subtle hover:border-green-accent/40 hover:bg-bg-card rounded-2xl sm:rounded-3xl transition-all duration-300 group hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden"
             >
               {/* Subtle Ambient Hover Glow */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-green-accent/5 rounded-full blur-2xl group-hover:bg-green-accent/15 transition-all pointer-events-none" />

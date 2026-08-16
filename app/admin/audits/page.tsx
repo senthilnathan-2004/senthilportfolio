@@ -215,23 +215,19 @@ export default function AdminAuditsPage() {
           )}
           <button
             onClick={handleAddAudit}
-            className="flex items-center gap-2 px-4 py-2 bg-green-accent text-bg-primary rounded-xl font-mono font-semibold text-xs sm:text-sm hover:bg-green-accent/90 transition-colors shadow-lg shadow-green-accent/10"
+            className="flex items-center gap-2 px-4 py-2 bg-green-accent text-bg-primary rounded-xl font-mono font-semibold text-xs sm:text-sm hover:bg-green-accent/90 transition-colors"
           >
             <Plus size={16} /> Add Audit Proof
           </button>
         </div>
       </div>
 
-      {/* List of Audits */}
       <div className="space-y-6">
         {audits.length === 0 ? (
           <div className="p-12 text-center bg-bg-card border border-dashed border-border-subtle rounded-3xl space-y-4">
             <ShieldCheck size={48} className="mx-auto text-text-tertiary" />
             <div className="max-w-md mx-auto">
               <h3 className="text-lg font-bold text-text-primary">No Audits or Proofs Added Yet</h3>
-              <p className="text-xs font-mono text-text-secondary mt-1">
-                Click &ldquo;Auto-Populate 4 Proof Cards&rdquo; above to quickly load the Security, Load Test, Google Rank, and SEO templates, then upload your screenshots.
-              </p>
             </div>
           </div>
         ) : (
@@ -240,27 +236,26 @@ export default function AdminAuditsPage() {
               key={item._id}
               className={`p-6 bg-bg-card border ${
                 item.featured ? "border-border-subtle" : "border-amber-500/40 bg-amber-500/5"
-              } rounded-3xl space-y-5 transition-all shadow-md`}
+              } rounded-3xl space-y-5 transition-all`}
             >
-              {/* Card Top Toolbar */}
               <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-border-subtle">
                 <div className="flex items-center gap-2">
                   <span
                     className={`text-xs font-mono px-2.5 py-1 rounded-md font-semibold ${
                       item.featured
                         ? "bg-green-accent/10 text-green-accent border border-green-accent/20"
-                        : "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                        : "bg-amber-500/20 text-amber-300 border border-amber-500/30"
                     }`}
                   >
-                    {item.featured ? "● LIVE ON HOMEPAGE" : "○ HIDDEN"}
+                    {item.featured ? "✓ PUBLISHED ON SITE" : "HIDDEN DRAFT"}
                   </span>
-                  <span className="text-xs font-mono text-text-tertiary">
-                    Category: <strong className="text-text-primary">{item.category}</strong>
+                  <span className="text-xs font-mono text-text-secondary uppercase">
+                    [{item.category}]
                   </span>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <label className="flex items-center gap-2 cursor-pointer">
+                <div className="flex items-center gap-3">
+                  <label className="flex items-center gap-1.5 cursor-pointer text-xs font-mono text-text-secondary hover:text-text-primary">
                     <input
                       type="checkbox"
                       checked={item.featured}
@@ -425,7 +420,7 @@ export default function AdminAuditsPage() {
                   type="button"
                   onClick={() => handleSaveAudit(item)}
                   disabled={saving === item._id}
-                  className="flex items-center gap-2 px-5 py-2 bg-green-accent text-bg-primary rounded-xl font-mono font-semibold text-xs sm:text-sm hover:bg-green-accent/90 transition-all shadow-md shadow-green-accent/10"
+                  className="flex items-center gap-2 px-5 py-2 bg-green-accent text-bg-primary rounded-xl font-mono font-semibold text-xs sm:text-sm hover:bg-green-accent/90 transition-all"
                 >
                   {saving === item._id ? (
                     <Loader2 size={14} className="animate-spin" />

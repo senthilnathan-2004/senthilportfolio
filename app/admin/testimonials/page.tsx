@@ -85,7 +85,7 @@ export default function AdminContentPage() {
         </div>
         <div className="space-y-4">
           {testimonials.map((t) => (
-            <div key={t._id} className={`p-5 bg-bg-card border ${t.isApproved ? "border-border-subtle" : "border-red-500/50 shadow-[0_0_15px_rgba(255,0,0,0.1)]"} rounded-3xl space-y-3`}>
+            <div key={t._id} className={`p-5 bg-bg-card border ${t.isApproved ? "border-border-subtle" : "border-red-500/50"} rounded-3xl space-y-3`}>
               <div className="flex justify-between items-center mb-2">
                 <span className={`text-xs font-mono px-2 py-1 rounded-md ${t.isApproved ? "bg-green-accent/10 text-green-accent" : "bg-red-500/10 text-red-500"}`}>
                   {t.isApproved ? "APPROVED" : "PENDING APPROVAL"}

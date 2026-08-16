@@ -27,7 +27,7 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
     const parts = line.split(/(fast|secure)/i);
     return parts.map((part, index) => {
       if (/^(fast|secure)$/i.test(part)) {
-        return <span key={index} className="text-green-accent drop-shadow-[0_0_15px_rgba(0,255,128,0.3)]">{part}</span>;
+        return <span key={index} className="text-green-accent">{part}</span>;
       }
       return <span key={index}>{part}</span>;
     });
@@ -64,7 +64,7 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
           animate={{ opacity: 1, x: 0 }}
           className="absolute top-10 left-4 sm:top-8 sm:left-8 md:top-12 md:left-12 z-20 flex items-center gap-3 sm:gap-4 max-w-[85vw]"
         >
-          <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-green-accent shadow-[0_0_20px_rgba(0,255,128,0.3)] shrink-0">
+          <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-green-accent shrink-0">
             <img 
               src={portraitImageUrl} 
               alt={portraitAlt || "Profile"} 
@@ -83,10 +83,10 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
       )}
 
       {/* Background Carousels (Unique Ticker Tapes) */}
-      <div className="absolute top-[2%] md:top-[5%] -left-[10%] w-[120%] rotate-[-4deg] opacity-40 pointer-events-none border-y border-green-accent/30 bg-bg-card/40 backdrop-blur-sm py-4 md:py-6 lg:py-8 z-0 shadow-[0_0_40px_rgba(0,255,128,0.1)]">
+      <div className="absolute top-[2%] md:top-[5%] -left-[10%] w-[120%] rotate-[-4deg] opacity-40 pointer-events-none border-y border-green-accent/30 bg-bg-card/40 backdrop-blur-sm py-4 md:py-6 lg:py-8 z-0">
         <InfiniteCarousel items={renderCarouselItems} speed="slow" direction="right" />
       </div>
-      <div className="absolute bottom-[20%] -left-[10%] w-[120%] rotate-[3deg] opacity-30 pointer-events-none border-y border-green-accent/30 bg-bg-card/40 backdrop-blur-sm py-4 z-0 shadow-[0_0_30px_rgba(0,255,128,0.1)]">
+      <div className="absolute bottom-[20%] -left-[10%] w-[120%] rotate-[3deg] opacity-30 pointer-events-none border-y border-green-accent/30 bg-bg-card/40 backdrop-blur-sm py-4 z-0">
         <InfiniteCarousel items={imageCarouselItems} speed="normal" direction="left" />
       </div>
 
@@ -98,7 +98,7 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="block cursor-default drop-shadow-lg"
+              className="block cursor-default"
             >
               {renderHighlightedLine(line)}
             </motion.span>
@@ -117,7 +117,7 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
               href={link.url}
               target="_blank"
               rel="noreferrer"
-              className="px-4 sm:px-6 py-3 rounded border border-border-subtle bg-bg-container/50 hover:bg-green-accent/10 hover:border-green-accent/30 text-text-secondary hover:text-green-accent font-mono text-xs sm:text-sm tracking-widest uppercase transition-all backdrop-blur-sm shadow-lg hover:shadow-[0_0_15px_rgba(0,255,128,0.2)] text-center w-full sm:w-auto"
+              className="px-4 sm:px-6 py-3 rounded border border-border-subtle bg-bg-container/50 hover:bg-green-accent/10 hover:border-green-accent/30 text-text-secondary hover:text-green-accent font-mono text-xs sm:text-sm tracking-widest uppercase transition-all backdrop-blur-sm text-center w-full sm:w-auto"
             >
               / {link.platform}
             </Link>

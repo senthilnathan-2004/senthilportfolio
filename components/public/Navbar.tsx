@@ -34,7 +34,7 @@ export default function Navbar({ logoText, navLinks, ctaText, ctaHref, socialLin
       <nav
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          scrolled ? "py-3 bg-bg-primary/80 backdrop-blur-xl border-b border-border-subtle/50 shadow-card" : "py-5 bg-transparent"
+          scrolled ? "py-3 bg-bg-primary/80 backdrop-blur-xl border-b border-border-subtle/50" : "py-5 bg-transparent"
         )}
         id="navbar"
       >
@@ -78,7 +78,7 @@ export default function Navbar({ logoText, navLinks, ctaText, ctaHref, socialLin
           />
           {/* Drawer */}
           <div className="fixed top-0 left-1/2 -translate-x-1/2 z-50 w-full max-w-sm mt-20 animate-scale-in">
-            <div className="mx-4 bg-bg-card border border-border-subtle rounded-3xl p-6 shadow-card">
+            <div className="mx-4 bg-bg-card border border-border-subtle rounded-3xl p-6">
               {/* Nav items */}
               {navLinks.sort((a, b) => a.order - b.order).map((link) => (
                 <a

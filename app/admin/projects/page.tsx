@@ -177,7 +177,7 @@ export default function AdminProjectsPage() {
         <button
           onClick={handleCreate}
           disabled={creating}
-          className="flex items-center gap-2 px-5 py-2.5 bg-green-accent hover:bg-green-hover text-bg-primary font-mono font-bold rounded-xl transition-all hover:scale-[1.02] disabled:opacity-60 shadow-lg shadow-green-accent/10 shrink-0"
+          className="flex items-center gap-2 px-5 py-2.5 bg-green-accent hover:bg-green-hover text-bg-primary font-mono font-bold rounded-xl transition-all hover:scale-[1.02] disabled:opacity-60 shrink-0"
         >
           {creating ? <Loader2 size={14} className="animate-spin" /> : <Plus size={14} />}
           New Project

@@ -34,7 +34,7 @@ export default function PublicSidebar({ logoText, navLinks, socialLinks }: Publi
   const formatHref = (href: string) => href.replace("#hero", "/").replace("#", "/");
 
   return (
-    <aside className="w-64 h-full bg-bg-primary/95 backdrop-blur-xl border border-border-subtle rounded-3xl shadow-card flex flex-col overflow-hidden relative shrink-0">
+    <aside className="w-64 h-full bg-bg-primary/95 backdrop-blur-xl border border-border-subtle rounded-3xl flex flex-col overflow-hidden relative shrink-0">
       {/* Logo Area */}
       <div className="p-8 border-b border-border-subtle/50">
         <Link href="/" className="flex items-center gap-1 shrink-0">
@@ -59,7 +59,7 @@ export default function PublicSidebar({ logoText, navLinks, socialLinks }: Publi
               className={cn(
                 "flex items-center gap-4 px-4 py-3 rounded-2xl border transition-all font-mono uppercase text-sm tracking-wider",
                 isActive
-                  ? "border-green-accent/40 bg-green-accent/10 text-green-accent shadow-[0_0_15px_rgba(140,255,158,0.1)]"
+                  ? "border-green-accent/40 bg-green-accent/10 text-green-accent"
                   : "border-transparent text-text-secondary hover:text-green-accent hover:bg-bg-card/60 hover:border-border-subtle/40"
               )}
             >

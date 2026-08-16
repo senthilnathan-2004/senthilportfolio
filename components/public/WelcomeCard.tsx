@@ -76,7 +76,7 @@ export default function WelcomeCard({ name = "Senthil Ragu" }: WelcomeCardProps)
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 15 }}
             transition={{ type: "spring", damping: 25, stiffness: 320, delay: 0.05 }}
-            className="relative w-full max-w-sm sm:max-w-lg bg-gradient-to-b from-bg-card via-bg-card/98 to-bg-container/95 border border-green-accent/30 sm:border-green-accent/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-[0_0_50px_rgba(140,255,158,0.18)] backdrop-blur-2xl text-text-primary z-10 m-auto overflow-hidden"
+            className="relative w-full max-w-sm sm:max-w-lg bg-gradient-to-b from-bg-card via-bg-card/98 to-bg-container/95 border border-green-accent/30 sm:border-green-accent/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 backdrop-blur-2xl text-text-primary z-10 m-auto overflow-hidden"
           >
             {/* Top Glowing Ambient Accents */}
             <div className="absolute top-0 right-0 w-36 h-36 bg-green-accent/15 rounded-full blur-3xl pointer-events-none" />
@@ -107,7 +107,7 @@ export default function WelcomeCard({ name = "Senthil Ragu" }: WelcomeCardProps)
             {/* Identity & Title Banner */}
             <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
               {/* Profile/Tech Monogram Badge */}
-              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-green-accent/10 border border-green-accent/30 flex items-center justify-center text-green-accent shrink-0 shadow-[0_0_15px_rgba(140,255,158,0.2)] mt-0.5">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-green-accent/10 border border-green-accent/30 flex items-center justify-center text-green-accent shrink-0 mt-0.5">
                 <Code2 size={20} className="sm:hidden" />
                 <Sparkles size={24} className="hidden sm:block" />
               </div>
@@ -117,7 +117,7 @@ export default function WelcomeCard({ name = "Senthil Ragu" }: WelcomeCardProps)
                   // PORTFOLIO V2.0
                 </p>
                 <h2 className="text-base sm:text-2xl font-bold font-display uppercase tracking-tight text-text-primary leading-tight mt-0.5">
-                  Welcome to <span className="text-green-accent drop-shadow-[0_0_12px_rgba(140,255,158,0.4)]">{formattedName}</span>
+                  Welcome to <span className="text-green-accent">{formattedName}</span>
                 </h2>
                 <p className="font-mono text-[10px] sm:text-xs text-text-tertiary mt-1">
                   Full-Stack Dev &amp; UI Architect
@@ -147,7 +147,7 @@ export default function WelcomeCard({ name = "Senthil Ragu" }: WelcomeCardProps)
               <Link
                 href="/projects"
                 onClick={handleClose}
-                className="w-full sm:flex-1 py-2.5 sm:py-3 px-4 sm:px-5 rounded-xl bg-green-accent text-bg-primary font-mono text-xs font-bold uppercase tracking-wider hover:bg-green-hover transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(140,255,158,0.3)] hover:shadow-[0_0_30px_rgba(140,255,158,0.5)] cursor-pointer"
+                className="w-full sm:flex-1 py-2.5 sm:py-3 px-4 sm:px-5 rounded-xl bg-green-accent text-bg-primary font-mono text-xs font-bold uppercase tracking-wider hover:bg-green-hover transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>Explore Work</span>
                 <ArrowRight size={14} />

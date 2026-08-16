@@ -41,7 +41,7 @@ export default function Footer({ logoText, footerText, quickLinks, socialLinks, 
             </p>
             
             {startupName && startupUrl && (
-              <div className="flex w-full min-w-0 flex-col border border-border-subtle bg-bg-container/40 rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:border-green-accent/50 transition-colors group">
+              <div className="flex w-full min-w-0 flex-col border border-border-subtle bg-bg-container/40 rounded-xl p-4 hover:border-green-accent/50 transition-colors group">
                 <span className="text-[10px] text-text-tertiary font-mono uppercase tracking-widest mb-1.5 shrink-0">Founder & CEO</span>
                 <a 
                   href={startupUrl.startsWith('http') ? startupUrl : `https://${startupUrl}`} 

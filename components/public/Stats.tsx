@@ -23,7 +23,7 @@ export default function Stats({ stats }: StatsProps) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 gap-y-8 gap-x-6 p-6 md:flex md:flex-row md:items-center md:justify-between md:gap-8 lg:p-8 bg-bg-container/60 backdrop-blur-xl border border-border-subtle rounded-2xl shadow-card"
+          className="grid grid-cols-2 gap-y-8 gap-x-6 p-6 md:flex md:flex-row md:items-center md:justify-between md:gap-8 lg:p-8 bg-bg-container/60 backdrop-blur-xl border border-border-subtle rounded-2xl"
         >
           {sorted.map((stat, i) => (
             <div key={stat._id} className="flex flex-col items-start justify-start text-left w-full md:flex-1 md:border-r border-border-subtle/50 md:pr-6 last:border-0 last:pr-0">

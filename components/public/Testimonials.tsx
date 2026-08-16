@@ -52,7 +52,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
   const reviewCards = sorted.map((testimonial, i) => (
     <div
       key={testimonial._id}
-      className="w-[290px] sm:w-[380px] md:w-[420px] h-[250px] sm:h-[300px] md:h-[320px] p-4 sm:p-8 bg-bg-container/80 backdrop-blur-md border border-border-subtle rounded-3xl shadow-card relative flex flex-col justify-between group hover:border-green-accent/30 transition-colors whitespace-normal text-left shrink-0"
+      className="w-[290px] sm:w-[380px] md:w-[420px] h-[250px] sm:h-[300px] md:h-[320px] p-4 sm:p-8 bg-bg-container/80 backdrop-blur-md border border-border-subtle rounded-3xl relative flex flex-col justify-between group hover:border-green-accent/30 transition-colors whitespace-normal text-left shrink-0"
     >
       <Quote className="absolute top-4 right-4 sm:top-8 sm:right-8 text-border-subtle group-hover:text-green-accent/20 transition-colors" size={32} />
       
@@ -96,7 +96,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
 
       <div className="w-full mx-auto relative z-10">
         <div className="max-w-6xl mx-auto px-2 sm:px-8 mb-16 text-center flex flex-col items-center">
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-6 font-mono backdrop-blur-sm shadow-[0_0_20px_rgba(0,255,128,0.1)]">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-6 font-mono backdrop-blur-sm">
             <MessageSquare size={16} />
             <span className="tracking-widest uppercase">Client Feedback</span>
           </div>
@@ -105,7 +105,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
           </h2>
           <button 
             onClick={() => setIsModalOpen(true)}
-            className="group relative z-50 flex items-center gap-2 px-6 py-3 rounded-full bg-green-accent text-bg-primary font-bold hover:bg-[#50ff7a] transition-colors font-mono text-sm uppercase tracking-widest shadow-[0_0_20px_rgba(0,255,128,0.2)]"
+            className="group relative z-50 flex items-center gap-2 px-6 py-3 rounded-full bg-green-accent text-bg-primary font-bold hover:bg-[#50ff7a] transition-colors font-mono text-sm uppercase tracking-widest"
           >
             <Plus size={16} className="group-hover:rotate-90 transition-transform" />
             Add Review
@@ -137,7 +137,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                className="relative w-full max-w-lg bg-bg-container/90 backdrop-blur-3xl border border-border-subtle rounded-3xl shadow-[0_20px_80px_rgba(0,0,0,0.6)] px-4 pt-4 pb-4 sm:px-8 sm:pt-6 sm:pb-6 max-h-[90vh] overflow-y-auto m-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                className="relative w-full max-w-lg bg-bg-container/90 backdrop-blur-3xl border border-border-subtle rounded-3xl px-4 pt-4 pb-4 sm:px-8 sm:pt-6 sm:pb-6 max-h-[90vh] overflow-y-auto m-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
               >
                 {/* Glowing background inside card */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-green-accent/5 rounded-full blur-[100px] pointer-events-none -z-10" />
@@ -178,7 +178,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                           required
                           value={formData.name}
                           onChange={e => setFormData({...formData, name: e.target.value})}
-                          className="w-full bg-bg-primary/50 backdrop-blur-sm border border-border-subtle focus:border-green-accent/50 rounded-xl px-4 py-3 text-text-primary outline-none transition-all font-mono text-sm placeholder:text-text-tertiary shadow-inner"
+                          className="w-full bg-bg-primary/50 backdrop-blur-sm border border-border-subtle focus:border-green-accent/50 rounded-xl px-4 py-3 text-text-primary outline-none transition-all font-mono text-sm placeholder:text-text-tertiary"
                           placeholder="e.g. John Doe"
                         />
                       </div>
@@ -189,7 +189,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                           required
                           value={formData.role}
                           onChange={e => setFormData({...formData, role: e.target.value})}
-                          className="w-full bg-bg-primary/50 backdrop-blur-sm border border-border-subtle focus:border-green-accent/50 rounded-xl px-4 py-3 text-text-primary outline-none transition-all font-mono text-sm placeholder:text-text-tertiary shadow-inner"
+                          className="w-full bg-bg-primary/50 backdrop-blur-sm border border-border-subtle focus:border-green-accent/50 rounded-xl px-4 py-3 text-text-primary outline-none transition-all font-mono text-sm placeholder:text-text-tertiary"
                           placeholder="e.g. CEO at TechCorp"
                         />
                       </div>
@@ -202,7 +202,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                               type="button" 
                               key={star}
                               onClick={() => setFormData({...formData, rating: star})}
-                              className={`focus:outline-none transition-all duration-300 hover:scale-125 ${star <= formData.rating ? 'drop-shadow-[0_0_10px_rgba(0,255,128,0.5)]' : 'hover:text-green-accent/50'}`}
+                              className={`focus:outline-none transition-all duration-300 hover:scale-125 ${star <= formData.rating ? '' : 'hover:text-green-accent/50'}`}
                             >
                               <Star 
                                 size={28} 
@@ -220,7 +220,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                           rows={4}
                           value={formData.quote}
                           onChange={e => setFormData({...formData, quote: e.target.value})}
-                          className="w-full bg-bg-primary/50 backdrop-blur-sm border border-border-subtle focus:border-green-accent/50 rounded-xl p-4 text-text-primary outline-none transition-all resize-none font-mono text-sm placeholder:text-text-tertiary shadow-inner leading-relaxed"
+                          className="w-full bg-bg-primary/50 backdrop-blur-sm border border-border-subtle focus:border-green-accent/50 rounded-xl p-4 text-text-primary outline-none transition-all resize-none font-mono text-sm placeholder:text-text-tertiary leading-relaxed"
                           placeholder="Enter your feedback transmission..."
                         />
                       </div>

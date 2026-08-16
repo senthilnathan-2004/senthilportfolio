@@ -72,7 +72,7 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-6 font-mono backdrop-blur-sm shadow-[0_0_20px_rgba(0,255,128,0.1)]">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-6 font-mono backdrop-blur-sm">
             <Sparkles size={16} />
             <span className="tracking-widest uppercase">Let's Build Together</span>
           </div>
@@ -90,7 +90,7 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
             viewport={{ once: true }}
             className="flex flex-col space-y-8 h-full"
           >
-            <div className="p-4 sm:p-6 bg-bg-container/60 backdrop-blur-xl border border-border-subtle rounded-3xl shadow-[0_0_40px_rgba(0,255,128,0.03)] relative overflow-hidden group h-full flex flex-col justify-center">
+            <div className="p-4 sm:p-6 bg-bg-container/60 backdrop-blur-xl border border-border-subtle rounded-3xl relative overflow-hidden group h-full flex flex-col justify-center">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-accent/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               
               <div className="flex items-center gap-3 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-border-subtle/50">
@@ -135,7 +135,7 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-bg-container/40 backdrop-blur-xl border border-border-subtle rounded-3xl p-4 sm:p-6 lg:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.4)] relative h-full flex flex-col justify-center"
+            className="bg-bg-container/40 backdrop-blur-xl border border-border-subtle rounded-3xl p-4 sm:p-6 lg:p-8 relative h-full flex flex-col justify-center"
           >
             {/* Glowing orb behind form */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-green-accent/5 rounded-full blur-[100px] -z-10 pointer-events-none" />
@@ -146,7 +146,7 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
                 animate={{ opacity: 1, y: 0 }}
                 className="h-full min-h-[400px] flex flex-col items-center justify-center text-center space-y-6"
               >
-                <div className="w-24 h-24 rounded-full bg-green-accent/10 border border-green-accent/30 flex items-center justify-center text-green-accent shadow-[0_0_30px_rgba(0,255,128,0.2)]">
+                <div className="w-24 h-24 rounded-full bg-green-accent/10 border border-green-accent/30 flex items-center justify-center text-green-accent">
                   <Send size={40} className="ml-2" />
                 </div>
                 <div>

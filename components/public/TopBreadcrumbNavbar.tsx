@@ -50,7 +50,7 @@ export default function TopBreadcrumbNavbar() {
       
       <Link 
         href="/contact" 
-        className="flex items-center justify-center gap-1.5 sm:gap-2 font-mono text-[10px] sm:text-xs text-green-accent transition-all bg-green-accent/10 sm:bg-transparent h-9 sm:h-auto px-2.5 sm:px-0 rounded-full sm:rounded-none border border-green-accent/30 sm:border-transparent relative shrink-0 shadow-[0_0_15px_rgba(140,255,158,0.15)] sm:shadow-none hover:bg-green-accent/20 hover:border-green-accent/50"
+        className="flex items-center justify-center gap-1.5 sm:gap-2 font-mono text-[10px] sm:text-xs text-green-accent transition-all bg-green-accent/10 sm:bg-transparent h-9 sm:h-auto px-2.5 sm:px-0 rounded-full sm:rounded-none border border-green-accent/30 sm:border-transparent relative shrink-0 hover:bg-green-accent/20 hover:border-green-accent/50"
       >
         <Mail className="w-3.5 h-3.5 text-green-accent shrink-0" />
         

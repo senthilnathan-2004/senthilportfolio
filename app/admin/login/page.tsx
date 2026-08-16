@@ -50,7 +50,7 @@ export default function AdminLoginPage() {
 
       <div className="relative w-full max-w-md">
         {/* Card */}
-        <div className="bg-bg-card border border-border-subtle rounded-4xl p-8 shadow-card">
+        <div className="bg-bg-card border border-border-subtle rounded-4xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 mb-4">

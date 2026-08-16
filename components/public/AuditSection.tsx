@@ -102,7 +102,7 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
 
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-green-accent/10 border border-green-accent/20 text-green-accent text-xs font-mono font-semibold uppercase tracking-wider mb-4 shadow-sm">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-green-accent/10 border border-green-accent/20 text-green-accent text-xs font-mono font-semibold uppercase tracking-wider mb-4">
           <ShieldCheck className="w-4 h-4" />
           // Quality & Performance Benchmarks
         </div>
@@ -130,15 +130,16 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
                   key={cat}
                   onClick={(e) => {
                     setSelectedCategory(cat);
-                    e.currentTarget.scrollIntoView({
-                      behavior: "smooth",
-                      inline: "center",
-                      block: "nearest",
-                    });
+                    const container = e.currentTarget.parentElement;
+                    if (container) {
+                      const btn = e.currentTarget;
+                      const left = btn.offsetLeft - container.offsetWidth / 2 + btn.offsetWidth / 2;
+                      container.scrollTo({ left, behavior: "smooth" });
+                    }
                   }}
                   className={`relative px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-mono text-xs sm:text-sm transition-all shrink-0 whitespace-nowrap snap-center ${
                     selectedCategory === cat
-                      ? "bg-green-accent text-bg-primary font-bold shadow-[0_0_20px_rgba(0,255,128,0.3)]"
+                      ? "bg-green-accent text-bg-primary font-bold"
                       : "bg-bg-card border border-border-subtle text-text-secondary hover:border-green-accent/40 hover:text-text-primary"
                   }`}
                 >
@@ -155,7 +156,7 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
         {displayed.map((item) => (
           <div
             key={item._id}
-            className="group relative rounded-2xl sm:rounded-3xl bg-bg-card/70 border border-border-subtle hover:border-green-accent/40 p-3.5 sm:p-5 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl hover:shadow-green-accent/5 backdrop-blur-sm"
+            className="group relative rounded-2xl sm:rounded-3xl bg-bg-card/70 border border-border-subtle hover:border-green-accent/40 p-3.5 sm:p-5 transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-sm"
           >
             <div>
               {/* Header inside card: Badge + Metric */}
@@ -188,7 +189,7 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
               {item.imageUrl ? (
                 <div
                   onClick={() => setActiveModalImage(item.imageUrl)}
-                  className="relative w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden bg-bg-primary border border-border-subtle cursor-pointer group/img transition-all hover:border-green-accent/50 shadow-inner"
+                  className="relative w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden bg-bg-primary border border-border-subtle cursor-pointer group/img transition-all hover:border-green-accent/50"
                 >
                   <Image
                     src={item.imageUrl}
@@ -200,7 +201,7 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
 
                   {/* Centered 'Click to open full image' overlay for all devices */}
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-3 transition-all duration-300 pointer-events-none group-hover/img:bg-black/50">
-                    <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-green-accent/40 text-white font-mono text-[11px] sm:text-xs shadow-2xl group-hover/img:scale-105 group-hover/img:border-green-accent transition-transform">
+                    <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-green-accent/40 text-white font-mono text-[11px] sm:text-xs group-hover/img:scale-105 group-hover/img:border-green-accent transition-transform">
                       <ZoomIn className="w-3.5 h-3.5 text-green-accent shrink-0" />
                       <span>Click to open full image</span>
                     </div>
@@ -252,7 +253,7 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
           {hasMore ? (
             <button
               onClick={() => setVisibleCount((prev) => prev + 4)}
-              className="group flex items-center gap-2 px-6 py-3 rounded-full bg-bg-card border border-border-subtle hover:border-green-accent/50 text-text-primary font-mono text-xs sm:text-sm transition-all shadow-lg hover:shadow-green-accent/10 cursor-pointer active:scale-95"
+              className="group flex items-center gap-2 px-6 py-3 rounded-full bg-bg-card border border-border-subtle hover:border-green-accent/50 text-text-primary font-mono text-xs sm:text-sm transition-all cursor-pointer active:scale-95"
             >
               <span>See More Audits ({filtered.length - visibleCount} more)</span>
               <ChevronDown className="w-4 h-4 text-green-accent transition-transform group-hover:translate-y-0.5" />
@@ -263,7 +264,7 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
                 setVisibleCount(4);
                 document.getElementById("audits")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="group flex items-center gap-2 px-6 py-3 rounded-full bg-bg-card border border-border-subtle hover:border-green-accent/50 text-text-secondary hover:text-text-primary font-mono text-xs sm:text-sm transition-all shadow-lg cursor-pointer active:scale-95"
+              className="group flex items-center gap-2 px-6 py-3 rounded-full bg-bg-card border border-border-subtle hover:border-green-accent/50 text-text-secondary hover:text-text-primary font-mono text-xs sm:text-sm transition-all cursor-pointer active:scale-95"
             >
               <span>Show Less</span>
               <ChevronUp className="w-4 h-4 text-green-accent transition-transform group-hover:-translate-y-0.5" />
@@ -293,7 +294,7 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
                   e.stopPropagation();
                   setActiveModalImage(null);
                 }}
-                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-800/90 border border-zinc-700 text-white hover:bg-zinc-700 hover:text-green-accent hover:border-green-accent/40 font-mono text-xs transition-all shadow-xl cursor-pointer"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-800/90 border border-zinc-700 text-white hover:bg-zinc-700 hover:text-green-accent hover:border-green-accent/40 font-mono text-xs transition-all cursor-pointer"
                 aria-label="Close enlarged preview"
               >
                 <span>Close</span>
@@ -307,7 +308,7 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
               onClick={() => setActiveModalImage(null)}
             >
               <div
-                className="relative w-full h-full max-h-[75vh] sm:max-h-[82vh] rounded-2xl overflow-hidden bg-zinc-950/90 border border-zinc-800 shadow-2xl p-1.5 sm:p-2"
+                className="relative w-full h-full max-h-[75vh] sm:max-h-[82vh] rounded-2xl overflow-hidden bg-zinc-950/90 border border-zinc-800 p-1.5 sm:p-2"
                 onClick={(e) => e.stopPropagation()}
               >
                 <Image

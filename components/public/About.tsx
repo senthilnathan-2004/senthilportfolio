@@ -40,7 +40,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative order-2 lg:order-1 hidden md:block h-full"
           >
-            <div className="relative h-full min-h-[400px] w-full rounded-[2.5rem] overflow-hidden border border-border-subtle/50 shadow-[0_0_40px_rgba(0,255,128,0.05)] bg-bg-container/80 p-3">
+            <div className="relative h-full min-h-[400px] w-full rounded-[2.5rem] overflow-hidden border border-border-subtle/50 bg-bg-container/80 p-3">
               <div className="w-full h-full relative rounded-[2rem] overflow-hidden bg-bg-card">
                 {imageUrl ? (
                   <Image
@@ -55,8 +55,6 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                     <span>AWAITING_VISUAL_DATA</span>
                   </div>
                 )}
-                {/* Inner Glow */}
-                <div className="absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.8)] pointer-events-none" />
               </div>
             </div>
 
@@ -88,7 +86,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
 
                 <Link
                   href="/projects"
-                  className="group hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-accent/30 bg-green-accent/10 hover:bg-green-accent/20 text-xs sm:text-sm font-mono uppercase tracking-widest text-green-accent transition-all shadow-[0_0_15px_rgba(0,255,128,0.15)]"
+                  className="group hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-accent/30 bg-green-accent/10 hover:bg-green-accent/20 text-xs sm:text-sm font-mono uppercase tracking-widest text-green-accent transition-all"
                 >
                   <span>View Work</span>
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -111,7 +109,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                 href={cvUrl || "#"}
                 target={cvUrl ? "_blank" : "_self"}
                 rel="noreferrer"
-                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-green-accent text-bg-primary font-sans font-semibold rounded-full overflow-hidden transition-all hover:bg-green-accent/80 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,255,128,0.3)] text-center w-full sm:w-auto"
+                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-green-accent text-bg-primary font-sans font-semibold rounded-full overflow-hidden transition-all hover:bg-green-accent/80 hover:scale-105 active:scale-95 text-center w-full sm:w-auto"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <Download size={18} />
