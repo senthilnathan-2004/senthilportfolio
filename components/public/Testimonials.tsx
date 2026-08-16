@@ -26,6 +26,7 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dragX, setDragX] = useState(0);
   const [maxDrag, setMaxDrag] = useState(200);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     const updateWidth = () => {
@@ -41,6 +42,7 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
   }, []);
 
   const handleDragEnd = (_: unknown, info: { offset: { x: number } }) => {
+    setIsDragging(false);
     if (info.offset.x >= maxDrag * 0.5) {
       onUnlock();
     }
@@ -72,19 +74,28 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
         SLIDE TO REVIEW
       </span>
 
-      {/* Draggable Circle Knob in site green */}
+      {/* Draggable Circle Knob with left-right nudge indicator */}
       <motion.div
         drag="x"
         dragConstraints={{ left: 0, right: maxDrag }}
         dragElastic={0.08}
         dragSnapToOrigin
+        onDragStart={() => setIsDragging(true)}
         onDrag={(_, info) => setDragX(Math.max(0, info.offset.x))}
         onDragEnd={handleDragEnd}
+        animate={isDragging ? undefined : { x: [0, 16, 0] }}
+        transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut", repeatDelay: 0.8 }}
         onClick={(e) => {
           e.stopPropagation();
         }}
         className="relative z-10 w-11 h-11 rounded-full bg-green-accent text-bg-primary flex items-center justify-center cursor-grab active:cursor-grabbing shrink-0 transition-transform hover:scale-105 active:scale-95"
       >
+        {/* Subtle pulsing hint ring */}
+        <motion.div
+          animate={{ scale: [1, 1.25, 1], opacity: [0.6, 0, 0.6] }}
+          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut", repeatDelay: 0.8 }}
+          className="absolute inset-0 rounded-full bg-green-accent/40 pointer-events-none -z-10"
+        />
         <ChevronRight size={20} className="stroke-[3] text-bg-primary" />
       </motion.div>
     </div>
