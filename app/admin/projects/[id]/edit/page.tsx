@@ -9,7 +9,17 @@ import { Save, Loader2, CheckCircle, Plus, Trash2, Star, ArrowLeft } from "lucid
 import Link from "next/link";
 import Image from "next/image";
 
-const CATEGORIES = ["Web Development", "Mobile App", "UI/UX Design", "Full Stack", "Backend", "Frontend", "DevOps", "Other"];
+const PRESET_CATEGORIES = [
+  "Web Development",
+  "Landing Page",
+  "Mobile App",
+  "UI/UX Design",
+  "Full Stack",
+  "Backend",
+  "Frontend",
+  "DevOps",
+  "Custom / Other",
+];
 
 interface GalleryItem { url: string; fileId: string; alt: string; order: number; }
 
@@ -19,6 +29,7 @@ export default function EditProjectPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [isCustomCategory, setIsCustomCategory] = useState(false);
   const [project, setProject] = useState<{
     title: string; slug: string; coverImageUrl: string; coverImageFileId: string; coverImageAlt: string;
     gallery: GalleryItem[]; shortDescription: string; caseStudyRichText: string; techTags: string[];
@@ -32,7 +43,13 @@ export default function EditProjectPage() {
 
   useEffect(() => {
     getProjectById(id).then((data) => {
-      if (data) setProject(data);
+      if (data) {
+        setProject(data);
+        const isPreset = PRESET_CATEGORIES.slice(0, -1).includes(data.category);
+        if (!isPreset && data.category) {
+          setIsCustomCategory(true);
+        }
+      }
       setLoading(false);
     });
   }, [id]);
@@ -107,16 +124,44 @@ export default function EditProjectPage() {
         </div>
 
         {/* Category + Featured */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-mono text-text-secondary mb-2">Category</label>
             <select
-              value={project.category}
-              onChange={(e) => setProject({ ...project, category: e.target.value })}
+              value={isCustomCategory ? "Custom / Other" : project.category}
+              onChange={(e) => {
+                const val = e.target.value;
+                if (val === "Custom / Other") {
+                  setIsCustomCategory(true);
+                  if (PRESET_CATEGORIES.slice(0, -1).includes(project.category)) {
+                    setProject({ ...project, category: "" });
+                  }
+                } else {
+                  setIsCustomCategory(false);
+                  setProject({ ...project, category: val });
+                }
+              }}
               className="w-full px-4 py-3 bg-bg-card border border-border-subtle rounded-2xl text-text-primary font-mono text-sm focus:border-green-accent focus:outline-none transition-colors"
             >
-              {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+              {PRESET_CATEGORIES.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
             </select>
+
+            {/* Custom Category Input */}
+            {isCustomCategory && (
+              <div className="mt-2.5">
+                <input
+                  type="text"
+                  value={project.category}
+                  onChange={(e) => setProject({ ...project, category: e.target.value })}
+                  placeholder="Enter custom category name (e.g. Landing Page, SaaS...)"
+                  className="w-full px-4 py-2.5 bg-bg-card border border-green-accent/40 rounded-xl text-text-primary font-mono text-sm focus:border-green-accent focus:outline-none transition-colors"
+                />
+              </div>
+            )}
           </div>
           <div>
             <label className="block text-sm font-mono text-text-secondary mb-2">Featured</label>

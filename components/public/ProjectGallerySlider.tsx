@@ -133,7 +133,7 @@ export default function ProjectGallerySlider({
       {/* Top Bar / Mode switcher */}
       <div className="flex items-center justify-between gap-1.5 sm:gap-2 mb-3 px-0.5 sm:px-1">
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-          <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-bg-card border border-border-subtle text-[11px] sm:text-xs font-mono text-text-secondary whitespace-nowrap">
+          <div className="flex items-center gap-1.5 px-2.5 sm:px-3 h-8 rounded-full bg-bg-card border border-border-subtle text-[11px] sm:text-xs font-mono text-text-secondary whitespace-nowrap">
             <Layers size={13} className="text-green-accent shrink-0" />
             <span className="hidden xs:inline">Interactive Showcase</span>
             <span className="xs:hidden">Showcase</span>
@@ -149,7 +149,7 @@ export default function ProjectGallerySlider({
             type="button"
             onClick={() => setObjectFit((prev) => (prev === "contain" ? "cover" : "contain"))}
             title={objectFit === "contain" ? "Switch to Cover Fill" : "Switch to Fit Screen"}
-            className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-bg-card border border-border-subtle hover:border-green-accent/40 text-text-secondary hover:text-green-accent text-[11px] sm:text-xs font-mono transition-all whitespace-nowrap"
+            className="flex items-center justify-center gap-1 px-2.5 h-8 rounded-lg bg-bg-card border border-border-subtle hover:border-green-accent/40 text-text-secondary hover:text-green-accent text-[11px] sm:text-xs font-mono transition-all whitespace-nowrap shrink-0"
           >
             <span className="hidden xs:inline">{objectFit === "contain" ? "Fit View" : "Fill View"}</span>
             <span className="xs:hidden">{objectFit === "contain" ? "Fit" : "Fill"}</span>
@@ -161,13 +161,13 @@ export default function ProjectGallerySlider({
               type="button"
               onClick={() => setIsPlaying((prev) => !prev)}
               title={isPlaying ? "Pause Auto-play" : "Start Auto-play"}
-              className={`flex items-center gap-1 px-2 sm:px-2.5 py-1.5 rounded-lg border text-[11px] sm:text-xs font-mono transition-all whitespace-nowrap ${
+              className={`flex items-center justify-center gap-1 px-2.5 h-8 rounded-lg border text-[11px] sm:text-xs font-mono transition-all whitespace-nowrap shrink-0 ${
                 isPlaying
                   ? "bg-green-accent/10 border-green-accent/40 text-green-accent"
                   : "bg-bg-card border border-border-subtle hover:border-green-accent/40 text-text-secondary hover:text-text-primary"
               }`}
             >
-              {isPlaying ? <Pause size={12} /> : <Play size={12} />}
+              {isPlaying ? <Pause size={13} /> : <Play size={13} />}
               <span className="hidden sm:inline">{isPlaying ? "Pause" : "Play"}</span>
             </button>
           )}
@@ -177,7 +177,7 @@ export default function ProjectGallerySlider({
             type="button"
             onClick={() => setIsLightboxOpen(true)}
             title="Expand Fullscreen"
-            className="p-1.5 sm:p-2 rounded-lg bg-bg-card border border-border-subtle hover:border-green-accent/40 text-text-secondary hover:text-green-accent text-xs transition-all shrink-0"
+            className="flex items-center justify-center w-8 h-8 rounded-lg bg-bg-card border border-border-subtle hover:border-green-accent/40 text-text-secondary hover:text-green-accent text-xs transition-all shrink-0"
           >
             <Maximize2 size={13} />
           </button>
