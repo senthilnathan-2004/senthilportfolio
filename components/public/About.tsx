@@ -100,25 +100,6 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               </h2>
             </div>
 
-            {/* Mobile Profile Photo (Hero Section Style below title, mobile view only) */}
-            {(heroImageUrl || imageUrl) && (
-              <div className="flex md:hidden justify-center mt-1 mb-3 w-full px-2">
-                <div className="flex items-center justify-center gap-4 px-6 py-2 rounded-full bg-bg-card/90 border border-green-accent/30 shadow-[0_0_20px_rgba(0,255,128,0.15)] backdrop-blur-md w-full max-w-sm sm:max-w-md">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-green-accent shadow-[0_0_15px_rgba(0,255,128,0.3)] shrink-0">
-                    <img
-                      src={heroImageUrl || imageUrl}
-                      alt={imageAlt || "Profile"}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="flex flex-col text-left min-w-0">
-                    <span className="text-[10px] font-mono text-green-accent uppercase tracking-widest truncate">System Admin</span>
-                    <span className="text-sm sm:text-base font-semibold text-text-primary transition-colors truncate">{captionName || "Senthil Ragu"}</span>
-                  </div>
-                </div>
-              </div>
-            )}
-
             <div className="bg-bg-card/40 border border-border-subtle/30 rounded-xl p-4 md:bg-transparent md:border-none md:p-0 md:rounded-none mb-10">
               <div className="prose prose-invert text-justify prose-p:text-text-primary prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:text-justify prose-a:text-green-accent hover:prose-a:underline max-w-none transition-colors">
                 <div dangerouslySetInnerHTML={{ __html: bioRichText }} />
