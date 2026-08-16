@@ -94,7 +94,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               </div>
 
               <h2 className="w-full text-center lg:text-left text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight leading-tight sm:leading-tight mb-2 md:mb-8 lg:mb-8 px-2 md:px-0">
-                Behind the Code
+                Who I Am
               </h2>
             </div>
 
