@@ -195,13 +195,13 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
   ));
 
   return (
-    <section id="testimonials" className="py-12 lg:py-16 relative overflow-hidden">
+    <section id="testimonials" className="pt-8 sm:pt-12 lg:pt-16 pb-4 sm:pb-6 relative overflow-hidden">
       <div className="absolute top-[10%] left-0 w-full opacity-10 pointer-events-none">
         <InfiniteCarousel items={testimonialNames} speed="normal" direction="right" />
       </div>
 
       <div className="w-full mx-auto relative z-10">
-        <div className="max-w-6xl mx-auto px-2 sm:px-8 mb-12 sm:mb-16 text-center flex flex-col items-center">
+        <div className="max-w-6xl mx-auto px-2 sm:px-8 mb-10 sm:mb-14 text-center flex flex-col items-center">
           <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent mb-1.5 md:mb-3 font-mono backdrop-blur-sm">
             <MessageSquare size={16} />
             <span className="tracking-widest uppercase">Client Feedback</span>
@@ -225,7 +225,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
         </div>
 
         {/* The Carousel of Review Cards */}
-        <div className="w-full relative pb-12 flex flex-col gap-6">
+        <div className="w-full relative pb-2 sm:pb-4 flex flex-col gap-4 sm:gap-6">
            <InfiniteCarousel items={reviewCards} speed="slow" direction="left" itemClassName="items-stretch" pauseOnHover={true} />
            <InfiniteCarousel items={[...reviewCards].reverse()} speed="slow" direction="right" itemClassName="items-stretch" pauseOnHover={true} />
         </div>

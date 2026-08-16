@@ -359,7 +359,7 @@ export default function ProjectGallerySlider({
                   <span className="font-mono text-[10px] sm:text-xs text-green-accent px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-green-accent/10 border border-green-accent/20">
                     {category || "Project"}
                   </span>
-                  <h3 className="font-display text-text-primary text-xs sm:text-base uppercase truncate max-w-[180px] sm:max-w-md">
+                  <h3 className="font-mono font-bold text-text-primary text-xs sm:text-base truncate max-w-[180px] sm:max-w-md">
                     {projectTitle}
                   </h3>
                 </div>

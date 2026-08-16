@@ -68,7 +68,7 @@ export default async function ProjectPage({ params }: Props) {
         </Link>
 
         {/* Header */}
-        <div className="mb-6 sm:mb-8 px-1 md:px-0">
+        <div className="mb-6 sm:mb-8 px-1 md:px-0 w-full">
           <div className="flex flex-wrap items-center gap-2 mb-3">
             <span className="font-mono text-green-accent text-xs sm:text-sm px-3 py-1 rounded-full bg-green-accent/10 border border-green-accent/20">
               {project.category}
@@ -79,18 +79,22 @@ export default async function ProjectPage({ params }: Props) {
               </span>
             )}
           </div>
-          <h1 className="text-xl sm:text-3xl lg:text-5xl font-display text-text-primary text-left uppercase leading-tight tracking-tight mt-1 mb-3">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-mono font-bold text-text-primary text-left leading-tight mt-1 mb-3 w-full">
             {project.title}
           </h1>
           {project.shortDescription && (
-            <p className="font-sans text-justify text-text-primary/90 text-sm sm:text-base lg:text-lg leading-relaxed max-w-none">
-              {project.shortDescription}
-            </p>
+            <div className="bg-bg-card/40 border border-border-subtle/30 rounded-xl p-3.5 sm:p-4 md:bg-transparent md:border-none md:p-0 md:rounded-none mt-2 mb-4 sm:mb-6 w-full">
+              <div className="prose prose-invert w-full max-w-none text-justify prose-p:text-text-primary prose-p:text-base sm:prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:mb-0 prose-p:text-justify max-w-none">
+                <p className="text-justify font-sans text-text-primary text-base sm:text-lg font-semibold leading-relaxed w-full max-w-none">
+                  {project.shortDescription}
+                </p>
+              </div>
+            </div>
           )}
         </div>
 
         {/* Links & Tech Tags Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8 px-1 md:px-0">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8 px-1 md:px-0 w-full">
           <div className="flex flex-wrap items-center gap-2.5">
             {project.liveUrl && (
               <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
@@ -129,17 +133,19 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Case study */}
         {project.caseStudyRichText && (
-          <div className="bg-bg-card border border-border-subtle rounded-2xl sm:rounded-3xl lg:rounded-4xl p-4 sm:p-8 lg:p-14 shadow-xl">
-            <div className="mb-5 pb-3 sm:pb-4 border-b border-border-subtle">
-              <h2 className="font-display text-base sm:text-xl lg:text-2xl uppercase text-text-primary tracking-tight">
+          <div className="w-full bg-bg-card border border-border-subtle rounded-2xl sm:rounded-3xl lg:rounded-4xl p-4 sm:p-8 lg:p-14 shadow-xl">
+            <div className="w-full mb-5 pb-3 sm:pb-4 border-b border-border-subtle">
+              <h2 className="font-mono font-bold text-base sm:text-xl lg:text-2xl text-text-primary tracking-wide w-full">
                 Case Study & Technical Highlights
               </h2>
             </div>
-            <div className="prose prose-invert max-w-none font-sans text-justify prose-p:text-text-primary prose-p:text-sm sm:prose-p:text-base prose-p:leading-relaxed prose-p:mb-3 md:prose-p:mb-4 prose-p:text-justify prose-a:text-green-accent hover:prose-a:underline transition-colors">
-              <div
-                className="tiptap-content text-justify font-sans"
-                dangerouslySetInnerHTML={{ __html: project.caseStudyRichText }}
-              />
+            <div className="bg-bg-card/40 border border-border-subtle/30 rounded-xl p-3.5 sm:p-4 md:bg-transparent md:border-none md:p-0 md:rounded-none w-full">
+              <div className="prose prose-invert w-full max-w-none font-sans text-justify prose-p:text-text-primary prose-p:text-base sm:prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:mb-2 md:prose-p:mb-4 prose-p:text-justify prose-a:text-green-accent hover:prose-a:underline transition-colors">
+                <div
+                  className="tiptap-content w-full text-justify font-sans"
+                  dangerouslySetInnerHTML={{ __html: project.caseStudyRichText }}
+                />
+              </div>
             </div>
           </div>
         )}
