@@ -225,7 +225,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
         </div>
 
         {/* The Carousel of Review Cards */}
-        <div className="w-full relative pb-2 sm:pb-4 flex flex-col gap-4 sm:gap-6">
+        <div className="w-full relative pb-2 sm:pb-4 flex flex-col gap-6">
            <InfiniteCarousel items={reviewCards} speed="slow" direction="left" itemClassName="items-stretch" pauseOnHover={true} />
            <InfiniteCarousel items={[...reviewCards].reverse()} speed="slow" direction="right" itemClassName="items-stretch" pauseOnHover={true} />
         </div>
