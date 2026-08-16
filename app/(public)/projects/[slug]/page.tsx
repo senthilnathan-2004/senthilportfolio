@@ -1,9 +1,9 @@
 import { getProjectBySlug, getProjects } from "@/app/admin/actions/projectActions";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExternalLink, GitFork, ArrowLeft, Tag } from "lucide-react";
 import type { Metadata } from "next";
+import ProjectGallerySlider, { GallerySlide } from "@/components/public/ProjectGallerySlider";
 
 interface Props { params: Promise<{ slug: string }>; }
 
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = await getProjectBySlug(slug).catch(() => null);
   if (!project) return { title: "Project Not Found" };
   return {
-    title: `${project.title} Senthilragu Portfolio`,
+    title: `${project.title} | Senthilragu Portfolio`,
     description: project.shortDescription || `Case study for ${project.title}`,
     openGraph: {
       title: project.title,
@@ -34,7 +34,29 @@ export default async function ProjectPage({ params }: Props) {
   const project = await getProjectBySlug(slug).catch(() => null);
   if (!project) notFound();
 
-  const gallery = [...(project.gallery || [])].sort((a: { order: number }, b: { order: number }) => a.order - b.order);
+  // Combine cover image and gallery screenshots into slides
+  const slides: GallerySlide[] = [];
+  if (project.coverImageUrl) {
+    slides.push({
+      url: project.coverImageUrl,
+      alt: project.coverImageAlt || `${project.title} Cover`,
+    });
+  }
+
+  const sortedGallery = [...(project.gallery || [])].sort(
+    (a: { order: number }, b: { order: number }) => a.order - b.order
+  );
+
+  sortedGallery.forEach((item) => {
+    if (item.url && item.url !== project.coverImageUrl) {
+      slides.push({
+        url: item.url,
+        alt: item.alt || `${project.title} Screenshot`,
+        fileId: item.fileId,
+        order: item.order,
+      });
+    }
+  });
 
   return (
     <div className="min-h-screen pt-8 md:pt-8 pb-24">
@@ -47,7 +69,16 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Header */}
         <div className="mb-8 px-2 md:px-0">
-          <span className="font-mono text-green-accent text-sm">{project.category}</span>
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span className="font-mono text-green-accent text-sm px-3 py-0.5 rounded-full bg-green-accent/10 border border-green-accent/20">
+              {project.category}
+            </span>
+            {project.featured && (
+              <span className="font-mono text-xs text-bg-primary bg-green-accent font-bold px-2.5 py-0.5 rounded-full">
+                Featured
+              </span>
+            )}
+          </div>
           <h1 className="text-3xl lg:text-5xl font-display text-text-primary text-justify uppercase mt-2 mb-4">
             {project.title}
           </h1>
@@ -56,62 +87,51 @@ export default async function ProjectPage({ params }: Props) {
           )}
         </div>
 
-        {/* Links */}
-        <div className="flex gap-3 mb-10">
-          {project.liveUrl && (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-accent hover:bg-green-hover text-bg-primary font-mono font-bold text-sm rounded-full transition-all hover:scale-[1.05]">
-              <ExternalLink size={14} /> Live Site
-            </a>
-          )}
-          {project.githubUrl && (
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-bg-card border border-border-subtle text-text-primary font-mono text-sm rounded-full hover:border-green-accent/40 transition-all">
-              <GitFork size={14} /> GitHub
-            </a>
+        {/* Links & Tech Tags Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <div className="flex flex-wrap gap-3">
+            {project.liveUrl && (
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-accent hover:bg-green-hover text-bg-primary font-mono font-bold text-sm rounded-full transition-all hover:scale-[1.05] shadow-lg shadow-green-accent/10">
+                <ExternalLink size={14} /> Live Site
+              </a>
+            )}
+            {project.githubUrl && (
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-bg-card border border-border-subtle text-text-primary font-mono text-sm rounded-full hover:border-green-accent/40 transition-all">
+                <GitFork size={14} /> GitHub
+              </a>
+            )}
+          </div>
+
+          {project.techTags?.length > 0 && (
+            <div className="flex flex-wrap items-center gap-1.5">
+              <Tag size={13} className="text-text-tertiary mr-1" />
+              {project.techTags.map((tag: string) => (
+                <span key={tag} className="px-2.5 py-1 text-xs font-mono text-green-accent bg-green-accent/5 border border-green-accent/20 rounded-lg">
+                  {tag}
+                </span>
+              ))}
+            </div>
           )}
         </div>
 
-        {/* Cover */}
-        {project.coverImageUrl && (
-          <div className="relative h-[300px] lg:h-[500px] rounded-4xl overflow-hidden border border-border-subtle mb-10">
-            <Image
-              src={project.coverImageUrl}
-              alt={project.coverImageAlt || project.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        )}
-
-        {/* Tech tags */}
-        {project.techTags?.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-10">
-            <Tag size={14} className="text-text-tertiary mt-0.5" />
-            {project.techTags.map((tag: string) => (
-              <span key={tag} className="px-3 py-1 text-xs font-mono text-green-accent bg-green-accent/10 border border-green-accent/20 rounded-full">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Gallery */}
-        {gallery.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-            {gallery.map((item: { url: string; alt: string; fileId: string; order: number }, i: number) => (
-              <div key={i} className="relative aspect-video rounded-3xl overflow-hidden border border-border-subtle">
-                <Image src={item.url} alt={item.alt || `Screenshot ${i + 1}`} fill className="object-cover" />
-              </div>
-            ))}
-          </div>
+        {/* Interactive Slideshow */}
+        {slides.length > 0 && (
+          <ProjectGallerySlider
+            slides={slides}
+            projectTitle={project.title}
+            category={project.category}
+          />
         )}
 
         {/* Case study */}
         {project.caseStudyRichText && (
-          <div className="bg-bg-card border border-border-subtle rounded-4xl p-4 sm:p-8 lg:p-16">
-            <h2 className="font-display text-xl uppercase text-text-primary mb-6">Case Study</h2>
+          <div className="bg-bg-card border border-border-subtle rounded-3xl lg:rounded-4xl p-6 sm:p-10 lg:p-14 shadow-xl">
+            <div className="flex items-center gap-2 mb-6 pb-4 border-b border-border-subtle">
+              <span className="w-2 h-2 rounded-full bg-green-accent" />
+              <h2 className="font-display text-xl sm:text-2xl uppercase text-text-primary">Case Study & Technical Highlights</h2>
+            </div>
             <div
               className="tiptap-content text-justify"
               dangerouslySetInnerHTML={{ __html: project.caseStudyRichText }}
@@ -122,3 +142,4 @@ export default async function ProjectPage({ params }: Props) {
     </div>
   );
 }
+
