@@ -132,9 +132,9 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
           ))}
         </div>
 
-        <div className="relative z-10">
-          <p className="text-sm sm:text-lg font-semibold text-text-primary group-hover:text-green-accent transition-colors leading-relaxed line-clamp-4">
-            "{testimonial.quote}"
+        <div className="relative z-10 w-full">
+          <p className="text-sm sm:text-base md:text-lg font-semibold text-text-primary text-justify leading-relaxed group-hover:text-green-accent transition-colors line-clamp-4 sm:line-clamp-5 w-full">
+            &ldquo;{testimonial.quote}&rdquo;
           </p>
         </div>
       </div>
