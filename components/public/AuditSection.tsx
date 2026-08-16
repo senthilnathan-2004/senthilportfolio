@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import {
   ShieldCheck,
@@ -35,6 +36,11 @@ interface AuditSectionProps {
 export default function AuditSection({ audits = [] }: AuditSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [activeModalImage, setActiveModalImage] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close modal on Escape key
   useEffect(() => {
@@ -224,36 +230,62 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
         ))}
       </div>
 
-      {/* Fullscreen Lightbox Modal */}
-      {activeModalImage && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-in fade-in duration-200"
-          onClick={() => setActiveModalImage(null)}
-        >
-          <button
-            onClick={() => setActiveModalImage(null)}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 p-3 rounded-full bg-zinc-800/90 text-white hover:bg-zinc-700 hover:text-green-accent transition-all z-10 shadow-2xl border border-zinc-700"
-            aria-label="Close enlarged preview"
-          >
-            <X className="w-6 h-6" />
-          </button>
-
+      {/* Fullscreen Lightbox Modal via Portal to avoid clipping and mobile nav overlap */}
+      {mounted &&
+        activeModalImage &&
+        createPortal(
           <div
-            className="relative max-w-6xl w-full h-[85vh] rounded-2xl overflow-hidden shadow-2xl bg-zinc-950/80 border border-zinc-800 p-2"
-            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            className="fixed inset-0 z-[999999] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-between p-3 sm:p-6 animate-in fade-in duration-200"
+            onClick={() => setActiveModalImage(null)}
           >
-            <Image
-              src={activeModalImage}
-              alt="Enlarged Audit Report"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-        </div>
-      )}
+            {/* Top Toolbar with Close Button */}
+            <div className="w-full flex items-center justify-between max-w-6xl mx-auto py-2 z-10 shrink-0">
+              <span className="text-[11px] sm:text-xs font-mono text-zinc-400">
+                // Click anywhere or press ESC to close
+              </span>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveModalImage(null);
+                }}
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-800/90 border border-zinc-700 text-white hover:bg-zinc-700 hover:text-green-accent hover:border-green-accent/40 font-mono text-xs transition-all shadow-xl cursor-pointer"
+                aria-label="Close enlarged preview"
+              >
+                <span>Close</span>
+                <X className="w-4 h-4 text-green-accent" />
+              </button>
+            </div>
+
+            {/* Center Image Container */}
+            <div
+              className="relative flex-1 w-full max-w-5xl my-auto flex items-center justify-center min-h-0 py-2"
+              onClick={() => setActiveModalImage(null)}
+            >
+              <div
+                className="relative w-full h-full max-h-[75vh] sm:max-h-[82vh] rounded-2xl overflow-hidden bg-zinc-950/90 border border-zinc-800 shadow-2xl p-1.5 sm:p-2"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Image
+                  src={activeModalImage}
+                  alt="Enlarged Audit Report"
+                  fill
+                  className="object-contain"
+                  priority
+                  sizes="100vw"
+                />
+              </div>
+            </div>
+
+            {/* Bottom Mobile Tap Helper */}
+            <div className="w-full text-center py-1 sm:hidden text-[10px] font-mono text-zinc-500 shrink-0">
+              Tap anywhere outside the image to close
+            </div>
+          </div>,
+          document.body
+        )}
     </section>
   );
 }
