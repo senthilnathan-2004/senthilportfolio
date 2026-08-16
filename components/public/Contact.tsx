@@ -77,7 +77,7 @@ export default function Contact({ contactEmail, contactLocation, socialLinks }: 
             <span className="tracking-widest uppercase">Let's Build Together</span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight">
-            Initiate Contact
+            Let's Connect
           </h2>
         </motion.div>
 
