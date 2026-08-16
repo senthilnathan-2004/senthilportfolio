@@ -78,7 +78,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
             className="order-1 lg:order-2"
           >
             <div className="text-center md:text-left flex flex-col items-center md:items-start">
-              <div className="flex items-center justify-center md:justify-start gap-4 mb-2 sm:mb-3 px-2 md:px-0">
+              <div className="flex items-center justify-center md:justify-start gap-4 mb-3 px-2 md:px-0">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-accent/5 border border-green-accent/20 text-sm text-green-accent font-mono backdrop-blur-sm">
                   <User size={16} />
                   <span className="tracking-widest uppercase">{tagLabel}</span>
@@ -93,13 +93,13 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                 </Link>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-1 sm:mb-2 px-2 md:px-0 text-center md:text-left leading-tight sm:leading-tight">
-                Behind the <br className="hidden sm:inline" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-green-accent">Code</span>
+              <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-2 px-2 md:px-0 text-center md:text-left">
+                Behind the <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-green-accent">Code</span>
               </h2>
             </div>
 
-            <div className="bg-bg-card/40 border border-border-subtle/30 rounded-xl p-3 sm:p-4 md:bg-transparent md:border-none md:p-0 md:rounded-none mt-1 sm:mt-0 mb-4 sm:mb-8">
-              <div className="prose prose-invert text-justify prose-p:text-text-primary prose-p:text-base md:prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:mb-2 prose-a:text-green-accent hover:prose-a:underline max-w-none transition-colors">
+            <div className="bg-bg-card/40 border border-border-subtle/30 rounded-xl p-3.5 sm:p-4 md:bg-transparent md:border-none md:p-0 md:rounded-none mt-2 md:mt-0 mb-6 sm:mb-10">
+              <div className="prose prose-invert text-justify prose-p:text-text-primary prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:text-justify prose-a:text-green-accent hover:prose-a:underline max-w-none transition-colors">
                 <div dangerouslySetInnerHTML={{ __html: bioRichText }} />
               </div>
             </div>
