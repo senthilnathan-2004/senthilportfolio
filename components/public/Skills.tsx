@@ -46,7 +46,7 @@ export default function Skills({ skills }: SkillsProps) {
             <span className="tracking-widest uppercase">Tech Arsenal</span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight">
-            Core Technologies
+            <span className="hidden sm:inline">Core </span>Technologies
           </h2>
         </motion.div>
 
