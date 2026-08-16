@@ -173,25 +173,33 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
                 </p>
               )}
 
-              {/* Image Preview with Zoom Trigger */}
+              {/* Image Preview with Adaptive Height & Zoom Trigger */}
               {item.imageUrl ? (
                 <div
                   onClick={() => setActiveModalImage(item.imageUrl)}
-                  className="relative w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden bg-bg-primary border border-border-subtle cursor-pointer group/img transition-all hover:border-green-accent/50 shadow-inner"
+                  className="relative w-full h-44 sm:h-56 md:h-64 rounded-xl sm:rounded-2xl overflow-hidden bg-bg-primary/90 border border-border-subtle cursor-pointer group/img transition-all hover:border-green-accent/50 shadow-inner flex items-center justify-center p-1 sm:p-2"
                 >
                   <Image
                     src={item.imageUrl}
                     alt={item.imageAlt || item.title}
                     fill
-                    className="object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
+                    className="object-contain transition-transform duration-500 group-hover/img:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white font-mono text-xs backdrop-blur-[2px]">
+
+                  {/* Desktop Hover Overlay */}
+                  <div className="hidden lg:flex absolute inset-0 bg-black/60 opacity-0 group-hover/img:opacity-100 transition-opacity items-center justify-center gap-2 text-white font-mono text-xs backdrop-blur-[2px]">
                     <ZoomIn className="w-4 h-4 text-green-accent" /> Click to enlarge report
+                  </div>
+
+                  {/* Mobile & Tablet Visible Tap Badge */}
+                  <div className="absolute bottom-2 right-2 px-2.5 py-1 rounded-full bg-zinc-950/85 backdrop-blur-md border border-zinc-700/80 text-text-primary text-[10px] sm:text-xs font-mono flex items-center gap-1.5 shadow-md group-hover:border-green-accent/50 transition-colors">
+                    <ZoomIn className="w-3 h-3 text-green-accent" />
+                    <span>View Full Image</span>
                   </div>
                 </div>
               ) : (
-                <div className="w-full aspect-[16/9] rounded-xl sm:rounded-2xl bg-bg-primary/50 border border-dashed border-border-subtle flex flex-col items-center justify-center p-4 text-center text-text-tertiary">
+                <div className="w-full h-44 sm:h-56 md:h-64 rounded-xl sm:rounded-2xl bg-bg-primary/50 border border-dashed border-border-subtle flex flex-col items-center justify-center p-4 text-center text-text-tertiary">
                   <FileText className="w-7 h-7 mb-1.5 opacity-50 text-green-accent" />
                   <span className="text-xs font-mono">Report screenshot uploading via Admin</span>
                 </div>
