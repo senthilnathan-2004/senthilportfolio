@@ -183,14 +183,16 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
                     src={item.imageUrl}
                     alt={item.imageAlt || item.title}
                     fill
-                    className="object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
+                    className="object-cover object-top transition-all duration-500 group-hover/img:scale-105 blur-[2px] lg:blur-none"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
 
-                  {/* Mobile & Tablet View: Persistent Floating Pill (leaves preview clear & readable) */}
-                  <div className="lg:hidden absolute bottom-2.5 right-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-green-accent/30 text-white font-mono text-[11px] shadow-lg pointer-events-none">
-                    <ZoomIn className="w-3.5 h-3.5 text-green-accent" />
-                    <span>Click to enlarge</span>
+                  {/* Mobile & Tablet View: Default Blur Overlay with Centered 'Click to open full image' */}
+                  <div className="lg:hidden absolute inset-0 bg-black/40 flex items-center justify-center p-3 pointer-events-none">
+                    <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-green-accent/40 text-white font-mono text-[11px] sm:text-xs shadow-2xl">
+                      <ZoomIn className="w-3.5 h-3.5 text-green-accent shrink-0" />
+                      <span>Click to open full image</span>
+                    </div>
                   </div>
 
                   {/* Desktop View (lg+): Smooth Hover Overlay */}
