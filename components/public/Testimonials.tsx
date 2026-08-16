@@ -26,13 +26,14 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [maxDrag, setMaxDrag] = useState(200);
   const x = useMotionValue(0);
-  const fillWidth = useTransform(x, (val) => `${Math.max(0, val) + 44}px`);
-  const textOpacity = useTransform(x, [0, 100], [1, 0.2]);
+  // Fill width starts at 44px (full knob width) and expands with drag x
+  const fillWidth = useTransform(x, (val) => `${Math.max(44, val + 44)}px`);
+  const textOpacity = useTransform(x, [0, 80], [1, 0.1]);
 
   useEffect(() => {
     const updateWidth = () => {
       if (containerRef.current) {
-        // total width - knob width (44px) - padding (12px)
+        // total width - knob width (44px) - left padding (6px) - right padding (6px)
         const width = containerRef.current.offsetWidth - 44 - 12;
         const bounded = Math.max(width, 60);
         setMaxDrag(bounded);
@@ -45,10 +46,10 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
 
   // Smooth idle nudge animation
   useEffect(() => {
-    const controls = animate(x, [0, 20, 0], {
-      duration: 1.6,
+    const controls = animate(x, [0, 16, 0], {
+      duration: 1.8,
       repeat: Infinity,
-      repeatDelay: 1,
+      repeatDelay: 1.2,
       ease: "easeInOut",
     });
 
@@ -70,10 +71,10 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
       damping: 32,
     });
     springAnim.then(() => {
-      animate(x, [0, 20, 0], {
-        duration: 1.6,
+      animate(x, [0, 16, 0], {
+        duration: 1.8,
         repeat: Infinity,
-        repeatDelay: 1,
+        repeatDelay: 1.2,
         ease: "easeInOut",
       });
     });
@@ -93,21 +94,21 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
         }
       }}
     >
-      {/* Dynamic hardware-accelerated green fill */}
+      {/* Dynamic green fill aligned with knob padding */}
       <motion.div
-        className="absolute left-0 top-0 bottom-0 bg-green-accent/20 rounded-full pointer-events-none"
+        className="absolute left-1.5 top-1.5 bottom-1.5 bg-green-accent/25 rounded-full pointer-events-none"
         style={{ width: fillWidth }}
       />
 
       {/* Centered label with smooth opacity fade */}
       <motion.span
         style={{ opacity: textOpacity }}
-        className="absolute inset-0 flex items-center justify-center font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-green-accent pl-8 pointer-events-none"
+        className="absolute inset-0 flex items-center justify-center font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-green-accent pl-10 pr-4 pointer-events-none"
       >
         SLIDE TO REVIEW
       </motion.span>
 
-      {/* 60fps buttery smooth GPU-accelerated Draggable Knob */}
+      {/* Draggable Knob */}
       <motion.div
         style={{ x }}
         drag="x"
@@ -119,14 +120,8 @@ function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="relative z-10 w-11 h-11 rounded-full bg-green-accent text-bg-primary flex items-center justify-center cursor-grab active:cursor-grabbing shrink-0 touch-none shadow-none"
+        className="relative z-10 w-11 h-11 rounded-full bg-green-accent text-bg-primary flex items-center justify-center cursor-grab active:cursor-grabbing shrink-0 touch-none shadow-[0_0_15px_rgba(140,255,158,0.35)] transition-shadow hover:shadow-[0_0_22px_rgba(140,255,158,0.55)]"
       >
-        {/* Subtle pulsing indicator ring */}
-        <motion.div
-          animate={{ scale: [1, 1.25, 1], opacity: [0.6, 0, 0.6] }}
-          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut", repeatDelay: 1 }}
-          className="absolute inset-0 rounded-full bg-green-accent/40 pointer-events-none -z-10"
-        />
         <ChevronRight size={20} className="stroke-[3] text-bg-primary pointer-events-none" />
       </motion.div>
     </div>
