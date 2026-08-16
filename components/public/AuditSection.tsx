@@ -78,13 +78,13 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
   return (
     <section
       id="audits"
-      className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden"
+      className="relative py-12 sm:py-20 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden"
     >
       {/* Background Glows */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-green-accent/5 rounded-full blur-3xl pointer-events-none -z-10" />
 
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-14">
+      <div className="text-center max-w-3xl mx-auto mb-10">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-green-accent/10 border border-green-accent/20 text-green-accent text-xs font-mono font-semibold uppercase tracking-wider mb-4 shadow-sm">
           <ShieldCheck className="w-4 h-4" />
           // Quality & Performance Benchmarks
@@ -94,66 +94,75 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
           Verified Performance & Security Audits
         </h2>
 
-        <p className="text-text-secondary text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-mono">
-          Real-world benchmarks, 99/100 SEO scores, Grade-A security compliance, and high-concurrency stress testing.
-        </p>
+        {/* Filter Tabs - Single row horizontal scroll on mobile, centered on desktop */}
+        <div className="w-full relative flex justify-center mt-8">
+          {/* Mobile Scroll Fade Indicators */}
+          <div className="sm:hidden absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-bg-primary via-bg-primary/80 to-transparent pointer-events-none z-20" />
+          <div className="sm:hidden absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-bg-primary to-transparent pointer-events-none z-20" />
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
-          {categories.map((cat) => {
-            const count =
-              cat === "All"
-                ? audits.length
-                : audits.filter((a) => a.category === cat).length;
-            if (count === 0 && cat !== "All") return null;
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-full py-1.5 px-4 sm:px-0 sm:flex-wrap sm:justify-center scroll-smooth snap-x snap-mandatory touch-pan-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {categories.map((cat) => {
+              const count =
+                cat === "All"
+                  ? audits.length
+                  : audits.filter((a) => a.category === cat).length;
+              if (count === 0 && cat !== "All") return null;
 
-            return (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-mono transition-all duration-200 ${
-                  selectedCategory === cat
-                    ? "bg-green-accent text-bg-primary font-bold shadow-lg shadow-green-accent/20 scale-105"
-                    : "bg-bg-card text-text-secondary hover:text-text-primary border border-border-subtle hover:border-green-accent/30"
-                }`}
-              >
-                {cat} <span className="opacity-70 text-[11px]">({count})</span>
-              </button>
-            );
-          })}
+              return (
+                <button
+                  key={cat}
+                  onClick={(e) => {
+                    setSelectedCategory(cat);
+                    e.currentTarget.scrollIntoView({
+                      behavior: "smooth",
+                      inline: "center",
+                      block: "nearest",
+                    });
+                  }}
+                  className={`relative px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-mono text-xs sm:text-sm transition-all shrink-0 whitespace-nowrap snap-center ${
+                    selectedCategory === cat
+                      ? "bg-green-accent text-bg-primary font-bold shadow-[0_0_20px_rgba(0,255,128,0.3)]"
+                      : "bg-bg-card border border-border-subtle text-text-secondary hover:border-green-accent/40 hover:text-text-primary"
+                  }`}
+                >
+                  {cat} <span className="opacity-70 text-[11px]">({count})</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
       {/* Audit Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         {filtered.map((item) => (
           <div
             key={item._id}
-            className="group relative rounded-3xl bg-bg-card/70 border border-border-subtle hover:border-green-accent/40 p-5 sm:p-7 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-green-accent/5 backdrop-blur-sm"
+            className="group relative rounded-2xl sm:rounded-3xl bg-bg-card/70 border border-border-subtle hover:border-green-accent/40 p-3.5 sm:p-5 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-xl hover:shadow-green-accent/5 backdrop-blur-sm"
           >
             <div>
               {/* Header inside card: Badge + Metric */}
-              <div className="flex items-center justify-between gap-3 mb-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-bg-primary border border-border-subtle text-xs font-mono text-text-primary">
+              <div className="flex items-center justify-between gap-2 mb-3">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md sm:rounded-lg bg-bg-primary border border-border-subtle text-[11px] sm:text-xs font-mono text-text-primary">
                   {getCategoryIcon(item.category)}
                   {item.badgeText || item.category}
                 </span>
 
                 {item.scoreOrMetric && (
-                  <span className="text-xs font-mono font-bold text-green-accent bg-green-accent/10 px-2.5 py-1 rounded-md border border-green-accent/20 flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span className="text-[11px] sm:text-xs font-mono font-bold text-green-accent bg-green-accent/10 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md border border-green-accent/20 flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                     {item.scoreOrMetric}
                   </span>
                 )}
               </div>
 
               {/* Title & Description */}
-              <h3 className="text-xl sm:text-2xl font-display font-bold text-text-primary mb-2.5 group-hover:text-green-accent transition-colors leading-snug">
+              <h3 className="text-lg sm:text-xl font-display font-bold text-text-primary mb-1.5 group-hover:text-green-accent transition-colors leading-snug">
                 {item.title}
               </h3>
 
               {item.description && (
-                <p className="text-text-secondary text-xs sm:text-sm mb-5 leading-relaxed font-mono">
+                <p className="text-text-secondary text-xs sm:text-sm mb-3.5 leading-relaxed font-mono">
                   {item.description}
                 </p>
               )}
@@ -162,7 +171,7 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
               {item.imageUrl ? (
                 <div
                   onClick={() => setActiveModalImage(item.imageUrl)}
-                  className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-bg-primary border border-border-subtle cursor-pointer group/img transition-all hover:border-green-accent/50 shadow-inner"
+                  className="relative w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden bg-bg-primary border border-border-subtle cursor-pointer group/img transition-all hover:border-green-accent/50 shadow-inner"
                 >
                   <Image
                     src={item.imageUrl}
@@ -176,23 +185,23 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
                   </div>
                 </div>
               ) : (
-                <div className="w-full aspect-[16/9] rounded-2xl bg-bg-primary/50 border border-dashed border-border-subtle flex flex-col items-center justify-center p-6 text-center text-text-tertiary">
-                  <FileText className="w-8 h-8 mb-2 opacity-50 text-green-accent" />
+                <div className="w-full aspect-[16/9] rounded-xl sm:rounded-2xl bg-bg-primary/50 border border-dashed border-border-subtle flex flex-col items-center justify-center p-4 text-center text-text-tertiary">
+                  <FileText className="w-7 h-7 mb-1.5 opacity-50 text-green-accent" />
                   <span className="text-xs font-mono">Report screenshot uploading via Admin</span>
                 </div>
               )}
             </div>
 
             {/* Bottom Actions: PDF / Live Verification Link */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pt-5 mt-5 border-t border-border-subtle text-xs font-mono">
+            <div className="flex flex-wrap items-center justify-between gap-2.5 pt-3.5 mt-3.5 border-t border-border-subtle text-xs font-mono">
               {item.pdfUrl ? (
                 <a
                   href={item.pdfUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-semibold transition-colors bg-blue-500/10 hover:bg-blue-500/20 px-3 py-1.5 rounded-lg border border-blue-500/20"
+                  className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-semibold transition-colors bg-blue-500/10 hover:bg-blue-500/20 px-2.5 py-1 rounded-md sm:rounded-lg border border-blue-500/20 text-[11px] sm:text-xs"
                 >
-                  <FileText className="w-3.5 h-3.5" />
+                  <FileText className="w-3 h-3" />
                   Download Full PDF
                   <ArrowUpRight className="w-3 h-3" />
                 </a>
@@ -205,7 +214,7 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
                   href={item.externalLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-text-secondary hover:text-green-accent font-medium transition-colors"
+                  className="inline-flex items-center gap-1 text-text-secondary hover:text-green-accent font-medium transition-colors text-[11px] sm:text-xs"
                 >
                   Inspect Live Site <ExternalLink className="w-3 h-3" />
                 </a>
