@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, Quote, Star, Plus, X, Send, Loader2 } from "lucide-react";
+import { MessageSquare, Quote, Star, X, Send, Loader2, ChevronRight } from "lucide-react";
 import InfiniteCarousel from "./InfiniteCarousel";
 import Image from "next/image";
 import { submitPublicTestimonial } from "@/app/actions/publicActions";
@@ -20,6 +20,75 @@ interface Testimonial {
 
 interface TestimonialsProps {
   testimonials: Testimonial[];
+}
+
+function SlideToReviewButton({ onUnlock }: { onUnlock: () => void }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dragX, setDragX] = useState(0);
+  const [maxDrag, setMaxDrag] = useState(200);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        // total width - knob width (44px) - padding (12px)
+        const width = containerRef.current.offsetWidth - 44 - 12;
+        setMaxDrag(Math.max(width, 100));
+      }
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  const handleDragEnd = (_: unknown, info: { offset: { x: number } }) => {
+    if (info.offset.x >= maxDrag * 0.55) {
+      onUnlock();
+    }
+    setDragX(0);
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      onClick={onUnlock}
+      className="group relative z-50 w-full max-w-[280px] sm:max-w-[320px] h-14 bg-[#141414] border border-border-subtle hover:border-green-accent/40 rounded-full p-1.5 flex items-center justify-between overflow-hidden cursor-pointer select-none transition-colors"
+      role="button"
+      tabIndex={0}
+      aria-label="Slide to review"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          onUnlock();
+        }
+      }}
+    >
+      {/* Dynamic progress fill as you drag */}
+      <div
+        className="absolute left-0 top-0 bottom-0 bg-green-accent/15 rounded-full pointer-events-none transition-all"
+        style={{ width: `${Math.min(dragX + 50, maxDrag + 50)}px` }}
+      />
+
+      {/* Centered label */}
+      <span className="absolute inset-0 flex items-center justify-center font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-text-primary pl-8 pointer-events-none transition-opacity">
+        SLIDE TO REVIEW
+      </span>
+
+      {/* Draggable Circle Knob */}
+      <motion.div
+        drag="x"
+        dragConstraints={{ left: 0, right: maxDrag }}
+        dragElastic={0.08}
+        dragSnapToOrigin
+        onDrag={(_, info) => setDragX(Math.max(0, info.offset.x))}
+        onDragEnd={handleDragEnd}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className="relative z-10 w-11 h-11 rounded-full bg-white text-bg-primary flex items-center justify-center cursor-grab active:cursor-grabbing shrink-0 transition-transform hover:scale-105 active:scale-95"
+      >
+        <ChevronRight size={20} className="stroke-[3] text-black" />
+      </motion.div>
+    </div>
+  );
 }
 
 export default function Testimonials({ testimonials }: TestimonialsProps) {
@@ -103,13 +172,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
           <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight mb-8">
             What They Say
           </h2>
-          <button 
-            onClick={() => setIsModalOpen(true)}
-            className="group relative z-50 flex items-center gap-2 px-6 py-3 rounded-full bg-green-accent text-bg-primary font-bold hover:bg-[#50ff7a] transition-colors font-mono text-sm uppercase tracking-widest"
-          >
-            <Plus size={16} className="group-hover:rotate-90 transition-transform" />
-            Add Review
-          </button>
+          <SlideToReviewButton onUnlock={() => setIsModalOpen(true)} />
         </div>
 
         {/* The Carousel of Review Cards */}
