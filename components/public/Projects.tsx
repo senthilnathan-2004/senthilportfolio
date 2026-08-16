@@ -46,7 +46,7 @@ export default function Projects({ projects }: ProjectsProps) {
             <FolderGit2 size={16} />
             <span className="tracking-widest uppercase">Deployments</span>
           </div>
-          <h2 className="text-[clamp(1.5rem,6.8vw,3rem)] font-display text-text-primary uppercase tracking-tight whitespace-nowrap">
+          <h2 className="text-[clamp(1.8rem,8.3vw,3.25rem)] font-display text-text-primary uppercase tracking-tight whitespace-nowrap">
             Featured Projects
           </h2>
         </motion.div>
