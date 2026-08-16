@@ -68,9 +68,9 @@ export default async function ProjectPage({ params }: Props) {
         </Link>
 
         {/* Header */}
-        <div className="mb-8 px-2 md:px-0">
-          <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="font-mono text-green-accent text-sm px-3 py-0.5 rounded-full bg-green-accent/10 border border-green-accent/20">
+        <div className="mb-6 sm:mb-8 px-1 md:px-0">
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <span className="font-mono text-green-accent text-xs sm:text-sm px-3 py-1 rounded-full bg-green-accent/10 border border-green-accent/20">
               {project.category}
             </span>
             {project.featured && (
@@ -79,36 +79,36 @@ export default async function ProjectPage({ params }: Props) {
               </span>
             )}
           </div>
-          <h1 className="text-3xl lg:text-5xl font-display text-text-primary text-justify uppercase mt-2 mb-4">
+          <h1 className="text-xl sm:text-3xl lg:text-5xl font-display text-text-primary text-left uppercase leading-tight tracking-tight mt-1 mb-3">
             {project.title}
           </h1>
           {project.shortDescription && (
-            <p className="text-text-secondary text-lg text-justify leading-relaxed">{project.shortDescription}</p>
+            <p className="text-text-secondary text-sm sm:text-base lg:text-lg text-left leading-relaxed">{project.shortDescription}</p>
           )}
         </div>
 
         {/* Links & Tech Tags Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-          <div className="flex flex-wrap gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8 px-1 md:px-0">
+          <div className="flex flex-wrap items-center gap-2.5">
             {project.liveUrl && (
               <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-accent hover:bg-green-hover text-bg-primary font-mono font-bold text-sm rounded-full transition-all hover:scale-[1.05] shadow-lg shadow-green-accent/10">
-                <ExternalLink size={14} /> Live Site
+                className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-green-accent hover:bg-green-hover text-bg-primary font-mono font-bold text-xs sm:text-sm rounded-full transition-all hover:scale-[1.05] shadow-lg shadow-green-accent/10">
+                <ExternalLink size={13} /> Live Site
               </a>
             )}
             {project.githubUrl && (
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-bg-card border border-border-subtle text-text-primary font-mono text-sm rounded-full hover:border-green-accent/40 transition-all">
-                <GitFork size={14} /> GitHub
+                className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-bg-card border border-border-subtle text-text-primary font-mono text-xs sm:text-sm rounded-full hover:border-green-accent/40 transition-all">
+                <GitFork size={13} /> GitHub
               </a>
             )}
           </div>
 
           {project.techTags?.length > 0 && (
             <div className="flex flex-wrap items-center gap-1.5">
-              <Tag size={13} className="text-text-tertiary mr-1" />
+              <Tag size={12} className="text-text-tertiary mr-0.5" />
               {project.techTags.map((tag: string) => (
-                <span key={tag} className="px-2.5 py-1 text-xs font-mono text-green-accent bg-green-accent/5 border border-green-accent/20 rounded-lg">
+                <span key={tag} className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[11px] sm:text-xs font-mono text-green-accent bg-green-accent/5 border border-green-accent/20 rounded-md">
                   {tag}
                 </span>
               ))}
@@ -127,13 +127,15 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Case study */}
         {project.caseStudyRichText && (
-          <div className="bg-bg-card border border-border-subtle rounded-3xl lg:rounded-4xl p-6 sm:p-10 lg:p-14 shadow-xl">
-            <div className="flex items-center gap-2 mb-6 pb-4 border-b border-border-subtle">
-              <span className="w-2 h-2 rounded-full bg-green-accent" />
-              <h2 className="font-display text-xl sm:text-2xl uppercase text-text-primary">Case Study & Technical Highlights</h2>
+          <div className="bg-bg-card border border-border-subtle rounded-2xl sm:rounded-3xl lg:rounded-4xl p-4 sm:p-8 lg:p-14 shadow-xl">
+            <div className="flex items-center gap-2.5 mb-5 pb-3 sm:pb-4 border-b border-border-subtle">
+              <span className="w-2 h-2 rounded-full bg-green-accent shrink-0" />
+              <h2 className="font-display text-base sm:text-xl lg:text-2xl uppercase text-text-primary tracking-tight">
+                Case Study & Technical Highlights
+              </h2>
             </div>
             <div
-              className="tiptap-content text-justify"
+              className="tiptap-content text-left text-sm sm:text-base text-text-secondary leading-relaxed"
               dangerouslySetInnerHTML={{ __html: project.caseStudyRichText }}
             />
           </div>

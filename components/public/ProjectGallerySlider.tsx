@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
   ChevronLeft,
   ChevronRight,
   Maximize2,
-  Minimize2,
   Play,
   Pause,
   X,
@@ -62,11 +62,16 @@ export default function ProjectGallerySlider({
   projectTitle,
   category,
 }: ProjectGallerySliderProps) {
+  const [mounted, setMounted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [objectFit, setObjectFit] = useState<"contain" | "cover">("contain");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const total = slides.length;
 
@@ -94,8 +99,14 @@ export default function ProjectGallerySlider({
     return () => clearInterval(timer);
   }, [isPlaying, total, isLightboxOpen, paginate]);
 
-  // Keyboard navigation
+  // Keyboard navigation & lock scroll when lightbox is open
   useEffect(() => {
+    if (isLightboxOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") {
         paginate(-1);
@@ -107,7 +118,10 @@ export default function ProjectGallerySlider({
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [paginate, isLightboxOpen]);
 
   if (!slides || slides.length === 0) return null;
@@ -115,11 +129,11 @@ export default function ProjectGallerySlider({
   const currentSlide = slides[currentIndex];
 
   return (
-    <div className="w-full mb-12 select-none">
+    <div className="w-full mb-8 sm:mb-12 select-none">
       {/* Top Bar / Mode switcher */}
       <div className="flex items-center justify-between gap-2 mb-3 px-1">
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-bg-card border border-border-subtle text-xs font-mono text-text-secondary">
+          <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-bg-card border border-border-subtle text-[11px] sm:text-xs font-mono text-text-secondary">
             <Layers size={13} className="text-green-accent" />
             <span>Interactive Showcase</span>
           </div>
@@ -136,8 +150,7 @@ export default function ProjectGallerySlider({
             title={objectFit === "contain" ? "Switch to Cover Fill" : "Switch to Fit Screen"}
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-bg-card border border-border-subtle hover:border-green-accent/40 text-text-secondary hover:text-green-accent text-xs font-mono transition-all"
           >
-            <span className="hidden xs:inline">{objectFit === "contain" ? "Fit View" : "Fill View"}</span>
-            <span className="xs:hidden">{objectFit === "contain" ? "Fit" : "Fill"}</span>
+            <span>{objectFit === "contain" ? "Fit View" : "Fill View"}</span>
           </button>
 
           {/* Autoplay toggle */}
@@ -221,7 +234,7 @@ export default function ProjectGallerySlider({
           <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
             {/* Slide badge & info */}
             <div className="flex items-center gap-2 pointer-events-auto">
-              <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-xs font-mono font-semibold text-green-accent">
+              <span className="px-2.5 sm:px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[11px] sm:text-xs font-mono font-semibold text-green-accent">
                 {String(currentIndex + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
               </span>
               {currentSlide.alt && (
@@ -238,7 +251,7 @@ export default function ProjectGallerySlider({
             </div>
           </div>
 
-          {/* Navigation Arrows (Hover or mobile visible) */}
+          {/* Navigation Arrows */}
           {total > 1 && (
             <>
               <button
@@ -248,9 +261,10 @@ export default function ProjectGallerySlider({
                   paginate(-1);
                 }}
                 aria-label="Previous image"
-                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-green-accent text-white hover:text-bg-primary backdrop-blur-md border border-white/10 hover:border-green-accent flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg group-hover:opacity-100 opacity-90 sm:opacity-0 sm:group-hover:opacity-100"
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-green-accent text-white hover:text-bg-primary backdrop-blur-md border border-white/10 hover:border-green-accent flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg group-hover:opacity-100 opacity-90 sm:opacity-0 sm:group-hover:opacity-100"
               >
-                <ChevronLeft size={20} />
+                <ChevronLeft size={18} className="sm:hidden" />
+                <ChevronLeft size={20} className="hidden sm:block" />
               </button>
 
               <button
@@ -260,9 +274,10 @@ export default function ProjectGallerySlider({
                   paginate(1);
                 }}
                 aria-label="Next image"
-                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-green-accent text-white hover:text-bg-primary backdrop-blur-md border border-white/10 hover:border-green-accent flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg group-hover:opacity-100 opacity-90 sm:opacity-0 sm:group-hover:opacity-100"
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-green-accent text-white hover:text-bg-primary backdrop-blur-md border border-white/10 hover:border-green-accent flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg group-hover:opacity-100 opacity-90 sm:opacity-0 sm:group-hover:opacity-100"
               >
-                <ChevronRight size={20} />
+                <ChevronRight size={18} className="sm:hidden" />
+                <ChevronRight size={20} className="hidden sm:block" />
               </button>
             </>
           )}
@@ -282,7 +297,7 @@ export default function ProjectGallerySlider({
 
       {/* Thumbnails Navigation Filmstrip */}
       {total > 1 && (
-        <div className="mt-4">
+        <div className="mt-3 sm:mt-4">
           <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto py-1 px-1 scroll-smooth snap-x snap-mandatory touch-pan-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {slides.map((item, idx) => {
               const isActive = idx === currentIndex;
@@ -291,7 +306,7 @@ export default function ProjectGallerySlider({
                   key={idx}
                   type="button"
                   onClick={() => goToSlide(idx)}
-                  className={`relative flex-shrink-0 w-20 sm:w-28 md:w-32 aspect-video rounded-xl sm:rounded-2xl overflow-hidden border transition-all duration-200 snap-center group ${
+                  className={`relative flex-shrink-0 w-16 sm:w-28 md:w-32 aspect-video rounded-lg sm:rounded-2xl overflow-hidden border transition-all duration-200 snap-center group ${
                     isActive
                       ? "border-green-accent ring-2 ring-green-accent/30 scale-105 shadow-md shadow-green-accent/10"
                       : "border-border-subtle opacity-60 hover:opacity-100 hover:border-green-accent/40"
@@ -310,7 +325,7 @@ export default function ProjectGallerySlider({
                     }`}
                   />
                   <span
-                    className={`absolute bottom-1 right-1 px-1.5 py-0.5 rounded text-[10px] font-mono leading-none ${
+                    className={`absolute bottom-1 right-1 px-1 sm:px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-mono leading-none ${
                       isActive
                         ? "bg-green-accent text-bg-primary font-bold"
                         : "bg-black/70 text-white/80"
@@ -325,117 +340,123 @@ export default function ProjectGallerySlider({
         </div>
       )}
 
-      {/* Fullscreen Lightbox Modal */}
-      <AnimatePresence>
-        {isLightboxOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex flex-col justify-between p-3 sm:p-6 select-none"
-          >
-            {/* Lightbox Header */}
-            <div className="flex items-center justify-between w-full max-w-7xl mx-auto z-20">
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-xs text-green-accent px-3 py-1 rounded-full bg-green-accent/10 border border-green-accent/20">
-                  {category || "Screenshot"}
-                </span>
-                <h3 className="font-display text-text-primary text-sm sm:text-base uppercase truncate max-w-xs sm:max-w-md">
-                  {projectTitle}
-                </h3>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-xs text-text-secondary hidden sm:inline">
-                  {currentIndex + 1} / {total}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setIsLightboxOpen(false)}
-                  className="p-2 rounded-full bg-white/10 hover:bg-green-accent text-white hover:text-bg-primary transition-all duration-200"
-                  aria-label="Close Lightbox"
-                >
-                  <X size={20} />
-                </button>
-              </div>
-            </div>
-
-            {/* Lightbox Center Image Viewport */}
-            <div className="relative flex-1 w-full max-w-7xl mx-auto my-3 flex items-center justify-center overflow-hidden">
-              <AnimatePresence initial={false} custom={direction} mode="wait">
-                <motion.div
-                  key={currentIndex}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  className="relative w-full h-full flex items-center justify-center"
-                >
-                  <Image
-                    src={currentSlide.url}
-                    alt={currentSlide.alt || `${projectTitle} Fullscreen ${currentIndex + 1}`}
-                    fill
-                    sizes="100vw"
-                    priority
-                    className="object-contain drop-shadow-2xl"
-                  />
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Lightbox Arrows */}
-              {total > 1 && (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => paginate(-1)}
-                    className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-green-accent text-white hover:text-bg-primary backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-2xl"
-                    aria-label="Previous"
-                  >
-                    <ChevronLeft size={24} />
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => paginate(1)}
-                    className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/10 hover:bg-green-accent text-white hover:text-bg-primary backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-2xl"
-                    aria-label="Next"
-                  >
-                    <ChevronRight size={24} />
-                  </button>
-                </>
-              )}
-            </div>
-
-            {/* Lightbox Footer with Caption & Thumbnails */}
-            <div className="w-full max-w-7xl mx-auto z-20">
-              {currentSlide.alt && (
-                <p className="text-center font-mono text-xs text-text-secondary mb-2 truncate">
-                  {currentSlide.alt}
-                </p>
-              )}
-              {total > 1 && (
-                <div className="flex items-center justify-center gap-2 overflow-x-auto py-1">
-                  {slides.map((item, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => goToSlide(idx)}
-                      className={`relative flex-shrink-0 w-14 sm:w-20 aspect-video rounded-lg overflow-hidden border transition-all ${
-                        idx === currentIndex
-                          ? "border-green-accent ring-2 ring-green-accent/30 scale-105"
-                          : "border-white/10 opacity-50 hover:opacity-100"
-                      }`}
-                    >
-                      <Image src={item.url} alt="" fill sizes="80px" className="object-cover" />
-                    </button>
-                  ))}
+      {/* Fullscreen Lightbox Modal Portal */}
+      {mounted &&
+        isLightboxOpen &&
+        createPortal(
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-2xl flex flex-col justify-between p-3 sm:p-6 select-none h-[100dvh] w-screen overflow-hidden"
+            >
+              {/* Lightbox Header */}
+              <div className="flex items-center justify-between w-full max-w-7xl mx-auto z-20 shrink-0">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <span className="font-mono text-[10px] sm:text-xs text-green-accent px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-green-accent/10 border border-green-accent/20">
+                    {category || "Project"}
+                  </span>
+                  <h3 className="font-display text-text-primary text-xs sm:text-base uppercase truncate max-w-[180px] sm:max-w-md">
+                    {projectTitle}
+                  </h3>
                 </div>
-              )}
-            </div>
-          </motion.div>
+
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <span className="font-mono text-xs text-text-secondary">
+                    {currentIndex + 1} / {total}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setIsLightboxOpen(false)}
+                    className="p-1.5 sm:p-2 rounded-full bg-white/10 hover:bg-green-accent text-white hover:text-bg-primary transition-all duration-200"
+                    aria-label="Close Lightbox"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Lightbox Center Image Viewport (Dead-Centered on Mobile, Tablet, and Desktop) */}
+              <div className="relative flex-1 min-h-0 w-full max-w-7xl mx-auto my-auto flex items-center justify-center">
+                <AnimatePresence initial={false} custom={direction} mode="wait">
+                  <motion.div
+                    key={currentIndex}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    className="relative w-full h-full flex items-center justify-center p-1 sm:p-4"
+                  >
+                    <div className="relative w-full h-full max-h-[70dvh] sm:max-h-[80dvh] flex items-center justify-center">
+                      <Image
+                        src={currentSlide.url}
+                        alt={currentSlide.alt || `${projectTitle} Fullscreen ${currentIndex + 1}`}
+                        fill
+                        sizes="100vw"
+                        priority
+                        className="object-contain drop-shadow-2xl"
+                      />
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Lightbox Arrows */}
+                {total > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => paginate(-1)}
+                      className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-green-accent text-white hover:text-bg-primary backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-2xl border border-white/10"
+                      aria-label="Previous"
+                    >
+                      <ChevronLeft size={20} />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => paginate(1)}
+                      className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-green-accent text-white hover:text-bg-primary backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-2xl border border-white/10"
+                      aria-label="Next"
+                    >
+                      <ChevronRight size={20} />
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {/* Lightbox Footer with Caption & Thumbnails */}
+              <div className="w-full max-w-7xl mx-auto z-20 shrink-0 pb-safe">
+                {currentSlide.alt && (
+                  <p className="text-center font-mono text-[11px] sm:text-xs text-text-secondary mb-2 truncate px-4">
+                    {currentSlide.alt}
+                  </p>
+                )}
+                {total > 1 && (
+                  <div className="flex items-center justify-center gap-1.5 sm:gap-2 overflow-x-auto py-1">
+                    {slides.map((item, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => goToSlide(idx)}
+                        className={`relative flex-shrink-0 w-12 sm:w-20 aspect-video rounded-md sm:rounded-lg overflow-hidden border transition-all ${
+                          idx === currentIndex
+                            ? "border-green-accent ring-2 ring-green-accent/30 scale-105"
+                            : "border-white/10 opacity-50 hover:opacity-100"
+                        }`}
+                      >
+                        <Image src={item.url} alt="" fill sizes="80px" className="object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </div>
   );
 }
+
