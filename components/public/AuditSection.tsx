@@ -159,16 +159,16 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
           >
             <div>
               {/* Header inside card: Badge + Metric */}
-              <div className="flex items-center justify-between gap-2 mb-3">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md sm:rounded-lg bg-bg-primary border border-border-subtle text-[11px] sm:text-xs font-mono text-text-primary">
-                  {getCategoryIcon(item.category)}
-                  {item.badgeText || item.category}
+              <div className="flex items-center justify-between gap-2 mb-3 min-w-0">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md sm:rounded-lg bg-bg-primary border border-border-subtle text-[11px] sm:text-xs font-mono text-text-primary whitespace-nowrap min-w-0 max-w-[60%] sm:max-w-none">
+                  <span className="shrink-0">{getCategoryIcon(item.category)}</span>
+                  <span className="truncate">{item.badgeText || item.category}</span>
                 </span>
 
                 {item.scoreOrMetric && (
-                  <span className="text-[11px] sm:text-xs font-mono font-bold text-green-accent bg-green-accent/10 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md border border-green-accent/20 flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                    {item.scoreOrMetric}
+                  <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-mono font-bold text-green-accent bg-green-accent/10 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md border border-green-accent/20 whitespace-nowrap shrink-0">
+                    <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
+                    <span className="truncate">{item.scoreOrMetric}</span>
                   </span>
                 )}
               </div>
@@ -194,21 +194,16 @@ export default function AuditSection({ audits = [] }: AuditSectionProps) {
                     src={item.imageUrl}
                     alt={item.imageAlt || item.title}
                     fill
-                    className="object-cover object-top transition-all duration-500 group-hover/img:scale-105 blur-[2px] lg:blur-none"
+                    className="object-cover object-top transition-all duration-500 group-hover/img:scale-105 blur-[2.5px] group-hover/img:blur-none"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
 
-                  {/* Mobile & Tablet View: Default Blur Overlay with Centered 'Click to open full image' */}
-                  <div className="lg:hidden absolute inset-0 bg-black/40 flex items-center justify-center p-3 pointer-events-none">
-                    <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-green-accent/40 text-white font-mono text-[11px] sm:text-xs shadow-2xl">
+                  {/* Centered 'Click to open full image' overlay for all devices */}
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-3 transition-all duration-300 pointer-events-none group-hover/img:bg-black/50">
+                    <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-green-accent/40 text-white font-mono text-[11px] sm:text-xs shadow-2xl group-hover/img:scale-105 group-hover/img:border-green-accent transition-transform">
                       <ZoomIn className="w-3.5 h-3.5 text-green-accent shrink-0" />
                       <span>Click to open full image</span>
                     </div>
-                  </div>
-
-                  {/* Desktop View (lg+): Smooth Hover Overlay */}
-                  <div className="hidden lg:flex absolute inset-0 bg-black/60 opacity-0 group-hover/img:opacity-100 transition-opacity items-center justify-center gap-2 text-white font-mono text-xs backdrop-blur-[2px]">
-                    <ZoomIn className="w-4 h-4 text-green-accent" /> Click to enlarge report
                   </div>
                 </div>
               ) : (
