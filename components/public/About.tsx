@@ -100,7 +100,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
               </h2>
             </div>
 
-            <div className="bg-bg-card/40 border border-border-subtle/30 rounded-xl p-4 md:bg-transparent md:border-none md:p-0 md:rounded-none mb-10">
+            <div className="bg-bg-card/40 border border-border-subtle/30 rounded-xl p-3.5 sm:p-4 md:bg-transparent md:border-none md:p-0 md:rounded-none mt-2 md:mt-0 mb-6 sm:mb-10">
               <div className="prose prose-invert text-justify prose-p:text-text-primary prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:text-justify prose-a:text-green-accent hover:prose-a:underline max-w-none transition-colors">
                 <div dangerouslySetInnerHTML={{ __html: bioRichText }} />
               </div>
