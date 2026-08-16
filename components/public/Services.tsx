@@ -73,7 +73,7 @@ export default function Services({ services }: ServicesProps) {
                 </h3>
 
                 {/* Service Description */}
-                <p className="text-xs sm:text-sm text-text-secondary group-hover:text-text-primary transition-colors leading-relaxed font-mono font-normal text-left">
+                <p className="text-sm sm:text-base font-semibold text-text-primary text-justify leading-relaxed font-mono w-full">
                   {service.description}
                 </p>
               </div>
