@@ -26,10 +26,43 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
   const renderHighlightedLine = (line: string) => {
     const parts = line.split(/(fast|secure)/i);
     return parts.map((part, index) => {
-      if (/^(fast|secure)$/i.test(part)) {
-        return <span key={index} className="text-green-accent">{part}</span>;
+      const isAccent = /^(fast|secure)$/i.test(part);
+      if (isAccent) {
+        return (
+          <motion.span
+            key={index}
+            className="relative inline-block text-green-accent font-extrabold transition-all duration-300"
+            whileHover={{ scale: 1.05, y: -2 }}
+          >
+            <span className="relative z-10 drop-shadow-[0_0_35px_rgba(140,255,158,0.6)]">
+              {part}
+            </span>
+            {/* Ambient Breathing Neon Glow */}
+            <motion.span
+              animate={{
+                opacity: [0.35, 0.75, 0.35],
+                scale: [0.95, 1.1, 0.95],
+              }}
+              transition={{
+                duration: 2.4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: index * 0.3,
+              }}
+              className="absolute inset-0 bg-green-accent/25 blur-2xl -z-10 rounded-full pointer-events-none"
+            />
+          </motion.span>
+        );
       }
-      return <span key={index}>{part}</span>;
+      return (
+        <motion.span
+          key={index}
+          className="inline-block transition-transform duration-300 hover:text-white"
+          whileHover={{ y: -2 }}
+        >
+          {part}
+        </motion.span>
+      );
     });
   };
 
@@ -95,10 +128,15 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
           {headlineLines.map((line, i) => (
             <motion.span
               key={i}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="block cursor-default"
+              initial={{ opacity: 0, y: 45, filter: "blur(8px)", scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+              transition={{
+                duration: 0.8,
+                delay: i * 0.14,
+                ease: [0.25, 0.4, 0.25, 1],
+              }}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="block cursor-default select-none"
             >
               {renderHighlightedLine(line)}
             </motion.span>
