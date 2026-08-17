@@ -94,12 +94,12 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                 </Link>
               </div>
 
-              <h2 className="w-full text-center lg:text-left text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight leading-tight sm:leading-tight mb-5 sm:mb-6 lg:mb-8 px-2 md:px-0">
+              <h2 className="w-full text-center lg:text-left text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight leading-tight sm:leading-tight mb-7 sm:mb-8 lg:mb-8 px-2 md:px-0">
                 Behind Code
               </h2>
             </div>
 
-            <div className="w-full bg-bg-card/40 border border-border-subtle/30 rounded-xl p-4 sm:p-5 md:bg-transparent md:border-none md:p-0 md:rounded-none mt-2 sm:mt-3 lg:mt-0 mb-6 sm:mb-8 md:mb-12 lg:mb-10">
+            <div className="w-full bg-bg-card/40 border border-border-subtle/30 rounded-xl p-4 sm:p-5 md:bg-transparent md:border-none md:p-0 md:rounded-none mt-3 sm:mt-4 lg:mt-0 mb-6 sm:mb-8 md:mb-12 lg:mb-10">
               <div
                 className="tiptap-content font-sans text-justify text-sm sm:text-base leading-relaxed w-full max-w-none transition-colors"
                 dangerouslySetInnerHTML={{ __html: bioRichText }}
