@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { User, Code2, FolderKanban, Mail, LayoutGrid, Home } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { User, Code2, FolderKanban, Star, Mail, LayoutGrid } from "lucide-react";
 
 interface NavLink { label: string; href: string; order: number; }
 interface SocialLink { platform: string; url: string; order: number; }
@@ -19,10 +19,10 @@ export default function PublicSidebar({ logoText, navLinks, socialLinks }: Publi
 
   const getIcon = (label: string) => {
     const l = label.toLowerCase();
+    if (l.includes("home")) return <Home size={18} />;
     if (l.includes("about")) return <User size={18} />;
     if (l.includes("skill")) return <Code2 size={18} />;
     if (l.includes("project") || l.includes("work")) return <FolderKanban size={18} />;
-    if (l.includes("testimonial") || l.includes("review")) return <Star size={18} />;
     if (l.includes("contact")) return <Mail size={18} />;
     return <LayoutGrid size={18} />;
   };

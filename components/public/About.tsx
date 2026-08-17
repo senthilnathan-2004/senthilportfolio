@@ -18,9 +18,9 @@ interface AboutProps {
 
 export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt, heroImageUrl, captionName }: AboutProps) {
   const carouselItems = [
-    <span key={1} className="text-sm font-bold tracking-widest uppercase font-mono text-text-tertiary">FULL_STACK_DEV</span>,
-    <span key={2} className="text-sm font-bold tracking-widest uppercase font-mono text-text-tertiary">SYSTEM_ARCHITECT</span>,
-    <span key={3} className="text-sm font-bold tracking-widest uppercase font-mono text-text-tertiary">UI_ENGINEER</span>,
+    <span key={1} className="text-sm font-bold tracking-widest uppercase font-mono text-text-tertiary">FULL_STACK_MERN_DEV</span>,
+    <span key={2} className="text-sm font-bold tracking-widest uppercase font-mono text-text-tertiary">REACT_AND_NODE_SPECIALIST</span>,
+    <span key={3} className="text-sm font-bold tracking-widest uppercase font-mono text-text-tertiary">REST_API_ENGINEER</span>,
   ];
 
   return (
@@ -47,6 +47,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
                     src={imageUrl}
                     alt={imageAlt || "About photo"}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover opacity-90 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700 hover:scale-105"
                   />
                 ) : (

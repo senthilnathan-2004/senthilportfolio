@@ -23,7 +23,7 @@ export default async function AboutPage() {
           imageUrl={about.imageUrl || ""}
           imageAlt={about.imageAlt || "About photo"}
           heroImageUrl={hero?.portraitImageUrl || ""}
-          captionName={hero?.captionName || "Senthil Ragu"}
+          captionName={hero?.captionName || "Senthilnathan R"}
         />
       )}
       {stats.length > 0 && <Stats stats={stats} />}

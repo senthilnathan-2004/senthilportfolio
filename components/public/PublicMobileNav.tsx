@@ -21,13 +21,12 @@ export default function PublicMobileNav({ navLinks }: PublicMobileNavProps) {
     if (l.includes("about")) return <User size={18} />;
     if (l.includes("skill")) return <Code2 size={18} />;
     if (l.includes("project") || l.includes("work")) return <FolderKanban size={18} />;
-    if (l.includes("testimonial") || l.includes("review")) return <Star size={18} />;
     if (l.includes("contact")) return <Mail size={18} />;
     return <LayoutGrid size={18} />;
   };
 
   const formatHref = (href: string) => href.replace("#hero", "/").replace("#", "/");
-  const displayLinks = [...navLinks].sort((a, b) => a.order - b.order).slice(0, 7);
+  const displayLinks = [...navLinks].sort((a, b) => a.order - b.order);
 
   return (
     <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 rounded-t-2xl rounded-b-none p-[1.5px] pb-0 bg-border-subtle overflow-hidden">
@@ -51,24 +50,22 @@ export default function PublicMobileNav({ navLinks }: PublicMobileNavProps) {
       {/* Inner Navigation Content */}
       <div className="relative z-10 bg-bg-card/95 backdrop-blur-md rounded-t-[15px] pb-safe">
         <div className="flex items-center justify-around p-1.5 sm:p-2">
-          {displayLinks.map((link, index) => {
+          {displayLinks.map((link) => {
             const pathHref = formatHref(link.href);
             const isActive = pathname === pathHref || (pathname.startsWith(pathHref) && pathHref !== "/");
-            const isTabletOnly = index === 6;
 
             return (
               <Link
                 key={link.href}
                 href={pathHref}
                 className={cn(
-                  "flex-col items-center justify-center p-1.5 gap-0.5 sm:gap-1 transition-colors shrink-0",
-                  isTabletOnly ? "hidden sm:flex" : "flex",
+                  "flex flex-col items-center justify-center p-1.5 gap-0.5 sm:gap-1 transition-colors shrink-0",
                   isActive ? "text-green-accent" : "text-text-tertiary hover:text-green-accent"
                 )}
               >
                 {getIcon(link.label)}
                 <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider">
-                  {link.label.toLowerCase().includes("testimonial") ? "Reviews" : link.label}
+                  {link.label}
                 </span>
               </Link>
             );

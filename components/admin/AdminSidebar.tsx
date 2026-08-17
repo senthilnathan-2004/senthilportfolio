@@ -18,8 +18,6 @@ const navItems = [
   { href: "/admin/stats", label: "Stats", icon: BarChart3 },
   { href: "/admin/projects", label: "Projects", icon: FolderKanban },
   { href: "/admin/audits", label: "Audits & Proofs", icon: ShieldCheck },
-  { href: "/admin/testimonials", label: "Testimonials", icon: Star },
-  { href: "/admin/services", label: "Services", icon: Briefcase },
   { href: "/admin/messages", label: "Messages", icon: MessageSquare },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];

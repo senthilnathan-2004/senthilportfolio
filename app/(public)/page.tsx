@@ -17,11 +17,11 @@ export default async function HomePage() {
     <>
       {hero && (
         <Hero
-          badgeText={hero.badgeText || "<6+ Year Experience>"}
-          headline={hero.headline || "BUILDING FAST,\nSCALABLE, AND\nSECURE WEBSITE"}
+          badgeText={hero.badgeText || "<Available for Full-Time Roles>"}
+          headline={hero.headline || "FULL STACK\nMERN DEVELOPER\nBUILDING SCALABLE APPS"}
           portraitImageUrl={hero.portraitImageUrl || ""}
-          portraitAlt={hero.portraitAlt || "Developer portrait"}
-          captionName={hero.captionName || "Alex Rivera"}
+          portraitAlt={hero.portraitAlt || "Senthilnathan R portrait"}
+          captionName={hero.captionName || "Senthilnathan R"}
           socialLinks={hero.socialLinks || []}
         />
       )}

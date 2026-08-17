@@ -91,22 +91,27 @@ export async function sendReply(id: string, replyText: string) {
   const msg = await ContactMessage.findById(id);
   if (!msg) throw new Error("Message not found");
 
-  if (process.env.EMAIL_SERVER_HOST && process.env.EMAIL_SERVER_PASSWORD) {
+  const emailHost = process.env.EMAIL_SERVER_HOST || process.env.SMTP_HOST;
+  const emailPort = process.env.EMAIL_SERVER_PORT || process.env.SMTP_PORT;
+  const emailUser = process.env.EMAIL_SERVER_USER || process.env.SMTP_USER;
+  const emailPass = process.env.EMAIL_SERVER_PASSWORD || process.env.SMTP_PASS;
+
+  if (emailHost && emailPass) {
     const nodemailer = await import("nodemailer");
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_SERVER_HOST,
-      port: Number(process.env.EMAIL_SERVER_PORT) || 587,
-      secure: Number(process.env.EMAIL_SERVER_PORT) === 465,
+      host: emailHost,
+      port: Number(emailPort) || 587,
+      secure: Number(emailPort) === 465,
       auth: {
-        user: process.env.EMAIL_SERVER_USER,
-        pass: process.env.EMAIL_SERVER_PASSWORD,
+        user: emailUser,
+        pass: emailPass,
       },
     });
 
     await transporter.sendMail({
-      from: `"Portfolio" <${process.env.EMAIL_FROM || process.env.EMAIL_SERVER_USER}>`,
+      from: process.env.EMAIL_FROM || `"Senthilnathan R" <${emailUser}>`,
       to: msg.email,
-      subject: `Re: Your message to Senthilragu Portfolio`,
+      subject: `Re: Your message to Senthilnathan R`,
       text: replyText,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333; line-height: 1.6;">

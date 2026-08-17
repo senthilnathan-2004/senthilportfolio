@@ -37,7 +37,7 @@ export default function Footer({ logoText, footerText, quickLinks, socialLinks, 
               <span className="font-mono text-text-primary font-semibold text-lg">{logoRest}</span>
             </Link>
             <p className="text-text-tertiary text-sm font-mono mb-6">
-              Building fast, scalable, and secure digital experiences.
+              Full Stack MERN Developer building scalable web applications and clean RESTful APIs.
             </p>
             
             {startupName && startupUrl && (

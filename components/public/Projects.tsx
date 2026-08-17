@@ -46,7 +46,7 @@ export default function Projects({ projects }: ProjectsProps) {
             <FolderGit2 size={16} />
             <span className="tracking-widest uppercase">Deployments</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight whitespace-nowrap">
             Digital Crafts
           </h2>
         </motion.div>
@@ -109,6 +109,7 @@ export default function Projects({ projects }: ProjectsProps) {
                       src={project.coverImageUrl}
                       alt={project.coverImageAlt || project.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   ) : (

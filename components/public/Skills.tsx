@@ -45,7 +45,7 @@ export default function Skills({ skills }: SkillsProps) {
             <Layers size={16} />
             <span className="tracking-widest uppercase">Tech Arsenal</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display text-text-primary uppercase tracking-tight whitespace-nowrap">
             <span className="hidden sm:inline">Core </span>Technologies
           </h2>
         </motion.div>

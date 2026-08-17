@@ -120,14 +120,14 @@ export default function WelcomeCard({ name = "Senthil Ragu" }: WelcomeCardProps)
                   Welcome to <span className="text-green-accent">{formattedName}</span>
                 </h2>
                 <p className="font-mono text-[10px] sm:text-xs text-text-tertiary mt-1">
-                  Full-Stack Dev &amp; UI Architect
+                  Full-Stack MERN Developer
                 </p>
               </div>
             </div>
 
             {/* Description */}
             <p className="text-xs sm:text-sm text-text-secondary leading-relaxed font-sans mb-4 sm:mb-6">
-              Glad to have you here! Feel free to explore interactive projects, skills, custom services, and modern digital experiences.
+              Welcome! Feel free to explore my production-ready MERN stack applications, technical competencies, and engineering case studies.
             </p>
 
             {/* Tech Feature Cards */}

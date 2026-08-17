@@ -24,27 +24,27 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
   const sorted = [...socialLinks].sort((a, b) => a.order - b.order);
 
   const renderHighlightedLine = (line: string) => {
-    const parts = line.split(/(fast|secure)/i);
+    const parts = line.split(/(mern|full stack|scalable|fast|secure)/i);
     return parts.map((part, index) => {
-      if (/^(fast|secure)$/i.test(part)) {
+      if (/^(mern|full stack|scalable|fast|secure)$/i.test(part)) {
         return <span key={index} className="text-green-accent">{part}</span>;
       }
       return <span key={index}>{part}</span>;
     });
   };
 
-  const carouselItems = ["LOADING_MODULES", "DATA_SYNC", "SYSTEM_SECURE", "OPTIMIZING_ASSETS", "ESTABLISHING_CONNECTION", "ACCESS_GRANTED"];
+  const carouselItems = ["MERN_STACK", "REACT_JS", "NODE_JS", "EXPRESS_JS", "MONGODB", "TYPESCRIPT", "REST_APIS", "PERFORMANCE_OPTIMIZED"];
 
   const renderCarouselItems = carouselItems.map((text, i) => (
     <span key={i} className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-widest uppercase font-mono text-text-tertiary mx-8 opacity-60">{text}</span>
   ));
 
   const imageCarouselItems = [
-    <div key={1} className="w-16 h-16 rounded bg-border-subtle flex items-center justify-center opacity-50 mx-4 border border-border-subtle/50"><span className="text-xs font-mono text-text-tertiary">IMG_01</span></div>,
-    <div key={2} className="w-16 h-16 rounded bg-border-subtle flex items-center justify-center opacity-50 mx-4 border border-border-subtle/50"><span className="text-xs font-mono text-text-tertiary">IMG_02</span></div>,
-    <div key={3} className="w-16 h-16 rounded bg-border-subtle flex items-center justify-center opacity-50 mx-4 border border-border-subtle/50"><span className="text-xs font-mono text-text-tertiary">IMG_03</span></div>,
-    <div key={4} className="w-16 h-16 rounded bg-border-subtle flex items-center justify-center opacity-50 mx-4 border border-border-subtle/50"><span className="text-xs font-mono text-text-tertiary">IMG_04</span></div>,
-    <div key={5} className="w-16 h-16 rounded bg-border-subtle flex items-center justify-center opacity-50 mx-4 border border-border-subtle/50"><span className="text-xs font-mono text-text-tertiary">IMG_05</span></div>,
+    <div key={1} className="w-16 h-16 rounded bg-border-subtle flex items-center justify-center opacity-50 mx-4 border border-border-subtle/50"><span className="text-xs font-mono text-text-tertiary">REACT</span></div>,
+    <div key={2} className="w-16 h-16 rounded bg-border-subtle flex items-center justify-center opacity-50 mx-4 border border-border-subtle/50"><span className="text-xs font-mono text-text-tertiary">NODE</span></div>,
+    <div key={3} className="w-16 h-16 rounded bg-border-subtle flex items-center justify-center opacity-50 mx-4 border border-border-subtle/50"><span className="text-xs font-mono text-text-tertiary">MONGO</span></div>,
+    <div key={4} className="w-16 h-16 rounded bg-border-subtle flex items-center justify-center opacity-50 mx-4 border border-border-subtle/50"><span className="text-xs font-mono text-text-tertiary">EXPRESS</span></div>,
+    <div key={5} className="w-16 h-16 rounded bg-border-subtle flex items-center justify-center opacity-50 mx-4 border border-border-subtle/50"><span className="text-xs font-mono text-text-tertiary">TS</span></div>,
   ];
 
   return (
@@ -75,7 +75,7 @@ export default function Hero({ badgeText, headline, portraitImageUrl, portraitAl
           </div>
           {captionName && (
             <div className="flex flex-col min-w-0">
-              <span className="text-[10px] sm:text-xs font-mono text-green-accent uppercase tracking-widest truncate">System Admin</span>
+              <span className="text-[10px] sm:text-xs font-mono text-green-accent uppercase tracking-widest truncate">Full Stack Developer</span>
               <span className="text-base sm:text-lg font-semibold text-text-primary transition-colors truncate">{captionName}</span>
             </div>
           )}

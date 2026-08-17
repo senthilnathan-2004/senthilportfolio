@@ -31,22 +31,28 @@ export async function POST(req: NextRequest) {
     });
 
     // Optional: send email via Nodemailer
-    if (process.env.EMAIL_SERVER_HOST && process.env.EMAIL_SERVER_PASSWORD && process.env.CONTACT_RECEIVER_EMAIL) {
+    const emailHost = process.env.EMAIL_SERVER_HOST || process.env.SMTP_HOST;
+    const emailPort = process.env.EMAIL_SERVER_PORT || process.env.SMTP_PORT;
+    const emailUser = process.env.EMAIL_SERVER_USER || process.env.SMTP_USER;
+    const emailPass = process.env.EMAIL_SERVER_PASSWORD || process.env.SMTP_PASS;
+    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || process.env.ADMIN_NOTIFICATION_EMAIL || process.env.ADMIN_EMAIL;
+
+    if (emailHost && emailPass && receiverEmail) {
       try {
         const nodemailer = await import("nodemailer");
         const transporter = nodemailer.createTransport({
-          host: process.env.EMAIL_SERVER_HOST,
-          port: Number(process.env.EMAIL_SERVER_PORT) || 587,
-          secure: Number(process.env.EMAIL_SERVER_PORT) === 465,
+          host: emailHost,
+          port: Number(emailPort) || 587,
+          secure: Number(emailPort) === 465,
           auth: {
-            user: process.env.EMAIL_SERVER_USER,
-            pass: process.env.EMAIL_SERVER_PASSWORD,
+            user: emailUser,
+            pass: emailPass,
           },
         });
 
         await transporter.sendMail({
-          from: `"Portfolio Contact" <${process.env.EMAIL_FROM || process.env.EMAIL_SERVER_USER}>`,
-          to: process.env.CONTACT_RECEIVER_EMAIL,
+          from: process.env.EMAIL_FROM || `"Senthilnathan R Portfolio" <${emailUser}>`,
+          to: receiverEmail,
           subject: `New message from ${parsed.data.name}`,
           html: `
             <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; max-width: 600px; margin: 0 auto; background-color: #0A0A0A; color: #E5E7EB; padding: 20px; border-radius: 12px; border: 1px solid #1F2937;">

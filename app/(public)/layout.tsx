@@ -36,17 +36,17 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSiteSettings().catch(() => null);
   
   return {
-    title: "Senthilragu Developer Portfolio",
-    description: "Full stack developer & UI designer building fast, scalable, and secure digital experiences.",
-    keywords: ["developer", "portfolio", "full-stack", "web development", "UI design"],
+    title: "Senthilnathan R — Full Stack MERN Developer Portfolio",
+    description: "Full Stack MERN Developer with experience building scalable web applications, RESTful APIs, and reusable UI component systems.",
+    keywords: ["Senthilnathan R", "Full Stack Developer", "MERN Stack", "React.js", "Node.js", "MongoDB", "Express.js", "Software Engineer"],
     icons: settings?.faviconUrl ? {
       icon: settings.faviconUrl,
     } : undefined,
     openGraph: {
       type: "website",
       locale: "en_US",
-      title: "Senthilragu — Developer Portfolio",
-      description: "Full-stack developer & UI designer building fast, scalable, and secure digital experiences.",
+      title: "Senthilnathan R — Full Stack MERN Developer",
+      description: "Full Stack MERN Developer with experience building scalable web applications, RESTful APIs, and reusable UI component systems.",
     },
   };
 }
@@ -54,21 +54,19 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function PublicLayout({ children }: { children: React.ReactNode }) {
   const settings = await getSiteSettings().catch(() => null);
 
-  const logoText = settings?.logoText || "// Senthilragu";
-  const footerText = settings?.footerText || "© {year} Senthilragu. All rights reserved.";
+  const logoText = settings?.logoText || "// Senthilnathan R";
+  const footerText = settings?.footerText || "© {year} Senthilnathan R. All rights reserved.";
   const socialLinks = settings?.socialLinks || [];
   const startupName = settings?.startupName || "";
   const startupUrl = settings?.startupUrl || "";
   
-  // Force all navigation links to ensure 7 pages are displayed
+  // Clean job portfolio navigation links (5 essential pages)
   const forcedNavLinks = [
     { label: "Home", href: "/", order: 1 },
     { label: "About", href: "/about", order: 2 },
     { label: "Skills", href: "/skills", order: 3 },
     { label: "Projects", href: "/projects", order: 4 },
-    { label: "Services", href: "/services", order: 5 },
-    { label: "Testimonials", href: "/testimonials", order: 6 },
-    { label: "Contact", href: "/contact", order: 7 },
+    { label: "Contact", href: "/contact", order: 5 },
   ];
 
   return (

@@ -354,24 +354,24 @@ export default function ProjectGallerySlider({
               className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-2xl flex flex-col justify-between p-3 sm:p-6 select-none h-[100dvh] w-screen overflow-hidden"
             >
               {/* Lightbox Header */}
-              <div className="flex items-center justify-between w-full max-w-7xl mx-auto z-20 shrink-0">
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <span className="font-mono text-[10px] sm:text-xs text-green-accent px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-green-accent/10 border border-green-accent/20">
+              <div className="flex items-center justify-between w-full max-w-7xl mx-auto z-20 shrink-0 gap-2 mb-2 sm:mb-0">
+                <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                  <span className="font-mono text-[10px] sm:text-xs text-green-accent px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-green-accent/10 border border-green-accent/20 whitespace-nowrap shrink-0">
                     {category || "Project"}
                   </span>
-                  <h3 className="font-mono font-bold text-text-primary text-xs sm:text-base truncate max-w-[180px] sm:max-w-md">
+                  <h3 className="font-mono font-bold text-text-primary text-xs sm:text-base truncate min-w-0 flex-1 whitespace-nowrap">
                     {projectTitle}
                   </h3>
                 </div>
 
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <span className="font-mono text-xs text-text-secondary">
+                <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                  <span className="font-mono text-xs text-text-secondary whitespace-nowrap shrink-0">
                     {currentIndex + 1} / {total}
                   </span>
                   <button
                     type="button"
                     onClick={() => setIsLightboxOpen(false)}
-                    className="p-1.5 sm:p-2 rounded-full bg-white/10 hover:bg-green-accent text-white hover:text-bg-primary transition-all duration-200"
+                    className="p-1.5 sm:p-2 rounded-full bg-white/10 hover:bg-green-accent text-white hover:text-bg-primary transition-all duration-200 shrink-0"
                     aria-label="Close Lightbox"
                   >
                     <X size={18} />
