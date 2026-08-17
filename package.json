@@ -34,7 +34,7 @@
     "mongoose": "^9.7.4",
     "next": "16.2.10",
     "next-auth": "^5.0.0-beta.31",
-    "nodemailer": "^9.0.3",
+    "nodemailer": "^6.9.16",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.81.0",
@@ -46,7 +46,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
-    "@types/nodemailer": "^8.0.1",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.5.2",
