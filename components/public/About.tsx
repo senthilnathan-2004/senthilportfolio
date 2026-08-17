@@ -101,7 +101,7 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
 
             <div className="w-full bg-bg-card/40 border border-border-subtle/30 rounded-xl p-3 min-[400px]:p-4 md:bg-transparent md:border-none md:p-0 md:rounded-none mt-1 min-[400px]:mt-2 md:mt-2 lg:mt-0 mb-3 min-[400px]:mb-5 sm:mb-6 md:mb-12 lg:mb-10">
               <div
-                className="tiptap-content font-sans text-sm sm:text-base leading-relaxed max-w-none transition-colors"
+                className="tiptap-content font-sans text-justify text-sm sm:text-base leading-relaxed w-full max-w-none transition-colors"
                 dangerouslySetInnerHTML={{ __html: bioRichText }}
               />
             </div>

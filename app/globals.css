@@ -120,29 +120,38 @@ body {
 /* Tiptap rich text styles */
 .tiptap-content {
   font-family: var(--font-inter), 'Inter', sans-serif !important;
+  text-align: justify;
+  text-justify: inter-word;
+  width: 100%;
 }
-.tiptap-content h1 { font-family: var(--font-archivo-black), sans-serif; font-size: 1.875rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-primary); text-transform: uppercase; }
-.tiptap-content h2 { font-family: var(--font-archivo-black), sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary); text-transform: uppercase; }
-.tiptap-content h3 { font-family: var(--font-archivo-black), sans-serif; font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text-primary); text-transform: uppercase; }
-.tiptap-content p { font-family: var(--font-inter), 'Inter', sans-serif !important; margin-bottom: 1rem; color: var(--text-secondary); line-height: 1.75; }
-.tiptap-content ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
-.tiptap-content ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
-.tiptap-content li { margin-bottom: 0.25rem; color: var(--text-secondary); line-height: 1.7; font-family: var(--font-inter), 'Inter', sans-serif !important; }
+.tiptap-content h1 { font-family: var(--font-archivo-black), sans-serif; font-size: 1.875rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-primary); text-transform: uppercase; text-align: justify; width: 100%; }
+.tiptap-content h2 { font-family: var(--font-archivo-black), sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary); text-transform: uppercase; text-align: justify; width: 100%; }
+.tiptap-content h3 { font-family: var(--font-archivo-black), sans-serif; font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--text-primary); text-transform: uppercase; text-align: justify; width: 100%; }
+.tiptap-content p { font-family: var(--font-inter), 'Inter', sans-serif !important; margin-bottom: 1rem; color: var(--text-secondary); line-height: 1.75; text-align: justify; text-justify: inter-word; width: 100%; }
+.tiptap-content ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; text-align: justify; }
+.tiptap-content ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1rem; text-align: justify; }
+.tiptap-content li { margin-bottom: 0.25rem; color: var(--text-secondary); line-height: 1.7; font-family: var(--font-inter), 'Inter', sans-serif !important; text-align: justify; }
 .tiptap-content a { color: var(--accent-green); text-decoration: underline; }
 .tiptap-content strong { color: var(--text-primary); font-weight: 700; }
 .tiptap-content em { font-style: italic; }
 .tiptap-content blockquote {
   border-left: 3px solid var(--accent-green);
-  padding: 0.5rem 0 0.5rem 1rem;
+  padding: 0.5rem 1rem;
   margin: 1rem 0;
   color: var(--text-secondary);
   font-style: italic;
   background: rgba(140, 255, 158, 0.03);
   border-radius: 0 8px 8px 0;
+  width: 100%;
+  text-align: justify;
+  text-justify: inter-word;
 }
 .tiptap-content blockquote p {
   color: inherit;
   margin-bottom: 0.25rem;
+  text-align: justify;
+  text-justify: inter-word;
+  width: 100%;
 }
 .tiptap-content blockquote p:last-child {
   margin-bottom: 0;
