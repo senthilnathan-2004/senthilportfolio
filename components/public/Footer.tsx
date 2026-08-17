@@ -22,7 +22,7 @@ export default function Footer({ logoText, footerText, quickLinks, socialLinks, 
     setDisplayText(footerText.replace("{year}", new Date().getFullYear().toString()));
   }, [footerText]);
   const logoSlash = logoText.startsWith("//") ? "//" : "";
-  const logoRest = logoText.startsWith("//") ? logoText.slice(2) : logoText;
+  const logoRest = logoText.startsWith("//") ? logoText.slice(2).trim() : logoText.trim();
   const sortedLinks = [...quickLinks].sort((a, b) => a.order - b.order);
   const sortedSocial = [...socialLinks].sort((a, b) => a.order - b.order);
 
@@ -32,9 +32,9 @@ export default function Footer({ logoText, footerText, quickLinks, socialLinks, 
         <div className="grid sm:grid-cols-3 gap-8 mb-10">
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-1 mb-3">
-              <span className="font-mono text-green-accent font-bold text-lg">{logoSlash}</span>
-              <span className="font-mono text-text-primary font-semibold text-lg">{logoRest}</span>
+            <Link href="/" className="flex items-center gap-1 mb-3 whitespace-nowrap">
+              <span className="font-mono text-green-accent font-bold text-lg leading-none">{logoSlash}</span>
+              <span className="font-mono text-text-primary font-semibold text-lg leading-none">{logoRest}</span>
             </Link>
             <p className="text-text-tertiary text-sm font-mono mb-6">
               Full Stack MERN Developer building scalable web applications and clean RESTful APIs.

@@ -28,20 +28,20 @@ export default function PublicSidebar({ logoText, navLinks, socialLinks }: Publi
   };
 
   const logoSlash = logoText.startsWith("//") ? "//" : "";
-  const logoRest = logoText.startsWith("//") ? logoText.slice(2) : logoText;
+  const logoRest = logoText.startsWith("//") ? logoText.slice(2).trim() : logoText.trim();
 
   // Convert old hash links (#about) to path links (/about)
   const formatHref = (href: string) => href.replace("#hero", "/").replace("#", "/");
 
   return (
-    <aside className="w-64 h-full bg-bg-primary/95 backdrop-blur-xl border border-border-subtle rounded-3xl flex flex-col overflow-hidden relative shrink-0">
+    <aside className="w-64 xl:w-72 h-full bg-bg-primary/95 backdrop-blur-xl border border-border-subtle rounded-3xl flex flex-col overflow-hidden relative shrink-0">
       {/* Logo Area */}
-      <div className="p-8 border-b border-border-subtle/50">
-        <Link href="/" className="flex items-center gap-1 shrink-0">
-          <span className="font-mono text-green-accent font-bold text-2xl leading-none">{logoSlash}</span>
-          <span className="font-mono text-text-primary font-bold text-xl leading-none uppercase tracking-wider">{logoRest}</span>
+      <div className="p-6 xl:p-8 border-b border-border-subtle/50">
+        <Link href="/" className="flex items-center gap-1.5 shrink-0 whitespace-nowrap overflow-hidden">
+          <span className="font-mono text-green-accent font-bold text-xl xl:text-2xl leading-none shrink-0">{logoSlash}</span>
+          <span className="font-mono text-text-primary font-bold text-[15px] xl:text-[17px] leading-none uppercase tracking-wide whitespace-nowrap">{logoRest}</span>
         </Link>
-        <div className="mt-3 text-xs font-mono text-text-tertiary uppercase tracking-widest">
+        <div className="mt-3 text-xs font-mono text-text-tertiary uppercase tracking-widest whitespace-nowrap">
           System_Online // 
         </div>
       </div>

@@ -135,12 +135,10 @@ export default async function ProjectPage({ params }: Props) {
                 Case Study & Technical Highlights
               </h2>
             </div>
-            <div className="prose prose-invert max-w-none font-sans text-justify prose-p:text-text-primary prose-p:text-sm sm:prose-p:text-base prose-p:leading-relaxed prose-p:mb-3 md:prose-p:mb-4 prose-p:text-justify prose-a:text-green-accent hover:prose-a:underline transition-colors">
-              <div
-                className="tiptap-content text-justify font-sans"
-                dangerouslySetInnerHTML={{ __html: project.caseStudyRichText }}
-              />
-            </div>
+            <div
+              className="tiptap-content font-sans text-sm sm:text-base leading-relaxed max-w-none transition-colors"
+              dangerouslySetInnerHTML={{ __html: project.caseStudyRichText }}
+            />
           </div>
         )}
       </div>

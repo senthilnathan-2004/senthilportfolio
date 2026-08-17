@@ -100,9 +100,10 @@ export default function About({ tagLabel, bioRichText, cvUrl, imageUrl, imageAlt
             </div>
 
             <div className="w-full bg-bg-card/40 border border-border-subtle/30 rounded-xl p-3 min-[400px]:p-4 md:bg-transparent md:border-none md:p-0 md:rounded-none mt-1 min-[400px]:mt-2 md:mt-2 lg:mt-0 mb-3 min-[400px]:mb-5 sm:mb-6 md:mb-12 lg:mb-10">
-              <div className="prose prose-invert text-justify prose-p:text-text-primary prose-p:text-base sm:prose-p:text-lg prose-p:font-semibold prose-p:leading-relaxed prose-p:mb-2 md:prose-p:mb-4 prose-p:text-justify prose-a:text-green-accent hover:prose-a:underline max-w-none transition-colors">
-                <div dangerouslySetInnerHTML={{ __html: bioRichText }} />
-              </div>
+              <div
+                className="tiptap-content font-sans text-sm sm:text-base leading-relaxed max-w-none transition-colors"
+                dangerouslySetInnerHTML={{ __html: bioRichText }}
+              />
             </div>
 
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 px-2 md:px-0 w-full">

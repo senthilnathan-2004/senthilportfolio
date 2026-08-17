@@ -27,7 +27,7 @@ export default function Navbar({ logoText, navLinks, ctaText, ctaHref, socialLin
   }, []);
 
   const logoSlash = logoText.startsWith("//") ? "//" : "";
-  const logoRest = logoText.startsWith("//") ? logoText.slice(2) : logoText;
+  const logoRest = logoText.startsWith("//") ? logoText.slice(2).trim() : logoText.trim();
 
   return (
     <>
@@ -40,7 +40,7 @@ export default function Navbar({ logoText, navLinks, ctaText, ctaHref, socialLin
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-1 shrink-0">
+          <Link href="/" className="flex items-center gap-1 shrink-0 whitespace-nowrap">
             <span className="font-mono text-green-accent font-bold text-lg leading-none">{logoSlash}</span>
             <span className="font-mono text-text-primary font-semibold text-lg leading-none">{logoRest}</span>
           </Link>
